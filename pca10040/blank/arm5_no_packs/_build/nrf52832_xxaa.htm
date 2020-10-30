@@ -3,7 +3,7 @@
 <title>Static Call Graph - [.\_build\nrf52832_xxaa.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\_build\nrf52832_xxaa.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060960: Last Updated: Fri Oct 30 13:23:56 2020
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060960: Last Updated: Fri Oct 30 13:52:50 2020
 <BR><P>
 <H3>Maximum Stack Usage =        416 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -501,7 +501,7 @@ Global Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[5f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_log_frontend_dequeue
 </UL>
 
-<P><STRONG><a name="[30]"></a>main</STRONG> (Thumb, 208 bytes, Stack size 16 bytes, main.o(i.main))
+<P><STRONG><a name="[30]"></a>main</STRONG> (Thumb, 202 bytes, Stack size 16 bytes, main.o(i.main))
 <BR><BR>[Stack]<UL><LI>Max Depth = 360<LI>Call Chain = main &rArr; nrf_log_default_backends_init &rArr; nrf_log_backend_uart_init &rArr; uart_init &rArr; app_error_handler_bare &rArr; app_error_fault_handler &rArr; nrf_log_frontend_std_0 &rArr; std_n &rArr; nrf_log_frontend_dequeue &rArr;  nrf_log_frontend_std_0 (Cycle)
 </UL>
 <BR>[Calls]<UL><LI><a href="#[8a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_log_init
@@ -872,8 +872,8 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[cc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;prs_box_get
 </UL>
-<BR>[Called By]<UL><LI><a href="#[bc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrfx_uart_uninit
-<LI><a href="#[bb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrfx_uarte_uninit
+<BR>[Called By]<UL><LI><a href="#[bb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrfx_uarte_uninit
+<LI><a href="#[bc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrfx_uart_uninit
 </UL>
 
 <P><STRONG><a name="[ce]"></a>nrfx_twim_enable</STRONG> (Thumb, 34 bytes, Stack size 16 bytes, nrfx_twim.o(i.nrfx_twim_enable))
@@ -985,11 +985,11 @@ Global Symbols
 <P><STRONG><a name="[dd]"></a>nrfx_uarte_tx</STRONG> (Thumb, 188 bytes, Stack size 32 bytes, nrfx_uarte.o(i.nrfx_uarte_tx))
 <BR><BR>[Stack]<UL><LI>Max Depth = 40<LI>Call Chain = nrfx_uarte_tx &rArr; nrf_uarte_event_clear
 </UL>
-<BR>[Calls]<UL><LI><a href="#[de]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrfx_is_in_ram
+<BR>[Calls]<UL><LI><a href="#[df]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrfx_uarte_tx_in_progress
+<LI><a href="#[de]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrfx_is_in_ram
 <LI><a href="#[e0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_uarte_task_trigger
 <LI><a href="#[85]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_uarte_event_clear
 <LI><a href="#[e1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_uarte_event_check
-<LI><a href="#[df]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrfx_uarte_tx_in_progress
 </UL>
 <BR>[Called By]<UL><LI><a href="#[37]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;serial_tx
 </UL>
@@ -1012,7 +1012,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[40]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_log_backend_uart_panic_set
 </UL>
 
-<P><STRONG><a name="[38]"></a>twi_handler</STRONG> (Thumb, 112 bytes, Stack size 16 bytes, main.o(i.twi_handler))
+<P><STRONG><a name="[38]"></a>twi_handler</STRONG> (Thumb, 114 bytes, Stack size 16 bytes, main.o(i.twi_handler))
 <BR><BR>[Stack]<UL><LI>Max Depth = 272<LI>Call Chain = twi_handler &rArr; nrf_log_frontend_std_1 &rArr; std_n &rArr; nrf_log_frontend_dequeue &rArr;  nrf_log_frontend_std_0 (Cycle)
 </UL>
 <BR>[Calls]<UL><LI><a href="#[c2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_log_frontend_std_1
@@ -1487,18 +1487,18 @@ Local Symbols
 </UL>
 
 <P><STRONG><a name="[e1]"></a>nrf_uarte_event_check</STRONG> (Thumb, 14 bytes, Stack size 0 bytes, nrfx_uarte.o(i.nrf_uarte_event_check))
-<BR><BR>[Called By]<UL><LI><a href="#[dc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uarte_irq_handler
-<LI><a href="#[bb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrfx_uarte_uninit
+<BR><BR>[Called By]<UL><LI><a href="#[bb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrfx_uarte_uninit
 <LI><a href="#[dd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrfx_uarte_tx
+<LI><a href="#[dc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uarte_irq_handler
 </UL>
 
 <P><STRONG><a name="[85]"></a>nrf_uarte_event_clear</STRONG> (Thumb, 14 bytes, Stack size 8 bytes, nrfx_uarte.o(i.nrf_uarte_event_clear))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = nrf_uarte_event_clear
 </UL>
-<BR>[Called By]<UL><LI><a href="#[dc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uarte_irq_handler
-<LI><a href="#[84]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;interrupts_enable
-<LI><a href="#[bb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrfx_uarte_uninit
+<BR>[Called By]<UL><LI><a href="#[bb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrfx_uarte_uninit
 <LI><a href="#[dd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrfx_uarte_tx
+<LI><a href="#[dc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uarte_irq_handler
+<LI><a href="#[84]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;interrupts_enable
 </UL>
 
 <P><STRONG><a name="[71]"></a>nrf_uarte_hwfc_pins_set</STRONG> (Thumb, 12 bytes, Stack size 0 bytes, nrfx_uarte.o(i.nrf_uarte_hwfc_pins_set))
@@ -1519,14 +1519,14 @@ Local Symbols
 </UL>
 
 <P><STRONG><a name="[e2]"></a>nrf_uarte_shorts_disable</STRONG> (Thumb, 12 bytes, Stack size 0 bytes, nrfx_uarte.o(i.nrf_uarte_shorts_disable))
-<BR><BR>[Called By]<UL><LI><a href="#[dc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uarte_irq_handler
-<LI><a href="#[bb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrfx_uarte_uninit
+<BR><BR>[Called By]<UL><LI><a href="#[bb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrfx_uarte_uninit
+<LI><a href="#[dc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uarte_irq_handler
 </UL>
 
 <P><STRONG><a name="[e0]"></a>nrf_uarte_task_trigger</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, nrfx_uarte.o(i.nrf_uarte_task_trigger))
-<BR><BR>[Called By]<UL><LI><a href="#[dc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uarte_irq_handler
-<LI><a href="#[bb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrfx_uarte_uninit
+<BR><BR>[Called By]<UL><LI><a href="#[bb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrfx_uarte_uninit
 <LI><a href="#[dd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrfx_uarte_tx
+<LI><a href="#[dc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uarte_irq_handler
 </UL>
 
 <P><STRONG><a name="[100]"></a>nrf_uarte_tx_amount_get</STRONG> (Thumb, 10 bytes, Stack size 0 bytes, nrfx_uarte.o(i.nrf_uarte_tx_amount_get))
@@ -1669,8 +1669,8 @@ Local Symbols
 <P><STRONG><a name="[40]"></a>nrf_log_backend_uart_panic_set</STRONG> (Thumb, 48 bytes, Stack size 16 bytes, nrf_log_backend_uart.o(i.nrf_log_backend_uart_panic_set))
 <BR><BR>[Stack]<UL><LI>Max Depth = 344<LI>Call Chain = nrf_log_backend_uart_panic_set &rArr; uart_init &rArr; app_error_handler_bare &rArr; app_error_fault_handler &rArr; nrf_log_frontend_std_0 &rArr; std_n &rArr; nrf_log_frontend_dequeue &rArr;  nrf_log_frontend_std_0 (Cycle)
 </UL>
-<BR>[Calls]<UL><LI><a href="#[bc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrfx_uart_uninit
-<LI><a href="#[bb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrfx_uarte_uninit
+<BR>[Calls]<UL><LI><a href="#[bb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrfx_uarte_uninit
+<LI><a href="#[bc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrfx_uart_uninit
 <LI><a href="#[ba]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uart_init
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> nrf_log_backend_uart.o(.constdata)
@@ -1686,8 +1686,8 @@ Local Symbols
 <BR><BR>[Stack]<UL><LI>Max Depth = 320<LI>Call Chain = serial_tx &rArr; app_error_handler_bare &rArr; app_error_fault_handler &rArr; nrf_log_frontend_std_0 &rArr; std_n &rArr; nrf_log_frontend_dequeue &rArr;  nrf_log_frontend_std_0 (Cycle)
 </UL>
 <BR>[Calls]<UL><LI><a href="#[61]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_error_handler_bare
-<LI><a href="#[d5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrfx_uart_tx
 <LI><a href="#[dd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrfx_uarte_tx
+<LI><a href="#[d5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrfx_uart_tx
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> nrf_log_backend_uart.o(i.nrf_log_backend_uart_put)
 </UL>
