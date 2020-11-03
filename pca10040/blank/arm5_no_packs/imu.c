@@ -25,6 +25,16 @@
 #include "Invn/Devices/SerifHal.h"
 // include to low level system driver
 // #include "MyTarget/SPI.h"
+#include "nrf_drv_twi.h"
+
+extern const nrf_drv_twi_t m_twi;
+
+extern ret_code_t i2c_read_bytes(const nrf_drv_twi_t *twi_handle, uint8_t address, uint8_t sub_address, uint8_t * dest, uint8_t dest_count);
+extern ret_code_t i2c_write_byte(const nrf_drv_twi_t *twi_handle, uint8_t address, uint8_t sub_address, const uint8_t* data, bool stop);
+extern void twi_handler(nrf_drv_twi_evt_t const * p_event, void * p_context);
+#define ICM_20948_I2C_ADDRESS		0x69U
+
+
 // forward declarations
 int my_serif_open_read_reg(void * context, uint8_t reg, uint8_t * rbuffer, uint32_t rlen);
 int my_serif_open_write_reg(void * context, uint8_t reg, const uint8_t * wbuffer, uint32_t wlen);
@@ -39,20 +49,41 @@ const inv_serif_hal_t my_serif_instance = {
         my_serif_open_write_reg, /* callback to read_reg low level method */
         128,                     /* maximum number of bytes allowed per read transaction,
                                     (limitation can come from internal buffer in the system driver) */
-        128,                     /* maximum number of bytes allowed per write transaction,
+        1,                     /* maximum number of bytes allowed per write transaction,
                                     (limitation can come from internal buffer in the system driver) */
-        INV_SERIF_HAL_TYPE_SPI,  /* type of the serial interface (between SPI or I2C) */
+        INV_SERIF_HAL_TYPE_I2C,  /* type of the serial interface (between SPI or I2C) */
         (void *)0xDEAD           /* some context pointer passed to read_reg/write_reg callbacks */
 };
 int my_serif_open_read_reg(void * context, uint8_t reg, uint8_t * rbuffer, uint32_t rlen)
 {
         (void)context, (void)reg, (void)rbuffer, (void)rlen;
         // MyTarget_SPI_do_read_reg(&reg, 1, rbuffer, rlen);
-        return 0; // shall return a negative value on error
+	
+				ret_code_t error = i2c_read_bytes( &m_twi, ICM_20948_I2C_ADDRESS, reg, rbuffer, rlen);
+				if(error == NRF_SUCCESS)
+				{
+					return 0;
+				}else{
+					return -1;	// shall return a negative value on error
+				}
 }
+
 int my_serif_open_write_reg(void * context, uint8_t reg, const uint8_t * wbuffer, uint32_t wlen)
 {
         (void)context, (void)reg, (void)wbuffer, (void)wlen;
         // MyTarget_SPI_do_write_reg(&reg, 1, wbuffer, wlen);
-        return 0; // shall return a negative value on error
+	
+//				for( int i=0; i<wlen; i++)
+//				{
+					ret_code_t error = i2c_write_byte( &m_twi, ICM_20948_I2C_ADDRESS, reg, wbuffer, true);
+//					i++;
+//				}
+				// TODO: return value is now always 0
+				if(error == NRF_SUCCESS)
+				{
+					return 0;
+				}else{
+					return -1;	// shall return a negative value on error
+				}
+//        return 0; // shall return a negative value on error
 }

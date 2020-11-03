@@ -31,8 +31,11 @@ struct inv_icm20948;
 #define INV_TWO_POWER_NEG_30 9.313225746154785e-010f
 
 #define ABS(x) (((x)>=0)?(x):-(x)) /*!< Computes the absolute value of its argument \a x. \ingroup invn_macro */
+
+#ifndef MAX
 #define MAX(x,y) (((x)>(y))?(x):(y)) /*!< Computes the maximum of \a x and \a y. \ingroup invn_macro*/
 #define MIN(x,y) (((x)<(y))?(x):(y)) /*!< Computes the minimum of \a x and \a y. \ingroup invn_macro */
+#endif
 
 //! \def INVN_FLT_TO_FXP
 //! Convert the \a value from float to QN value. \ingroup invn_macro 
