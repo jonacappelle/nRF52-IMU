@@ -97,6 +97,9 @@
 .\_build\main.o: ..\..\..\..\..\..\modules\nrfx\drivers\include\nrfx_timer.h
 .\_build\main.o: ..\..\..\..\..\..\modules\nrfx\hal/nrf_timer.h
 .\_build\main.o: ..\..\..\..\..\..\components\libraries\bsp\bsp.h
+.\_build\main.o: ..\..\..\..\..\..\integration\nrfx\legacy\nrf_drv_gpiote.h
+.\_build\main.o: ..\..\..\..\..\..\modules\nrfx\drivers\include\nrfx_gpiote.h
+.\_build\main.o: ..\..\..\..\..\..\modules\nrfx\hal/nrf_gpiote.h
 .\_build\main.o: ..\..\blank\Invn/EmbUtils/Message.h
 .\_build\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdarg.h
 .\_build\main.o: ..\..\blank\Invn/Images/icm20948_img.dmp3a.h

@@ -28,6 +28,13 @@
 #include "bsp.h"
 #include "app_error.h"
 
+// GPIO Interrupt
+#include <stdbool.h>
+#include "nrf.h"
+#include "nrf_drv_gpiote.h"
+#include "app_error.h"
+#include "boards.h"
+
 
 #include "Invn/EmbUtils/Message.h"
 
@@ -383,6 +390,36 @@ const char * activityName(int act)
 	}
 }
 
+#define INT_PIN	2
+
+void in_pin_handler(nrf_drv_gpiote_pin_t pin, nrf_gpiote_polarity_t action);
+/**
+ * @brief Function for configuring: PIN_IN pin for input, PIN_OUT pin for output,
+ * and configures GPIOTE to give an interrupt on pin change.
+ */
+static void gpio_init(void)
+{
+    ret_code_t err_code;
+
+    err_code = nrf_drv_gpiote_init();
+    APP_ERROR_CHECK(err_code);
+
+//    nrf_drv_gpiote_out_config_t out_config = GPIOTE_CONFIG_OUT_SIMPLE(false);
+
+//    err_code = nrf_drv_gpiote_out_init(PIN_OUT, &out_config);
+//    APP_ERROR_CHECK(err_code);
+
+    nrf_drv_gpiote_in_config_t in_config = GPIOTE_CONFIG_IN_SENSE_TOGGLE(true);
+    in_config.pull = NRF_GPIO_PIN_PULLUP;
+
+    err_code = nrf_drv_gpiote_in_init(INT_PIN, &in_config, in_pin_handler);
+    APP_ERROR_CHECK(err_code);
+
+    nrf_drv_gpiote_in_event_enable(INT_PIN, true);
+}
+
+		bool interrupt = false;
+
 /**
  * @brief Function for main application entry.
  */
@@ -407,6 +444,9 @@ int main(void)
 	
 		uint8_t data1[4] = { 0x01, 0x02, 0x03, 0x04 };
 		
+		gpio_init();
+		
+
 		
 /////////////////////////////////////////////////////////////////
 		int rc = 0;
@@ -481,10 +521,12 @@ int main(void)
 		while(1)
 		{
 			NRF_LOG_FLUSH();
-			
-			
-			rc += inv_device_poll(device);
-			nrf_delay_ms(500);
+			if(interrupt)
+			{
+				inv_device_poll(device);
+				interrupt = false;
+			}
+
 		}
 		////////////////////////////////////////////////////////////////
 		
@@ -498,6 +540,13 @@ int main(void)
 
 				i2c_read_bytes(&m_twi, ICM_20948_I2C_ADDRESS, 0x33, data, 1); // GYRO X H register	
     }
+}
+
+void in_pin_handler(nrf_drv_gpiote_pin_t pin, nrf_gpiote_polarity_t action)
+{
+    //NRF_LOG_INFO("Interrupt Occured!");
+	
+		interrupt = true;
 }
 
 /** @} */

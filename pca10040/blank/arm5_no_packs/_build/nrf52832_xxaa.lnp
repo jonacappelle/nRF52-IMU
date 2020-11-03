@@ -9,6 +9,7 @@
 ".\_build\nrfx_twim.o"
 ".\_build\nrfx_uart.o"
 ".\_build\nrfx_uarte.o"
+".\_build\nrfx_gpiote.o"
 ".\_build\app_error.o"
 ".\_build\app_error_handler_keil.o"
 ".\_build\app_error_weak.o"
