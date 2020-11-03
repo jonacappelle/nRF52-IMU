@@ -31,6 +31,7 @@
 
 #include "Invn/EmbUtils/Message.h"
 
+
 /* Define msg level */
 #define MSG_LEVEL INV_MSG_LEVEL_DEBUG
 
@@ -41,6 +42,8 @@
 /* I2C address of IMU */
 #define ICM_20948_I2C_ADDRESS		0x69U
 #define ICM_20948_WHOAMI				0x00U
+
+const char * activityName(int act);
 
 /* Indicates if operation on TWI has ended. */
 static volatile bool m_xfer_done = false;
@@ -228,9 +231,92 @@ static void sensor_event_cb(const inv_sensor_event_t * event, void * arg)
         (void)event;
         /* ... do something with event */
 	
-				NRF_LOG_INFO("Sensor event!");
+				//NRF_LOG_INFO("Sensor event!");
 				//NRF_LOG_FLUSH();
-				
+	
+	
+	if(event->status == INV_SENSOR_STATUS_DATA_UPDATED) {
+
+		switch(INV_SENSOR_ID_TO_TYPE(event->sensor)) {
+		case INV_SENSOR_TYPE_RAW_ACCELEROMETER:
+		case INV_SENSOR_TYPE_RAW_GYROSCOPE:
+			INV_MSG(INV_MSG_LEVEL_INFO, "data event %s (lsb): %llu %d %d %d", inv_sensor_str(event->sensor),
+					event->timestamp,
+					(int)event->data.raw3d.vect[0],
+					(int)event->data.raw3d.vect[1],
+					(int)event->data.raw3d.vect[2]);
+			break;
+		case INV_SENSOR_TYPE_ACCELEROMETER:
+		case INV_SENSOR_TYPE_LINEAR_ACCELERATION:
+		case INV_SENSOR_TYPE_GRAVITY:
+			INV_MSG(INV_MSG_LEVEL_INFO, "data event %s (mg): %d %d %d", inv_sensor_str(event->sensor),
+					(int)(event->data.acc.vect[0]*1000),
+					(int)(event->data.acc.vect[1]*1000),
+					(int)(event->data.acc.vect[2]*1000));
+			break;
+		case INV_SENSOR_TYPE_GYROSCOPE:
+			INV_MSG(INV_MSG_LEVEL_INFO, "data event %s (mdps): %d %d %d", inv_sensor_str(event->sensor),
+					(int)(event->data.gyr.vect[0]*1000),
+					(int)(event->data.gyr.vect[1]*1000),
+					(int)(event->data.gyr.vect[2]*1000));
+			break;
+		case INV_SENSOR_TYPE_MAGNETOMETER:
+			INV_MSG(INV_MSG_LEVEL_INFO, "data event %s (nT): %d %d %d", inv_sensor_str(event->sensor),
+					(int)(event->data.mag.vect[0]*1000),
+					(int)(event->data.mag.vect[1]*1000),
+					(int)(event->data.mag.vect[2]*1000));
+			break;
+		case INV_SENSOR_TYPE_UNCAL_GYROSCOPE:
+			INV_MSG(INV_MSG_LEVEL_INFO, "data event %s (mdps): %d %d %d %d %d %d", inv_sensor_str(event->sensor),
+					(int)(event->data.gyr.vect[0]*1000),
+					(int)(event->data.gyr.vect[1]*1000),
+					(int)(event->data.gyr.vect[2]*1000),
+					(int)(event->data.gyr.bias[0]*1000),
+					(int)(event->data.gyr.bias[1]*1000),
+					(int)(event->data.gyr.bias[2]*1000));
+			break;
+		case INV_SENSOR_TYPE_UNCAL_MAGNETOMETER:
+			INV_MSG(INV_MSG_LEVEL_INFO, "data event %s (nT): %d %d %d %d %d %d", inv_sensor_str(event->sensor),
+					(int)(event->data.mag.vect[0]*1000),
+					(int)(event->data.mag.vect[1]*1000),
+					(int)(event->data.mag.vect[2]*1000),
+					(int)(event->data.mag.bias[0]*1000),
+					(int)(event->data.mag.bias[1]*1000),
+					(int)(event->data.mag.bias[2]*1000));
+			break;
+		case INV_SENSOR_TYPE_GAME_ROTATION_VECTOR:
+		case INV_SENSOR_TYPE_ROTATION_VECTOR:
+		case INV_SENSOR_TYPE_GEOMAG_ROTATION_VECTOR:
+			INV_MSG(INV_MSG_LEVEL_INFO, "data event %s (e-3): %d %d %d %d ", inv_sensor_str(event->sensor),
+					(int)(event->data.quaternion.quat[0]*1000),
+					(int)(event->data.quaternion.quat[1]*1000),
+					(int)(event->data.quaternion.quat[2]*1000),
+					(int)(event->data.quaternion.quat[3]*1000));
+			break;
+		case INV_SENSOR_TYPE_ORIENTATION:
+			INV_MSG(INV_MSG_LEVEL_INFO, "data event %s (e-3): %d %d %d %d ", inv_sensor_str(event->sensor),
+					(int)(event->data.orientation.x*1000),
+					(int)(event->data.orientation.y*1000),
+					(int)(event->data.orientation.z*1000));
+			break;
+		case INV_SENSOR_TYPE_BAC:
+			INV_MSG(INV_MSG_LEVEL_INFO, "data event %s : %d %s", inv_sensor_str(event->sensor),
+					event->data.bac.event, activityName(event->data.bac.event));
+			break;
+		case INV_SENSOR_TYPE_STEP_COUNTER:
+			INV_MSG(INV_MSG_LEVEL_INFO, "data event %s : %lu", inv_sensor_str(event->sensor),
+					(unsigned long)event->data.step.count);
+			break;
+		case INV_SENSOR_TYPE_PICK_UP_GESTURE:
+		case INV_SENSOR_TYPE_STEP_DETECTOR:
+		case INV_SENSOR_TYPE_SMD:
+		case INV_SENSOR_TYPE_B2S:
+		case INV_SENSOR_TYPE_TILT_DETECTOR:
+		default:
+			INV_MSG(INV_MSG_LEVEL_INFO, "data event %s : ...", inv_sensor_str(event->sensor));
+			break;
+	}
+}
 }
 /*
  * A listener onject will handle sensor events
@@ -263,23 +349,6 @@ const inv_serif_hal_t serif_instance = {
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-///* Define msg level */
-//#define MSG_LEVEL INV_MSG_LEVEL_DEBUG
-
-///*
-// * Setup message facility to see internal traces from IDD
-// */
-//INV_MSG_SETUP(int MSG_LEVEL, msg_printer);
-
-
-//static void msg_printer(int level, const char * str, va_list ap);
-///*
-// * Printer function for IDD message facility
-// */
-//static void msg_printer(int level, const char * str, va_list ap)
-//{
-//	NRF_LOG_INFO(str);
-//}
 
 static void check_rc(int rc)
 {
@@ -287,6 +356,30 @@ static void check_rc(int rc)
 		NRF_LOG_INFO("BAD RC=%d", rc);
 		NRF_LOG_FLUSH();
 		//while(1);
+	}
+}
+
+
+
+/*
+ * Function to return activity name in printable char
+ */
+const char * activityName(int act)
+{
+	switch(act) {
+	case INV_SENSOR_BAC_EVENT_ACT_IN_VEHICLE_BEGIN:          return "BEGIN IN_VEHICLE";
+	case INV_SENSOR_BAC_EVENT_ACT_WALKING_BEGIN:             return "BEGIN WALKING";
+	case INV_SENSOR_BAC_EVENT_ACT_RUNNING_BEGIN:             return "BEGIN RUNNING";
+	case INV_SENSOR_BAC_EVENT_ACT_ON_BICYCLE_BEGIN:          return "BEGIN ON_BICYCLE";
+	case INV_SENSOR_BAC_EVENT_ACT_TILT_BEGIN:                return "BEGIN TILT";
+	case INV_SENSOR_BAC_EVENT_ACT_STILL_BEGIN:               return "BEGIN STILL";
+	case INV_SENSOR_BAC_EVENT_ACT_IN_VEHICLE_END:            return "END IN_VEHICLE";
+	case INV_SENSOR_BAC_EVENT_ACT_WALKING_END:               return "END WALKING";
+	case INV_SENSOR_BAC_EVENT_ACT_RUNNING_END:               return "END RUNNING";
+	case INV_SENSOR_BAC_EVENT_ACT_ON_BICYCLE_END:            return "END ON_BICYCLE";
+	case INV_SENSOR_BAC_EVENT_ACT_TILT_END:                  return "END TILT";
+	case INV_SENSOR_BAC_EVENT_ACT_STILL_END:                 return "END STILL";
+	default:                                                 return "unknown activity!";
 	}
 }
 
@@ -366,16 +459,24 @@ int main(void)
 		rc += inv_device_load(device, NULL, dmp3_image, sizeof(dmp3_image), true /* verify */, NULL);
 		check_rc(rc);
 		NRF_LOG_FLUSH();
-
 		
-		rc += inv_device_set_sensor_period(device, INV_SENSOR_TYPE_RAW_ACCELEROMETER, 50);
-		rc += inv_device_start_sensor(device, INV_SENSOR_TYPE_RAW_ACCELEROMETER);
+		
+//		rc += inv_device_set_sensor_period_us(device, INV_SENSOR_TYPE_RAW_GYROSCOPE, 50000);
+//		check_rc(rc);
+//		NRF_LOG_FLUSH();
+
+
+//		rc += inv_device_start_sensor(device, INV_SENSOR_TYPE_RAW_GYROSCOPE);
+//		check_rc(rc);
+		
+//		rc += inv_device_set_sensor_period(device, INV_SENSOR_TYPE_RAW_ACCELEROMETER, 50);
+//		rc += inv_device_start_sensor(device, INV_SENSOR_TYPE_RAW_ACCELEROMETER);
 		rc += inv_device_set_sensor_period(device, INV_SENSOR_TYPE_RAW_GYROSCOPE, 50);
 		rc += inv_device_start_sensor(device, INV_SENSOR_TYPE_RAW_GYROSCOPE);
-		rc += inv_device_set_sensor_period(device, INV_SENSOR_TYPE_RAW_MAGNETOMETER, 50);
-		rc += inv_device_start_sensor(device, INV_SENSOR_TYPE_RAW_MAGNETOMETER);
-		
-		
+//		rc += inv_device_set_sensor_period(device, INV_SENSOR_TYPE_RAW_MAGNETOMETER, 50);
+//		rc += inv_device_start_sensor(device, INV_SENSOR_TYPE_RAW_MAGNETOMETER);
+//		
+//		
 		
 		while(1)
 		{
