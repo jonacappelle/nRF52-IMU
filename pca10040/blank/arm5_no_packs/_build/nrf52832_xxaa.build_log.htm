@@ -22,20 +22,25 @@ Dialog DLL:      TCM.DLL V1.46.0.0
  
 <h2>Project:</h2>
 C:\Users\u0139004\Box\NOMADe\SOFTWARE\nRF5_SDK_17.0.2_d674dde\examples\peripheral\nRF52-IMU\pca10040\blank\arm5_no_packs\twi_sensor_pca10040.uvprojx
-Project File Date:  10/30/2020
+Project File Date:  11/03/2020
 
 <h2>Output:</h2>
 *** Using Compiler 'V5.06 update 7 (build 960)', folder: 'C:\Keil_v5\ARM\ARMCC\Bin'
 Build target 'nrf52832_xxaa'
-compiling imu.c...
 compiling main.c...
-..\..\..\main.c(310): warning:  #111-D: statement is unreachable
-  		i2c_write_byte(&m_twi, ICM_20948_I2C_ADDRESS, 0x06, data1, true);
-..\..\..\main.c: 1 warning, 0 errors
+..\..\blank\Invn/DynamicProtocol/DynProtocol.h(276): warning:  #1-D: last line of file ends without a newline
+  #endif /* _GSH_PROTOCOL_H_ */
+..\..\blank\Invn/DynamicProtocol/DynProtocolTransportUart.h(88): warning:  #1-D: last line of file ends without a newline
+  #endif /* _DYN_PRO_TRANSPORT_UART_H_ */
+..\..\..\main.c(393): warning:  #128-D: loop is not reachable
+      while (true)
+..\..\..\main.c(315): warning:  #177-D: variable "data1"  was declared but never referenced
+  		uint8_t data1[4] = { 0x01, 0x02, 0x03, 0x04 };
+..\..\..\main.c: 4 warnings, 0 errors
 linking...
-Program Size: Code=47360 RO-data=2240 RW-data=14516 ZI-data=13020  
+Program Size: Code=48784 RO-data=2240 RW-data=14532 ZI-data=21212  
 FromELF: creating hex file...
-".\_build\nrf52832_xxaa.axf" - 0 Error(s), 1 Warning(s).
+".\_build\nrf52832_xxaa.axf" - 0 Error(s), 4 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -61,11 +66,11 @@ Package Vendor: NordicSemiconductor
    * Component: ARM::CMSIS:CORE:5.3.0
 
    * Component: NordicSemiconductor::Device:Startup:8.35.0
-      Include file:  Device\Include\system_nrf.h
-      Source file:   Device\Source\system_nrf52.c
       Source file:   Device\Source\arm\arm_startup_nrf52.s
+      Source file:   Device\Source\system_nrf52.c
       Include file:  Device\Include\system_nrf52.h
-Build Time Elapsed:  00:00:18
+      Include file:  Device\Include\system_nrf.h
+Build Time Elapsed:  00:00:15
 </pre>
 </body>
 </html>

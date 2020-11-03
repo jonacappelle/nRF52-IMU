@@ -13,8 +13,12 @@
 
 #include "Invn/Devices/SerifHal.h"
 #include "Invn/Devices/DeviceIcm20948.h"
+#include "Invn/DynamicProtocol/DynProtocol.h"
+#include "Invn/DynamicProtocol/DynProtocolTransportUart.h"
 
 #include "imu.h"
+
+#include "string.h"
 
 // Timer
 #include <stdbool.h>
@@ -24,6 +28,11 @@
 #include "bsp.h"
 #include "app_error.h"
 
+
+#include "Invn/EmbUtils/Message.h"
+
+/* Define msg level */
+#define MSG_LEVEL INV_MSG_LEVEL_DEBUG
 
 
 /* TWI instance ID. */
@@ -42,6 +51,17 @@ const nrf_drv_twi_t m_twi = NRF_DRV_TWI_INSTANCE(TWI_INSTANCE_ID);
 /* Buffer for samples read from IMU */
 static uint8_t data[1];
 
+
+static void msg_printer(int level, const char * str, va_list ap);
+
+/*
+ * Printer function for IDD message facility
+ */
+static void msg_printer(int level, const char * str, va_list ap)
+{
+	NRF_LOG_INFO(str);
+}
+
 /**
  * @brief Function for handling data from temperature sensor.
  *
@@ -49,7 +69,7 @@ static uint8_t data[1];
  */
 __STATIC_INLINE void data_handler(uint8_t data)
 {
-	NRF_LOG_INFO("Data: 0x%x", data);
+	//NRF_LOG_INFO("Data: 0x%x", data);
 }
 
 /**
@@ -88,7 +108,7 @@ void twi_init (void)
     const nrf_drv_twi_config_t twi_imu_config = {
        .scl                = ARDUINO_SCL_PIN,		// PIN 27
        .sda                = ARDUINO_SDA_PIN,		// PIN 26
-       .frequency          = NRF_DRV_TWI_FREQ_100K,
+       .frequency          = NRF_DRV_TWI_FREQ_400K,
        .interrupt_priority = APP_IRQ_PRIORITY_HIGH,
        .clear_bus_init     = false
     };
@@ -100,17 +120,20 @@ void twi_init (void)
 }
 
 //write byte to register
-ret_code_t i2c_write_byte(const nrf_drv_twi_t *twi_handle, uint8_t address, uint8_t sub_address, const uint8_t* data, bool stop)
+ret_code_t i2c_write_byte(const nrf_drv_twi_t *twi_handle, uint8_t address, uint8_t sub_address, const uint8_t* data, uint32_t len, bool stop)
 {   
 		ret_code_t err_code;
-		uint8_t data_write[2];
 		
-		data_write[0] = sub_address;
-		data_write[1] = *data;
+		const uint8_t buf_len = len+1; // Register address + number of bytes
+    uint8_t tx_buf[buf_len];
+
+    tx_buf[0] = sub_address;
+    
+    memcpy(tx_buf+1, data, len); // Shift the data to make place for subaddress
 	
 		m_xfer_done = false;
 	
-		err_code = nrf_drv_twi_tx(twi_handle, address, data_write, sizeof(data_write), stop);  
+		err_code = nrf_drv_twi_tx(twi_handle, address, tx_buf, buf_len, stop);  
 		APP_ERROR_CHECK(err_code);
 	
 		while (m_xfer_done == false);
@@ -205,7 +228,7 @@ static void sensor_event_cb(const inv_sensor_event_t * event, void * arg)
         (void)event;
         /* ... do something with event */
 	
-				//NRF_LOG_INFO("Sensor event!");
+				NRF_LOG_INFO("Sensor event!");
 				//NRF_LOG_FLUSH();
 				
 }
@@ -232,15 +255,40 @@ extern int my_serif_open_write_reg(void * context, uint8_t reg, const uint8_t * 
 const inv_serif_hal_t serif_instance = {
     my_serif_open_read_reg,      /* user read_register() function that reads a register over the serial interface */
     my_serif_open_write_reg,     /* user write_register() function that writes a register over the serial interface */
-    128,                    /* maximum number of bytes allowed per read transaction */
-    1,                    /* maximum number of bytes allowed per write transaction */
+    256,                    /* maximum number of bytes allowed per read transaction */
+    256,                    /* maximum number of bytes allowed per write transaction */
     INV_SERIF_HAL_TYPE_I2C, /* type of the serial interface used between SPI or I2C */
     (void *)0xDEADBEEF      /* some context pointer passed to read/write callbacks */
 };
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+///* Define msg level */
+//#define MSG_LEVEL INV_MSG_LEVEL_DEBUG
 
+///*
+// * Setup message facility to see internal traces from IDD
+// */
+//INV_MSG_SETUP(int MSG_LEVEL, msg_printer);
+
+
+//static void msg_printer(int level, const char * str, va_list ap);
+///*
+// * Printer function for IDD message facility
+// */
+//static void msg_printer(int level, const char * str, va_list ap)
+//{
+//	NRF_LOG_INFO(str);
+//}
+
+static void check_rc(int rc)
+{
+	if(rc == -1) {
+		NRF_LOG_INFO("BAD RC=%d", rc);
+		NRF_LOG_FLUSH();
+		//while(1);
+	}
+}
 
 /**
  * @brief Function for main application entry.
@@ -253,61 +301,94 @@ int main(void)
     NRF_LOG_INFO("\r\nSTART");
 		NRF_LOG_FLUSH();
 	
-    
+    	/*
+	 * Setup message facility to see internal traces from IDD
+	 */
+	INV_MSG_SETUP(MSG_LEVEL, msg_printer);
 
 	
-		uint8_t data1[1] = { 0x00 };
+		INV_MSG(INV_MSG_LEVEL_INFO, "###################################");
+	INV_MSG(INV_MSG_LEVEL_INFO, "#          20948 example          #");
+	INV_MSG(INV_MSG_LEVEL_INFO, "###################################");
+	NRF_LOG_FLUSH();
+	
+		uint8_t data1[4] = { 0x01, 0x02, 0x03, 0x04 };
+		
+		
+/////////////////////////////////////////////////////////////////
+		int rc = 0;
+		
+		inv_device_t * device; /* just a handy variable to keep the handle to device object */
+		uint8_t whoami;
+		
+		/*
+		 * Open serial interface (SPI or I2C) before playing with the device
+		 */
+		/* call low level drive initialization here... */
+		twi_init();
+		NRF_LOG_INFO("i2c init");
+		NRF_LOG_FLUSH();
+		
+		
+//		i2c_write_byte(&m_twi, ICM_20948_I2C_ADDRESS, ICM_20948_WHOAMI, data1, 4, false);
+		
+		
+		/*
+		 * Create ICM20948 Device 
+		 * Pass to the driver:
+		 * - reference to serial interface object,
+		 * - reference to listener that will catch sensor events,
+		 */
+		inv_device_icm20948_init2(&device_icm20948, &serif_instance, &sensor_listener, dmp3_image, sizeof(dmp3_image));
+		NRF_LOG_FLUSH();
+		/*
+		 * Simply get generic device handle from Icm20948 Device
+		 */
+		device = inv_device_icm20948_get_base(&device_icm20948);
+		NRF_LOG_FLUSH();
+		/*
+		 * Just get the whoami
+		 */
+		rc += inv_device_whoami(device, &whoami);
+		check_rc(rc);
+		/* ... do something with whoami */ 
+		NRF_LOG_INFO("Data: 0x%x", whoami);
+		NRF_LOG_FLUSH();
+		
+		
+		/*
+		 * Configure and initialize the Icm20948 device
+		 */
+		rc += inv_device_setup(device);
+		check_rc(rc);
+		NRF_LOG_FLUSH();
+		
+		rc += inv_device_load(device, NULL, dmp3_image, sizeof(dmp3_image), true /* verify */, NULL);
+		check_rc(rc);
+		NRF_LOG_FLUSH();
+
+		
+		rc += inv_device_set_sensor_period(device, INV_SENSOR_TYPE_RAW_ACCELEROMETER, 50);
+		rc += inv_device_start_sensor(device, INV_SENSOR_TYPE_RAW_ACCELEROMETER);
+		rc += inv_device_set_sensor_period(device, INV_SENSOR_TYPE_RAW_GYROSCOPE, 50);
+		rc += inv_device_start_sensor(device, INV_SENSOR_TYPE_RAW_GYROSCOPE);
+		rc += inv_device_set_sensor_period(device, INV_SENSOR_TYPE_RAW_MAGNETOMETER, 50);
+		rc += inv_device_start_sensor(device, INV_SENSOR_TYPE_RAW_MAGNETOMETER);
 		
 		
 		
-		
-		
-		
-		/////////////////////////////////////////////////////////////////
-				int rc = 0;
-        
-        inv_device_t * device; /* just a handy variable to keep the handle to device object */
-        uint8_t whoami;
-        
-        /*
-         * Open serial interface (SPI or I2C) before playing with the device
-         */
-        /* call low level drive initialization here... */
-        twi_init();
-				NRF_LOG_INFO("i2c init");
-				NRF_LOG_FLUSH();
-        /*
-         * Create ICM20948 Device 
-         * Pass to the driver:
-         * - reference to serial interface object,
-         * - reference to listener that will catch sensor events,
-         */
-        inv_device_icm20948_init2(&device_icm20948, &serif_instance, &sensor_listener, dmp3_image, sizeof(dmp3_image));
-        
-        /*
-         * Simply get generic device handle from Icm20948 Device
-         */
-        device = inv_device_icm20948_get_base(&device_icm20948);
-				
-				
-//				i2c_read_bytes(&m_twi, ICM_20948_I2C_ADDRESS, 0x00, data, 1); // whoami	
-				
-				
-        /*
-         * Just get the whoami
-         */
-        rc += inv_device_whoami(device, &whoami);
-        /* ... do something with whoami */ 
-				
-				NRF_LOG_INFO("Data: 0x%x", whoami);
-				NRF_LOG_FLUSH();
-				
-				
-				while(1);
-				////////////////////////////////////////////////////////////////
+		while(1)
+		{
+			NRF_LOG_FLUSH();
+			
+			
+			rc += inv_device_poll(device);
+			nrf_delay_ms(500);
+		}
+		////////////////////////////////////////////////////////////////
 		
 	
-		i2c_write_byte(&m_twi, ICM_20948_I2C_ADDRESS, 0x06, data1, true);
+//		i2c_write_byte(&m_twi, ICM_20948_I2C_ADDRESS, 0x06, data1, true);
 	
     while (true)
     {
