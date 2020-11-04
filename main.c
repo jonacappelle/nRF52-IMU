@@ -418,6 +418,50 @@ static void gpio_init(void)
     nrf_drv_gpiote_in_event_enable(INT_PIN, true);
 }
 
+const nrf_drv_timer_t TIMER_MICROS = NRF_DRV_TIMER_INSTANCE(0);
+
+/**
+ * @brief Handler for timer events.
+ */
+void timer_led_event_handler(nrf_timer_event_t event_type, void* p_context)
+{
+    switch (event_type)
+    {
+        case NRF_TIMER_EVENT_COMPARE0:
+            NRF_LOG_INFO("Timer finished");
+            break;
+
+        default:
+            //Do nothing.
+						NRF_LOG_INFO("Timer callback");
+            break;
+    }
+}
+
+void timer_init (void)
+{
+	// TODO: Timer will overflow in 1.19 hours
+    ret_code_t err_code;
+
+    const nrfx_timer_config_t timer_config = {
+				.frequency = (nrf_timer_frequency_t)NRF_TIMER_FREQ_1MHz,      ///< Frequency 1 MHz
+				.mode = (nrf_timer_mode_t)NRF_TIMER_MODE_TIMER,     ///< Mode of operation.
+				.bit_width = (nrf_timer_bit_width_t)NRF_TIMER_BIT_WIDTH_32,   ///< Bit width 32 bits
+				.interrupt_priority = NRFX_TIMER_DEFAULT_CONFIG_IRQ_PRIORITY, ///< Interrupt priority.
+				.p_context = NULL          																	///< Context passed to interrupt handler.
+    };
+
+		err_code = nrf_drv_timer_init(&TIMER_MICROS, &timer_config, timer_led_event_handler);
+    APP_ERROR_CHECK(err_code);
+
+//		uint32_t time_ticks;
+//		time_ticks = nrf_drv_timer_ms_to_ticks(&TIMER_MICROS, time_ms);
+		
+//		nrf_drv_timer_extended_compare(&TIMER_LED, NRF_TIMER_CC_CHANNEL0, time_ticks, NRF_TIMER_SHORT_COMPARE0_CLEAR_MASK, true);
+		
+		nrf_drv_timer_enable(&TIMER_MICROS);
+}
+
 		bool interrupt = false;
 
 /**
@@ -446,7 +490,19 @@ int main(void)
 		
 		gpio_init();
 		
-
+		timer_init();
+		
+		uint32_t time_us;
+		uint32_t time_ticks;
+		
+		while(1)
+		{
+			time_ticks = nrf_drv_timer_capture(&TIMER_MICROS, NRF_TIMER_CC_CHANNEL0);
+//			nrf_drv_timer_us_to_ticks(&TIMER_MICROS, time_us);
+			nrf_delay_ms(1000);
+			NRF_LOG_INFO("%d", time_ticks);
+			NRF_LOG_FLUSH();
+		}
 		
 /////////////////////////////////////////////////////////////////
 		int rc = 0;
