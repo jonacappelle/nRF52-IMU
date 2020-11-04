@@ -267,22 +267,25 @@ static void sensor_event_cb(const inv_sensor_event_t * event, void * arg)
 		case INV_SENSOR_TYPE_ACCELEROMETER:
 		case INV_SENSOR_TYPE_LINEAR_ACCELERATION:
 		case INV_SENSOR_TYPE_GRAVITY:
-			INV_MSG(INV_MSG_LEVEL_INFO, "data event %s (mg): %d %d %d", inv_sensor_str(event->sensor),
+			NRF_LOG_INFO("data event %s (mg): %d %d %d %d", inv_sensor_str(event->sensor),
 					(int)(event->data.acc.vect[0]*1000),
 					(int)(event->data.acc.vect[1]*1000),
-					(int)(event->data.acc.vect[2]*1000));
+					(int)(event->data.acc.vect[2]*1000),
+					(int)(event->data.acc.accuracy_flag));
 			break;
 		case INV_SENSOR_TYPE_GYROSCOPE:
-			INV_MSG(INV_MSG_LEVEL_INFO, "data event %s (mdps): %d %d %d", inv_sensor_str(event->sensor),
+			NRF_LOG_INFO("data event %s (mdps): %d %d %d %d", inv_sensor_str(event->sensor),
 					(int)(event->data.gyr.vect[0]*1000),
 					(int)(event->data.gyr.vect[1]*1000),
-					(int)(event->data.gyr.vect[2]*1000));
+					(int)(event->data.gyr.vect[2]*1000),
+					(int)(event->data.gyr.accuracy_flag));
 			break;
 		case INV_SENSOR_TYPE_MAGNETOMETER:
-			NRF_LOG_INFO("data event %s (nT): %d %d %d", inv_sensor_str(event->sensor),
+			NRF_LOG_INFO("data event %s (nT): %d %d %d %d", inv_sensor_str(event->sensor),
 					(int)(event->data.mag.vect[0]*1000),
 					(int)(event->data.mag.vect[1]*1000),
-					(int)(event->data.mag.vect[2]*1000));
+					(int)(event->data.mag.vect[2]*1000),
+					(int)(event->data.mag.accuracy_flag));
 			break;
 		case INV_SENSOR_TYPE_UNCAL_GYROSCOPE:
 			INV_MSG(INV_MSG_LEVEL_INFO, "data event %s (mdps): %d %d %d %d %d %d", inv_sensor_str(event->sensor),
@@ -313,11 +316,19 @@ static void sensor_event_cb(const inv_sensor_event_t * event, void * arg)
 					(int)(event->data.quaternion.accuracy_flag));
 			break;
 		case INV_SENSOR_TYPE_ORIENTATION:
-			NRF_LOG_INFO("data event %s (e-3):, %d, %d, %d, Accuracy: %d ", inv_sensor_str(event->sensor),
-					(int)(event->data.orientation.x*1000),
-					(int)(event->data.orientation.y*1000),
-					(int)(event->data.orientation.z*1000),
-					(int)(event->data.orientation.accuracy_flag*1000)); // 0 - 3: not calibrated - fully calibrated
+//			NRF_LOG_INFO("data event %s (e-3):, %d, %d, %d, Accuracy: %d ", inv_sensor_str(event->sensor),
+//					(int)(event->data.orientation.x*1000),
+//					(int)(event->data.orientation.y*1000),
+//					(int)(event->data.orientation.z*1000),
+//					(int)(event->data.orientation.accuracy_flag*1000)); // 0 - 3: not calibrated - fully calibrated
+		NRF_LOG_INFO("%d, %d, %d, %d, %d, %d", // rewritten write funtion to allow easier plotting
+					(int)(event->data.orientation.x),
+					(int)(event->data.orientation.y),
+					(int)(event->data.orientation.z),
+//					(int)(event->data.orientation.accuracy_flag),
+					(int)(event->data.gyr.accuracy_flag),
+					(int)(event->data.acc.accuracy_flag),	
+					(int)(event->data.mag.accuracy_flag)); // 0 - 3: not calibrated - fully calibrated
 			break;
 		case INV_SENSOR_TYPE_BAC:
 			INV_MSG(INV_MSG_LEVEL_INFO, "data event %s : %d %s", inv_sensor_str(event->sensor),
@@ -577,8 +588,8 @@ int main(void)
 //		NRF_LOG_FLUSH();
 		
 
-		rc += inv_device_set_sensor_period_us(device, INV_SENSOR_TYPE_GEOMAG_ROTATION_VECTOR, 50000);
-		rc += inv_device_start_sensor(device, INV_SENSOR_TYPE_GEOMAG_ROTATION_VECTOR);
+		rc += inv_device_set_sensor_period_us(device, INV_SENSOR_TYPE_ROTATION_VECTOR, 50000); // 20 Hz
+		rc += inv_device_start_sensor(device, INV_SENSOR_TYPE_ROTATION_VECTOR);
 
 		
 		
