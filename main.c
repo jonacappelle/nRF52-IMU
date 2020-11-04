@@ -50,6 +50,8 @@
 #define ICM_20948_I2C_ADDRESS		0x69U
 #define ICM_20948_WHOAMI				0x00U
 
+const nrf_drv_timer_t TIMER_MICROS = NRF_DRV_TIMER_INSTANCE(0);
+
 const char * activityName(int act);
 
 /* Indicates if operation on TWI has ended. */
@@ -211,7 +213,10 @@ void inv_icm20948_sleep_us(int us)
          * You may provide a sleep function that blocks the current programm
          * execution for the specified amount of us
          */
+//				NRF_LOG_INFO("us value requested");
+	
         (void)us;
+
 	
 				nrf_delay_us(us);
 }
@@ -223,8 +228,13 @@ uint64_t inv_icm20948_get_time_us(void)
         /*
          * You may provide a time function that return a monotonic timestamp in us
          */
-				//return app_timer_cnt_get() / 32.768;
-        return 0;
+	
+	
+				uint32_t time_us = nrf_drv_timer_capture(&TIMER_MICROS, NRF_TIMER_CC_CHANNEL0);
+//				NRF_LOG_INFO("Timer value requested: %d", time_us);
+				return time_us;
+	
+//        return 0;
 }
 /*
  * Callback called upon sensor event reception
@@ -247,11 +257,12 @@ static void sensor_event_cb(const inv_sensor_event_t * event, void * arg)
 		switch(INV_SENSOR_ID_TO_TYPE(event->sensor)) {
 		case INV_SENSOR_TYPE_RAW_ACCELEROMETER:
 		case INV_SENSOR_TYPE_RAW_GYROSCOPE:
-			INV_MSG(INV_MSG_LEVEL_INFO, "data event %s (lsb): %llu %d %d %d", inv_sensor_str(event->sensor),
-					event->timestamp,
+			NRF_LOG_INFO("data event %s (lsb): %llu %d %d %d", inv_sensor_str(event->sensor),
+					(int)event->timestamp,
 					(int)event->data.raw3d.vect[0],
 					(int)event->data.raw3d.vect[1],
 					(int)event->data.raw3d.vect[2]);
+//					NRF_LOG_INFO("%d	%d	%d", event->data.raw3d.vect[0], event->data.raw3d.vect[1], event->data.raw3d.vect[2]);
 			break;
 		case INV_SENSOR_TYPE_ACCELEROMETER:
 		case INV_SENSOR_TYPE_LINEAR_ACCELERATION:
@@ -268,7 +279,7 @@ static void sensor_event_cb(const inv_sensor_event_t * event, void * arg)
 					(int)(event->data.gyr.vect[2]*1000));
 			break;
 		case INV_SENSOR_TYPE_MAGNETOMETER:
-			INV_MSG(INV_MSG_LEVEL_INFO, "data event %s (nT): %d %d %d", inv_sensor_str(event->sensor),
+			NRF_LOG_INFO("data event %s (nT): %d %d %d", inv_sensor_str(event->sensor),
 					(int)(event->data.mag.vect[0]*1000),
 					(int)(event->data.mag.vect[1]*1000),
 					(int)(event->data.mag.vect[2]*1000));
@@ -294,24 +305,26 @@ static void sensor_event_cb(const inv_sensor_event_t * event, void * arg)
 		case INV_SENSOR_TYPE_GAME_ROTATION_VECTOR:
 		case INV_SENSOR_TYPE_ROTATION_VECTOR:
 		case INV_SENSOR_TYPE_GEOMAG_ROTATION_VECTOR:
-			INV_MSG(INV_MSG_LEVEL_INFO, "data event %s (e-3): %d %d %d %d ", inv_sensor_str(event->sensor),
+			NRF_LOG_INFO("data event %s (e-3): %d %d %d %d %d", inv_sensor_str(event->sensor),
 					(int)(event->data.quaternion.quat[0]*1000),
 					(int)(event->data.quaternion.quat[1]*1000),
 					(int)(event->data.quaternion.quat[2]*1000),
-					(int)(event->data.quaternion.quat[3]*1000));
+					(int)(event->data.quaternion.quat[3]*1000),
+					(int)(event->data.quaternion.accuracy_flag));
 			break;
 		case INV_SENSOR_TYPE_ORIENTATION:
-			INV_MSG(INV_MSG_LEVEL_INFO, "data event %s (e-3): %d %d %d %d ", inv_sensor_str(event->sensor),
+			NRF_LOG_INFO("data event %s (e-3):, %d, %d, %d, Accuracy: %d ", inv_sensor_str(event->sensor),
 					(int)(event->data.orientation.x*1000),
 					(int)(event->data.orientation.y*1000),
-					(int)(event->data.orientation.z*1000));
+					(int)(event->data.orientation.z*1000),
+					(int)(event->data.orientation.accuracy_flag*1000)); // 0 - 3: not calibrated - fully calibrated
 			break;
 		case INV_SENSOR_TYPE_BAC:
 			INV_MSG(INV_MSG_LEVEL_INFO, "data event %s : %d %s", inv_sensor_str(event->sensor),
 					event->data.bac.event, activityName(event->data.bac.event));
 			break;
 		case INV_SENSOR_TYPE_STEP_COUNTER:
-			INV_MSG(INV_MSG_LEVEL_INFO, "data event %s : %lu", inv_sensor_str(event->sensor),
+			NRF_LOG_INFO("data event %s : %lu", inv_sensor_str(event->sensor),
 					(unsigned long)event->data.step.count);
 			break;
 		case INV_SENSOR_TYPE_PICK_UP_GESTURE:
@@ -418,7 +431,7 @@ static void gpio_init(void)
     nrf_drv_gpiote_in_event_enable(INT_PIN, true);
 }
 
-const nrf_drv_timer_t TIMER_MICROS = NRF_DRV_TIMER_INSTANCE(0);
+
 
 /**
  * @brief Handler for timer events.
@@ -433,7 +446,8 @@ void timer_led_event_handler(nrf_timer_event_t event_type, void* p_context)
 
         default:
             //Do nothing.
-						NRF_LOG_INFO("Timer callback");
+						NRF_LOG_INFO("Timer callback, timer cleared");
+						nrf_drv_timer_clear(&TIMER_MICROS); // clear timer when it overflows
             break;
     }
 }
@@ -495,14 +509,14 @@ int main(void)
 		uint32_t time_us;
 		uint32_t time_ticks;
 		
-		while(1)
-		{
-			time_ticks = nrf_drv_timer_capture(&TIMER_MICROS, NRF_TIMER_CC_CHANNEL0);
-//			nrf_drv_timer_us_to_ticks(&TIMER_MICROS, time_us);
-			nrf_delay_ms(1000);
-			NRF_LOG_INFO("%d", time_ticks);
-			NRF_LOG_FLUSH();
-		}
+//		while(1)
+//		{
+//			time_ticks = nrf_drv_timer_capture(&TIMER_MICROS, NRF_TIMER_CC_CHANNEL0);
+////			nrf_drv_timer_us_to_ticks(&TIMER_MICROS, time_us);
+//			nrf_delay_ms(1000);
+//			NRF_LOG_INFO("%d", time_ticks);
+//			NRF_LOG_FLUSH();
+//		}
 		
 /////////////////////////////////////////////////////////////////
 		int rc = 0;
@@ -556,23 +570,17 @@ int main(void)
 		check_rc(rc);
 		NRF_LOG_FLUSH();
 		
+		nrf_delay_ms(2000);
 		
 //		rc += inv_device_set_sensor_period_us(device, INV_SENSOR_TYPE_RAW_GYROSCOPE, 50000);
 //		check_rc(rc);
 //		NRF_LOG_FLUSH();
-
-
-//		rc += inv_device_start_sensor(device, INV_SENSOR_TYPE_RAW_GYROSCOPE);
-//		check_rc(rc);
 		
-//		rc += inv_device_set_sensor_period(device, INV_SENSOR_TYPE_RAW_ACCELEROMETER, 50);
-//		rc += inv_device_start_sensor(device, INV_SENSOR_TYPE_RAW_ACCELEROMETER);
-		rc += inv_device_set_sensor_period(device, INV_SENSOR_TYPE_RAW_GYROSCOPE, 50);
-		rc += inv_device_start_sensor(device, INV_SENSOR_TYPE_RAW_GYROSCOPE);
-//		rc += inv_device_set_sensor_period(device, INV_SENSOR_TYPE_RAW_MAGNETOMETER, 50);
-//		rc += inv_device_start_sensor(device, INV_SENSOR_TYPE_RAW_MAGNETOMETER);
-//		
-//		
+
+		rc += inv_device_set_sensor_period_us(device, INV_SENSOR_TYPE_GEOMAG_ROTATION_VECTOR, 50000);
+		rc += inv_device_start_sensor(device, INV_SENSOR_TYPE_GEOMAG_ROTATION_VECTOR);
+
+		
 		
 		while(1)
 		{

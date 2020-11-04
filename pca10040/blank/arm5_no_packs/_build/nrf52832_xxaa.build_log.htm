@@ -32,17 +32,17 @@ compiling main.c...
   #endif /* _GSH_PROTOCOL_H_ */
 ..\..\blank\Invn/DynamicProtocol/DynProtocolTransportUart.h(88): warning:  #1-D: last line of file ends without a newline
   #endif /* _DYN_PRO_TRANSPORT_UART_H_ */
-..\..\..\main.c(507): warning:  #185-D: dynamic initialization in unreachable code
-  		int rc = 0;
-..\..\..\main.c(591): warning:  #128-D: loop is not reachable
+..\..\..\main.c(600): warning:  #128-D: loop is not reachable
       while (true)
-..\..\..\main.c(488): warning:  #177-D: variable "data1"  was declared but never referenced
+..\..\..\main.c(503): warning:  #177-D: variable "data1"  was declared but never referenced
   		uint8_t data1[4] = { 0x01, 0x02, 0x03, 0x04 };
-..\..\..\main.c(494): warning:  #177-D: variable "time_us"  was declared but never referenced
+..\..\..\main.c(509): warning:  #177-D: variable "time_us"  was declared but never referenced
   		uint32_t time_us;
+..\..\..\main.c(510): warning:  #177-D: variable "time_ticks"  was declared but never referenced
+  		uint32_t time_ticks;
 ..\..\..\main.c: 6 warnings, 0 errors
 linking...
-Program Size: Code=19104 RO-data=4200 RW-data=14996 ZI-data=18780  
+Program Size: Code=53072 RO-data=5160 RW-data=15052 ZI-data=21300  
 FromELF: creating hex file...
 ".\_build\nrf52832_xxaa.axf" - 0 Error(s), 6 Warning(s).
 
