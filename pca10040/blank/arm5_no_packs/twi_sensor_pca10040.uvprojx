@@ -1058,11 +1058,6 @@
               <FileType>1</FileType>
               <FilePath>.\usr_twi.c</FilePath>
             </File>
-            <File>
-              <FileName>usr_twi.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\usr_twi.h</FilePath>
-            </File>
           </Files>
         </Group>
         <Group>

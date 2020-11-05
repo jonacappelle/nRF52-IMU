@@ -3,7 +3,7 @@
 <title>Static Call Graph - [.\_build\nrf52832_xxaa.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\_build\nrf52832_xxaa.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060960: Last Updated: Thu Nov 05 11:32:15 2020
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060960: Last Updated: Thu Nov 05 11:47:24 2020
 <BR><P>
 <H3>Maximum Stack Usage =        792 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -21,7 +21,7 @@ Mutually Recursive functions
  <LI><a href="#[a]">PendSV_Handler</a>&nbsp;&nbsp;&nbsp;&rArr;&nbsp;&nbsp;&nbsp;<a href="#[a]">PendSV_Handler</a><BR>
  <LI><a href="#[b]">SysTick_Handler</a>&nbsp;&nbsp;&nbsp;&rArr;&nbsp;&nbsp;&nbsp;<a href="#[b]">SysTick_Handler</a><BR>
  <LI><a href="#[1b]">CCM_AAR_IRQHandler</a>&nbsp;&nbsp;&nbsp;&rArr;&nbsp;&nbsp;&nbsp;<a href="#[1b]">CCM_AAR_IRQHandler</a><BR>
- <LI><a href="#[8f]">nrf_log_frontend_std_0</a>&nbsp;&nbsp;&nbsp;&rArr;&nbsp;&nbsp;&nbsp;<a href="#[1e1]">std_n</a><BR>
+ <LI><a href="#[8e]">nrf_log_frontend_dequeue</a>&nbsp;&nbsp;&nbsp;&rArr;&nbsp;&nbsp;&nbsp;<a href="#[8f]">nrf_log_frontend_std_0</a><BR>
  <LI><a href="#[a4]">buffer_add</a>&nbsp;&nbsp;&nbsp;&rArr;&nbsp;&nbsp;&nbsp;<a href="#[a4]">buffer_add</a><BR>
 </UL>
 <P>
@@ -114,7 +114,7 @@ Function Pointers
  <LI><a href="#[3a]">serial_tx</a> from nrf_log_backend_rtt.o(i.serial_tx) referenced from nrf_log_backend_rtt.o(i.nrf_log_backend_rtt_put)
  <LI><a href="#[3b]">serial_tx</a> from nrf_log_backend_uart.o(i.serial_tx) referenced from nrf_log_backend_uart.o(i.nrf_log_backend_uart_put)
  <LI><a href="#[3c]">timer_led_event_handler</a> from main.o(i.timer_led_event_handler) referenced from main.o(i.timer_init)
- <LI><a href="#[3d]">twi_handler</a> from main.o(i.twi_handler) referenced from main.o(i.twi_init)
+ <LI><a href="#[3d]">twi_handler</a> from usr_twi.o(i.twi_handler) referenced from usr_twi.o(i.twi_init)
  <LI><a href="#[37]">twim_evt_handler</a> from nrf_drv_twi.o(i.twim_evt_handler) referenced from nrf_drv_twi.o(i.nrf_drv_twi_init)
  <LI><a href="#[39]">uart_evt_handler</a> from nrf_drv_uart.o(i.uart_evt_handler) referenced from nrf_drv_uart.o(i.nrf_drv_uart_init)
  <LI><a href="#[3e]">uart_evt_handler</a> from nrf_log_backend_uart.o(i.uart_evt_handler) referenced from nrf_log_backend_uart.o(i.uart_init)
@@ -376,8 +376,8 @@ Global Symbols
 <P><STRONG><a name="[82]"></a>__aeabi_memcpy</STRONG> (Thumb, 64 bytes, Stack size 8 bytes, memmovea.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = __aeabi_memcpy
 </UL>
-<BR>[Called By]<UL><LI><a href="#[e4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2c_write_byte
-<LI><a href="#[1b2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;memobj_op
+<BR>[Called By]<UL><LI><a href="#[1b2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;memobj_op
+<LI><a href="#[e4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2c_write_byte
 <LI><a href="#[71]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_WriteNoCheck
 <LI><a href="#[72]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_WriteBlocking
 <LI><a href="#[a8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;build_sensor_event_data
@@ -387,8 +387,8 @@ Global Symbols
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = __aeabi_memcpy4
 </UL>
 <BR>[Called By]<UL><LI><a href="#[1c5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_drv_uart_init
-<LI><a href="#[e3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrfx_twim_rx
 <LI><a href="#[fe]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;inv_device_icm20948_init2
+<LI><a href="#[e3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrfx_twim_rx
 <LI><a href="#[209]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;twim_xfer
 <LI><a href="#[73]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;twim_irq_handler
 <LI><a href="#[1da]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uart_init
@@ -425,8 +425,8 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[a7]"></a>__aeabi_memclr4</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, memseta.o(.text))
-<BR><BR>[Called By]<UL><LI><a href="#[1c4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrfx_twim_tx
-<LI><a href="#[fe]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;inv_device_icm20948_init2
+<BR><BR>[Called By]<UL><LI><a href="#[fe]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;inv_device_icm20948_init2
+<LI><a href="#[1c4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrfx_twim_tx
 <LI><a href="#[1d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_log_backend_serial_put
 <LI><a href="#[a6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;build_sensor_event
 <LI><a href="#[19d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;inv_icm20948_setup_compass_akm
@@ -619,7 +619,7 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[8c]"></a>app_error_fault_handler</STRONG> (Thumb, 146 bytes, Stack size 8 bytes, app_error_weak.o(i.app_error_fault_handler))
-<BR><BR>[Stack]<UL><LI>Max Depth = 208<LI>Call Chain = app_error_fault_handler &rArr; nrf_log_frontend_dequeue &rArr; nrf_memobj_write &rArr; memobj_op &rArr; __aeabi_memcpy
+<BR><BR>[Stack]<UL><LI>Max Depth = 264<LI>Call Chain = app_error_fault_handler &rArr; nrf_log_frontend_std_0 &rArr; std_n &rArr; nrf_log_frontend_dequeue &rArr;  nrf_log_frontend_std_0 (Cycle)
 </UL>
 <BR>[Calls]<UL><LI><a href="#[8f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_log_frontend_std_0
 <LI><a href="#[8e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_log_frontend_dequeue
@@ -629,19 +629,19 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[90]"></a>app_error_handler_bare</STRONG> (Thumb, 28 bytes, Stack size 24 bytes, app_error.o(i.app_error_handler_bare))
-<BR><BR>[Stack]<UL><LI>Max Depth = 232<LI>Call Chain = app_error_handler_bare &rArr; app_error_fault_handler &rArr; nrf_log_frontend_dequeue &rArr; nrf_memobj_write &rArr; memobj_op &rArr; __aeabi_memcpy
+<BR><BR>[Stack]<UL><LI>Max Depth = 288<LI>Call Chain = app_error_handler_bare &rArr; app_error_fault_handler &rArr; nrf_log_frontend_std_0 &rArr; std_n &rArr; nrf_log_frontend_dequeue &rArr;  nrf_log_frontend_std_0 (Cycle)
 </UL>
 <BR>[Calls]<UL><LI><a href="#[8c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_error_fault_handler
 </UL>
 <BR>[Called By]<UL><LI><a href="#[1b0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;twi_init
 <LI><a href="#[1af]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;timer_init
 <LI><a href="#[31]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
-<LI><a href="#[e2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2c_write_forread_byte
-<LI><a href="#[e4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2c_write_byte
-<LI><a href="#[e1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2c_read_bytes
 <LI><a href="#[dd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_init
 <LI><a href="#[1da]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uart_init
 <LI><a href="#[3b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;serial_tx
+<LI><a href="#[e4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2c_write_byte
+<LI><a href="#[e1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2c_read_bytes
+<LI><a href="#[e2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2c_write_forread_byte
 </UL>
 
 <P><STRONG><a name="[91]"></a>app_util_critical_region_enter</STRONG> (Thumb, 10 bytes, Stack size 4 bytes, app_util_platform.o(i.app_util_critical_region_enter))
@@ -921,18 +921,18 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[e4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2c_write_byte
 </UL>
 
-<P><STRONG><a name="[e1]"></a>i2c_read_bytes</STRONG> (Thumb, 96 bytes, Stack size 32 bytes, main.o(i.i2c_read_bytes))
-<BR><BR>[Stack]<UL><LI>Max Depth = 304<LI>Call Chain = i2c_read_bytes &rArr; i2c_write_forread_byte &rArr; app_error_handler_bare &rArr; app_error_fault_handler &rArr; nrf_log_frontend_dequeue &rArr; nrf_memobj_write &rArr; memobj_op &rArr; __aeabi_memcpy
+<P><STRONG><a name="[e1]"></a>i2c_read_bytes</STRONG> (Thumb, 96 bytes, Stack size 32 bytes, usr_twi.o(i.i2c_read_bytes))
+<BR><BR>[Stack]<UL><LI>Max Depth = 360<LI>Call Chain = i2c_read_bytes &rArr; i2c_write_forread_byte &rArr; app_error_handler_bare &rArr; app_error_fault_handler &rArr; nrf_log_frontend_std_0 &rArr; std_n &rArr; nrf_log_frontend_dequeue &rArr;  nrf_log_frontend_std_0 (Cycle)
 </UL>
-<BR>[Calls]<UL><LI><a href="#[e3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrfx_twim_rx
-<LI><a href="#[90]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_error_handler_bare
+<BR>[Calls]<UL><LI><a href="#[90]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_error_handler_bare
+<LI><a href="#[e3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrfx_twim_rx
 <LI><a href="#[e2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2c_write_forread_byte
 </UL>
 <BR>[Called By]<UL><LI><a href="#[3f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;my_serif_open_read_reg
 </UL>
 
-<P><STRONG><a name="[e4]"></a>i2c_write_byte</STRONG> (Thumb, 118 bytes, Stack size 64 bytes, main.o(i.i2c_write_byte))
-<BR><BR>[Stack]<UL><LI>Max Depth = 296<LI>Call Chain = i2c_write_byte &rArr; app_error_handler_bare &rArr; app_error_fault_handler &rArr; nrf_log_frontend_dequeue &rArr; nrf_memobj_write &rArr; memobj_op &rArr; __aeabi_memcpy
+<P><STRONG><a name="[e4]"></a>i2c_write_byte</STRONG> (Thumb, 118 bytes, Stack size 64 bytes, usr_twi.o(i.i2c_write_byte))
+<BR><BR>[Stack]<UL><LI>Max Depth = 352<LI>Call Chain = i2c_write_byte &rArr; app_error_handler_bare &rArr; app_error_fault_handler &rArr; nrf_log_frontend_std_0 &rArr; std_n &rArr; nrf_log_frontend_dequeue &rArr;  nrf_log_frontend_std_0 (Cycle)
 </UL>
 <BR>[Calls]<UL><LI><a href="#[90]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_error_handler_bare
 <LI><a href="#[e6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_drv_twi_tx
@@ -943,8 +943,8 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[40]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;my_serif_open_write_reg
 </UL>
 
-<P><STRONG><a name="[e2]"></a>i2c_write_forread_byte</STRONG> (Thumb, 66 bytes, Stack size 40 bytes, main.o(i.i2c_write_forread_byte))
-<BR><BR>[Stack]<UL><LI>Max Depth = 272<LI>Call Chain = i2c_write_forread_byte &rArr; app_error_handler_bare &rArr; app_error_fault_handler &rArr; nrf_log_frontend_dequeue &rArr; nrf_memobj_write &rArr; memobj_op &rArr; __aeabi_memcpy
+<P><STRONG><a name="[e2]"></a>i2c_write_forread_byte</STRONG> (Thumb, 66 bytes, Stack size 40 bytes, usr_twi.o(i.i2c_write_forread_byte))
+<BR><BR>[Stack]<UL><LI>Max Depth = 328<LI>Call Chain = i2c_write_forread_byte &rArr; app_error_handler_bare &rArr; app_error_fault_handler &rArr; nrf_log_frontend_std_0 &rArr; std_n &rArr; nrf_log_frontend_dequeue &rArr;  nrf_log_frontend_std_0 (Cycle)
 </UL>
 <BR>[Calls]<UL><LI><a href="#[90]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_error_handler_bare
 <LI><a href="#[e6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_drv_twi_tx
@@ -958,9 +958,9 @@ Global Symbols
 <P><STRONG><a name="[4c]"></a>inv_device_icm20948_cleanup</STRONG> (Thumb, 48 bytes, Stack size 16 bytes, deviceicm20948.o(i.inv_device_icm20948_cleanup))
 <BR><BR>[Stack]<UL><LI>Max Depth = 568<LI>Call Chain = inv_device_icm20948_cleanup &rArr; inv_device_icm20948_enable_sensor &rArr; inv_icm20948_enable_sensor &rArr; inv_icm20948_ctrl_enable_sensor &rArr; inv_enable_sensor_internal &rArr; inv_set_hw_smplrt_dmp_odrs &rArr; DividerRateSet &rArr; dmp_icm20948_set_sensor_rate &rArr; inv_icm20948_write_mems &rArr; inv_icm20948_set_chip_power_state &rArr; inv_icm20948_write_single_mems_reg_core &rArr; inv_set_bank &rArr; inv_icm20948_write_reg
 </UL>
-<BR>[Calls]<UL><LI><a href="#[f8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;inv_icm20948_soft_reset
-<LI><a href="#[50]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;inv_device_icm20948_ping_sensor
+<BR>[Calls]<UL><LI><a href="#[50]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;inv_device_icm20948_ping_sensor
 <LI><a href="#[51]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;inv_device_icm20948_enable_sensor
+<LI><a href="#[f8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;inv_icm20948_soft_reset
 </UL>
 <BR>[Called By]<UL><LI><a href="#[4f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;inv_device_icm20948_self_test
 <LI><a href="#[4a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;inv_device_icm20948_reset
@@ -990,8 +990,8 @@ Global Symbols
 <P><STRONG><a name="[fe]"></a>inv_device_icm20948_init2</STRONG> (Thumb, 146 bytes, Stack size 56 bytes, deviceicm20948.o(i.inv_device_icm20948_init2))
 <BR><BR>[Stack]<UL><LI>Max Depth = 88<LI>Call Chain = inv_device_icm20948_init2 &rArr; inv_icm20948_init_structure &rArr; inv_icm20948_base_control_init
 </UL>
-<BR>[Calls]<UL><LI><a href="#[ff]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;inv_icm20948_init_structure
-<LI><a href="#[100]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;inv_device_icm20948_init_aux_compass
+<BR>[Calls]<UL><LI><a href="#[100]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;inv_device_icm20948_init_aux_compass
+<LI><a href="#[ff]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;inv_icm20948_init_structure
 <LI><a href="#[a7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memclr4
 <LI><a href="#[da]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memcpy4
 </UL>
@@ -1041,8 +1041,8 @@ Global Symbols
 <BR><BR>[Stack]<UL><LI>Max Depth = 584<LI>Call Chain = inv_device_icm20948_reset &rArr; inv_device_icm20948_cleanup &rArr; inv_device_icm20948_enable_sensor &rArr; inv_icm20948_enable_sensor &rArr; inv_icm20948_ctrl_enable_sensor &rArr; inv_enable_sensor_internal &rArr; inv_set_hw_smplrt_dmp_odrs &rArr; DividerRateSet &rArr; dmp_icm20948_set_sensor_rate &rArr; inv_icm20948_write_mems &rArr; inv_icm20948_set_chip_power_state &rArr; inv_icm20948_write_single_mems_reg_core &rArr; inv_set_bank &rArr; inv_icm20948_write_reg
 </UL>
 <BR>[Calls]<UL><LI><a href="#[a9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;inv_msg
-<LI><a href="#[4b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;inv_device_icm20948_setup
 <LI><a href="#[4c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;inv_device_icm20948_cleanup
+<LI><a href="#[4b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;inv_device_icm20948_setup
 </UL>
 <BR>[Called By]<UL><LI><a href="#[4f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;inv_device_icm20948_self_test
 </UL>
@@ -1052,10 +1052,10 @@ Global Symbols
 <BR><BR>[Stack]<UL><LI>Max Depth = 608<LI>Call Chain = inv_device_icm20948_self_test &rArr; inv_device_icm20948_reset &rArr; inv_device_icm20948_cleanup &rArr; inv_device_icm20948_enable_sensor &rArr; inv_icm20948_enable_sensor &rArr; inv_icm20948_ctrl_enable_sensor &rArr; inv_enable_sensor_internal &rArr; inv_set_hw_smplrt_dmp_odrs &rArr; DividerRateSet &rArr; dmp_icm20948_set_sensor_rate &rArr; inv_icm20948_write_mems &rArr; inv_icm20948_set_chip_power_state &rArr; inv_icm20948_write_single_mems_reg_core &rArr; inv_set_bank &rArr; inv_icm20948_write_reg
 </UL>
 <BR>[Calls]<UL><LI><a href="#[a9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;inv_msg
-<LI><a href="#[106]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;inv_icm20948_run_selftest
 <LI><a href="#[4a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;inv_device_icm20948_reset
 <LI><a href="#[50]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;inv_device_icm20948_ping_sensor
 <LI><a href="#[4c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;inv_device_icm20948_cleanup
+<LI><a href="#[106]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;inv_icm20948_run_selftest
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> deviceicm20948.o(.constdata)
 </UL>
@@ -1975,11 +1975,11 @@ Global Symbols
 <P><STRONG><a name="[105]"></a>inv_icm20948_read_reg</STRONG> (Thumb, 56 bytes, Stack size 32 bytes, icm20948transport.o(i.inv_icm20948_read_reg))
 <BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = inv_icm20948_read_reg
 </UL>
-<BR>[Called By]<UL><LI><a href="#[b3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;inv_icm20948_read_mems_reg
+<BR>[Called By]<UL><LI><a href="#[58]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;inv_device_icm20948_read_mems_register
+<LI><a href="#[b3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;inv_icm20948_read_mems_reg
 <LI><a href="#[111]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;inv_icm20948_get_whoami
-<LI><a href="#[58]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;inv_device_icm20948_read_mems_register
-<LI><a href="#[b5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;inv_icm20948_read_mems
 <LI><a href="#[18a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;inv_set_bank
+<LI><a href="#[b5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;inv_icm20948_read_mems
 </UL>
 
 <P><STRONG><a name="[154]"></a>inv_icm20948_read_secondary</STRONG> (Thumb, 104 bytes, Stack size 32 bytes, icm20948auxtransport.o(i.inv_icm20948_read_secondary))
@@ -2209,8 +2209,8 @@ Global Symbols
 <BR>[Calls]<UL><LI><a href="#[153]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;inv_icm20948_enter_low_noise_mode
 <LI><a href="#[152]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;inv_icm20948_enter_duty_cycle_mode
 </UL>
-<BR>[Called By]<UL><LI><a href="#[169]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;inv_icm20948_initialize_lower_driver
-<LI><a href="#[55]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;inv_device_icm20948_set_sensor_config
+<BR>[Called By]<UL><LI><a href="#[55]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;inv_device_icm20948_set_sensor_config
+<LI><a href="#[169]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;inv_icm20948_initialize_lower_driver
 </UL>
 
 <P><STRONG><a name="[10a]"></a>inv_icm20948_set_matrix</STRONG> (Thumb, 204 bytes, Stack size 96 bytes, icm20948setup.o(i.inv_icm20948_set_matrix))
@@ -2429,9 +2429,9 @@ Global Symbols
 <LI><a href="#[14e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;inv_icm20948_write_mems_reg
 <LI><a href="#[d2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;inv_icm20948_write_single_mems_reg
 <LI><a href="#[57]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;inv_device_icm20948_write_mems_register
+<LI><a href="#[18a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;inv_set_bank
 <LI><a href="#[bb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;inv_icm20948_write_mems
 <LI><a href="#[b5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;inv_icm20948_read_mems
-<LI><a href="#[18a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;inv_set_bank
 </UL>
 
 <P><STRONG><a name="[158]"></a>inv_icm20948_write_secondary</STRONG> (Thumb, 124 bytes, Stack size 32 bytes, icm20948auxtransport.o(i.inv_icm20948_write_secondary))
@@ -2483,10 +2483,10 @@ Global Symbols
 </UL>
 <BR>[Called By]<UL><LI><a href="#[31]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 <LI><a href="#[1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sensor_event_cb
-<LI><a href="#[a6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;build_sensor_event
-<LI><a href="#[4b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;inv_device_icm20948_setup
 <LI><a href="#[4f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;inv_device_icm20948_self_test
 <LI><a href="#[4a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;inv_device_icm20948_reset
+<LI><a href="#[a6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;build_sensor_event
+<LI><a href="#[4b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;inv_device_icm20948_setup
 </UL>
 
 <P><STRONG><a name="[1ae]"></a>inv_msg_setup</STRONG> (Thumb, 32 bytes, Stack size 0 bytes, message.o(i.inv_msg_setup))
@@ -2498,9 +2498,10 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[31]"></a>main</STRONG> (Thumb, 658 bytes, Stack size 16 bytes, main.o(i.main))
-<BR><BR>[Stack]<UL><LI>Max Depth = 312<LI>Call Chain = main &rArr; nrf_log_default_backends_init &rArr; nrf_log_backend_uart_init &rArr; uart_init &rArr; app_error_handler_bare &rArr; app_error_fault_handler &rArr; nrf_log_frontend_dequeue &rArr; nrf_memobj_write &rArr; memobj_op &rArr; __aeabi_memcpy
+<BR><BR>[Stack]<UL><LI>Max Depth = 368<LI>Call Chain = main &rArr; nrf_log_default_backends_init &rArr; nrf_log_backend_uart_init &rArr; uart_init &rArr; app_error_handler_bare &rArr; app_error_fault_handler &rArr; nrf_log_frontend_std_0 &rArr; std_n &rArr; nrf_log_frontend_dequeue &rArr;  nrf_log_frontend_std_0 (Cycle)
 </UL>
-<BR>[Calls]<UL><LI><a href="#[1ac]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_log_init
+<BR>[Calls]<UL><LI><a href="#[1b0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;twi_init
+<LI><a href="#[1ac]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_log_init
 <LI><a href="#[ab]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_log_frontend_std_1
 <LI><a href="#[8f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_log_frontend_std_0
 <LI><a href="#[8e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_log_frontend_dequeue
@@ -2509,7 +2510,6 @@ Global Symbols
 <LI><a href="#[a9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;inv_msg
 <LI><a href="#[fe]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;inv_device_icm20948_init2
 <LI><a href="#[90]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_error_handler_bare
-<LI><a href="#[1b0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;twi_init
 <LI><a href="#[1af]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;timer_init
 <LI><a href="#[1b1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_delay_ms
 <LI><a href="#[dd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_init
@@ -2524,14 +2524,14 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[3f]"></a>my_serif_open_read_reg</STRONG> (Thumb, 44 bytes, Stack size 32 bytes, imu.o(i.my_serif_open_read_reg))
-<BR><BR>[Stack]<UL><LI>Max Depth = 336<LI>Call Chain = my_serif_open_read_reg &rArr; i2c_read_bytes &rArr; i2c_write_forread_byte &rArr; app_error_handler_bare &rArr; app_error_fault_handler &rArr; nrf_log_frontend_dequeue &rArr; nrf_memobj_write &rArr; memobj_op &rArr; __aeabi_memcpy
+<BR><BR>[Stack]<UL><LI>Max Depth = 392<LI>Call Chain = my_serif_open_read_reg &rArr; i2c_read_bytes &rArr; i2c_write_forread_byte &rArr; app_error_handler_bare &rArr; app_error_fault_handler &rArr; nrf_log_frontend_std_0 &rArr; std_n &rArr; nrf_log_frontend_dequeue &rArr;  nrf_log_frontend_std_0 (Cycle)
 </UL>
 <BR>[Calls]<UL><LI><a href="#[e1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2c_read_bytes
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> main.o(.constdata)
 </UL>
 <P><STRONG><a name="[40]"></a>my_serif_open_write_reg</STRONG> (Thumb, 46 bytes, Stack size 32 bytes, imu.o(i.my_serif_open_write_reg))
-<BR><BR>[Stack]<UL><LI>Max Depth = 328<LI>Call Chain = my_serif_open_write_reg &rArr; i2c_write_byte &rArr; app_error_handler_bare &rArr; app_error_fault_handler &rArr; nrf_log_frontend_dequeue &rArr; nrf_memobj_write &rArr; memobj_op &rArr; __aeabi_memcpy
+<BR><BR>[Stack]<UL><LI>Max Depth = 384<LI>Call Chain = my_serif_open_write_reg &rArr; i2c_write_byte &rArr; app_error_handler_bare &rArr; app_error_fault_handler &rArr; nrf_log_frontend_std_0 &rArr; std_n &rArr; nrf_log_frontend_dequeue &rArr;  nrf_log_frontend_std_0 (Cycle)
 </UL>
 <BR>[Calls]<UL><LI><a href="#[e4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2c_write_byte
 </UL>
@@ -2701,7 +2701,7 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[1d9]"></a>nrf_log_backend_uart_init</STRONG> (Thumb, 12 bytes, Stack size 8 bytes, nrf_log_backend_uart.o(i.nrf_log_backend_uart_init))
-<BR><BR>[Stack]<UL><LI>Max Depth = 288<LI>Call Chain = nrf_log_backend_uart_init &rArr; uart_init &rArr; app_error_handler_bare &rArr; app_error_fault_handler &rArr; nrf_log_frontend_dequeue &rArr; nrf_memobj_write &rArr; memobj_op &rArr; __aeabi_memcpy
+<BR><BR>[Stack]<UL><LI>Max Depth = 344<LI>Call Chain = nrf_log_backend_uart_init &rArr; uart_init &rArr; app_error_handler_bare &rArr; app_error_fault_handler &rArr; nrf_log_frontend_std_0 &rArr; std_n &rArr; nrf_log_frontend_dequeue &rArr;  nrf_log_frontend_std_0 (Cycle)
 </UL>
 <BR>[Calls]<UL><LI><a href="#[1da]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uart_init
 </UL>
@@ -2715,7 +2715,7 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[1ad]"></a>nrf_log_default_backends_init</STRONG> (Thumb, 48 bytes, Stack size 8 bytes, nrf_log_default_backends.o(i.nrf_log_default_backends_init))
-<BR><BR>[Stack]<UL><LI>Max Depth = 296<LI>Call Chain = nrf_log_default_backends_init &rArr; nrf_log_backend_uart_init &rArr; uart_init &rArr; app_error_handler_bare &rArr; app_error_fault_handler &rArr; nrf_log_frontend_dequeue &rArr; nrf_memobj_write &rArr; memobj_op &rArr; __aeabi_memcpy
+<BR><BR>[Stack]<UL><LI>Max Depth = 352<LI>Call Chain = nrf_log_default_backends_init &rArr; nrf_log_backend_uart_init &rArr; uart_init &rArr; app_error_handler_bare &rArr; app_error_fault_handler &rArr; nrf_log_frontend_std_0 &rArr; std_n &rArr; nrf_log_frontend_dequeue &rArr;  nrf_log_frontend_std_0 (Cycle)
 </UL>
 <BR>[Calls]<UL><LI><a href="#[1d0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_log_backend_add
 <LI><a href="#[1dd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_log_backend_enable
@@ -2726,7 +2726,8 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[8e]"></a>nrf_log_frontend_dequeue</STRONG> (Thumb, 748 bytes, Stack size 80 bytes, nrf_log_frontend.o(i.nrf_log_frontend_dequeue))
-<BR><BR>[Stack]<UL><LI>Max Depth = 200<LI>Call Chain = nrf_log_frontend_dequeue &rArr; nrf_memobj_write &rArr; memobj_op &rArr; __aeabi_memcpy
+<BR><BR>[Stack]<UL><LI>Max Depth = 200 + In Cycle
+<LI>Call Chain = nrf_log_frontend_dequeue &rArr;  nrf_log_frontend_std_0 (Cycle)
 </UL>
 <BR>[Calls]<UL><LI><a href="#[8f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_log_frontend_std_0
 <LI><a href="#[93]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_util_critical_region_exit
@@ -2745,21 +2746,20 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[8f]"></a>nrf_log_frontend_std_0</STRONG> (Thumb, 20 bytes, Stack size 16 bytes, nrf_log_frontend.o(i.nrf_log_frontend_std_0))
-<BR><BR>[Stack]<UL><LI>Max Depth = 16 + In Cycle
-<LI>Call Chain = nrf_log_frontend_std_0 &rArr;  std_n (Cycle)
+<BR><BR>[Stack]<UL><LI>Max Depth = 256<LI>Call Chain = nrf_log_frontend_std_0 &rArr; std_n &rArr; nrf_log_frontend_dequeue &rArr;  nrf_log_frontend_std_0 (Cycle)
 </UL>
 <BR>[Calls]<UL><LI><a href="#[1e1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;std_n
 </UL>
 <BR>[Called By]<UL><LI><a href="#[8e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_log_frontend_dequeue
-<LI><a href="#[3d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;twi_handler
 <LI><a href="#[3c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;timer_led_event_handler
 <LI><a href="#[31]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 <LI><a href="#[36]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;msg_printer
 <LI><a href="#[8c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_error_fault_handler
+<LI><a href="#[3d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;twi_handler
 </UL>
 
 <P><STRONG><a name="[ab]"></a>nrf_log_frontend_std_1</STRONG> (Thumb, 24 bytes, Stack size 24 bytes, nrf_log_frontend.o(i.nrf_log_frontend_std_1))
-<BR><BR>[Stack]<UL><LI>Max Depth = 264<LI>Call Chain = nrf_log_frontend_std_1 &rArr; std_n &rArr; nrf_log_frontend_dequeue &rArr; nrf_memobj_write &rArr; memobj_op &rArr; __aeabi_memcpy
+<BR><BR>[Stack]<UL><LI>Max Depth = 264<LI>Call Chain = nrf_log_frontend_std_1 &rArr; std_n &rArr; nrf_log_frontend_dequeue &rArr;  nrf_log_frontend_std_0 (Cycle)
 </UL>
 <BR>[Calls]<UL><LI><a href="#[1e1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;std_n
 </UL>
@@ -2768,7 +2768,7 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[1e2]"></a>nrf_log_frontend_std_2</STRONG> (Thumb, 32 bytes, Stack size 32 bytes, nrf_log_frontend.o(i.nrf_log_frontend_std_2))
-<BR><BR>[Stack]<UL><LI>Max Depth = 272<LI>Call Chain = nrf_log_frontend_std_2 &rArr; std_n &rArr; nrf_log_frontend_dequeue &rArr; nrf_memobj_write &rArr; memobj_op &rArr; __aeabi_memcpy
+<BR><BR>[Stack]<UL><LI>Max Depth = 272<LI>Call Chain = nrf_log_frontend_std_2 &rArr; std_n &rArr; nrf_log_frontend_dequeue &rArr;  nrf_log_frontend_std_0 (Cycle)
 </UL>
 <BR>[Calls]<UL><LI><a href="#[1e1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;std_n
 </UL>
@@ -2776,7 +2776,7 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[1e3]"></a>nrf_log_frontend_std_5</STRONG> (Thumb, 56 bytes, Stack size 56 bytes, nrf_log_frontend.o(i.nrf_log_frontend_std_5))
-<BR><BR>[Stack]<UL><LI>Max Depth = 296<LI>Call Chain = nrf_log_frontend_std_5 &rArr; std_n &rArr; nrf_log_frontend_dequeue &rArr; nrf_memobj_write &rArr; memobj_op &rArr; __aeabi_memcpy
+<BR><BR>[Stack]<UL><LI>Max Depth = 296<LI>Call Chain = nrf_log_frontend_std_5 &rArr; std_n &rArr; nrf_log_frontend_dequeue &rArr;  nrf_log_frontend_std_0 (Cycle)
 </UL>
 <BR>[Calls]<UL><LI><a href="#[1e1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;std_n
 </UL>
@@ -2784,7 +2784,7 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[1e4]"></a>nrf_log_frontend_std_6</STRONG> (Thumb, 60 bytes, Stack size 64 bytes, nrf_log_frontend.o(i.nrf_log_frontend_std_6))
-<BR><BR>[Stack]<UL><LI>Max Depth = 304<LI>Call Chain = nrf_log_frontend_std_6 &rArr; std_n &rArr; nrf_log_frontend_dequeue &rArr; nrf_memobj_write &rArr; memobj_op &rArr; __aeabi_memcpy
+<BR><BR>[Stack]<UL><LI>Max Depth = 304<LI>Call Chain = nrf_log_frontend_std_6 &rArr; std_n &rArr; nrf_log_frontend_dequeue &rArr;  nrf_log_frontend_std_0 (Cycle)
 </UL>
 <BR>[Calls]<UL><LI><a href="#[1e1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;std_n
 </UL>
@@ -3136,7 +3136,7 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[1af]"></a>timer_init</STRONG> (Thumb, 48 bytes, Stack size 24 bytes, main.o(i.timer_init))
-<BR><BR>[Stack]<UL><LI>Max Depth = 256<LI>Call Chain = timer_init &rArr; app_error_handler_bare &rArr; app_error_fault_handler &rArr; nrf_log_frontend_dequeue &rArr; nrf_memobj_write &rArr; memobj_op &rArr; __aeabi_memcpy
+<BR><BR>[Stack]<UL><LI>Max Depth = 312<LI>Call Chain = timer_init &rArr; app_error_handler_bare &rArr; app_error_fault_handler &rArr; nrf_log_frontend_std_0 &rArr; std_n &rArr; nrf_log_frontend_dequeue &rArr;  nrf_log_frontend_std_0 (Cycle)
 </UL>
 <BR>[Calls]<UL><LI><a href="#[202]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrfx_timer_init
 <LI><a href="#[201]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrfx_timer_enable
@@ -3146,26 +3146,26 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[3c]"></a>timer_led_event_handler</STRONG> (Thumb, 66 bytes, Stack size 16 bytes, main.o(i.timer_led_event_handler))
-<BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = timer_led_event_handler &rArr; nrf_log_frontend_std_0 &rArr;  std_n (Cycle)
+<BR><BR>[Stack]<UL><LI>Max Depth = 272<LI>Call Chain = timer_led_event_handler &rArr; nrf_log_frontend_std_0 &rArr; std_n &rArr; nrf_log_frontend_dequeue &rArr;  nrf_log_frontend_std_0 (Cycle)
 </UL>
 <BR>[Calls]<UL><LI><a href="#[200]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrfx_timer_clear
 <LI><a href="#[8f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_log_frontend_std_0
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> main.o(i.timer_init)
 </UL>
-<P><STRONG><a name="[3d]"></a>twi_handler</STRONG> (Thumb, 92 bytes, Stack size 16 bytes, main.o(i.twi_handler))
-<BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = twi_handler &rArr; nrf_log_frontend_std_0 &rArr;  std_n (Cycle)
+<P><STRONG><a name="[3d]"></a>twi_handler</STRONG> (Thumb, 78 bytes, Stack size 16 bytes, usr_twi.o(i.twi_handler))
+<BR><BR>[Stack]<UL><LI>Max Depth = 272<LI>Call Chain = twi_handler &rArr; nrf_log_frontend_std_0 &rArr; std_n &rArr; nrf_log_frontend_dequeue &rArr;  nrf_log_frontend_std_0 (Cycle)
 </UL>
 <BR>[Calls]<UL><LI><a href="#[8f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_log_frontend_std_0
 </UL>
-<BR>[Address Reference Count : 1]<UL><LI> main.o(i.twi_init)
+<BR>[Address Reference Count : 1]<UL><LI> usr_twi.o(i.twi_init)
 </UL>
-<P><STRONG><a name="[1b0]"></a>twi_init</STRONG> (Thumb, 54 bytes, Stack size 32 bytes, main.o(i.twi_init))
-<BR><BR>[Stack]<UL><LI>Max Depth = 264<LI>Call Chain = twi_init &rArr; app_error_handler_bare &rArr; app_error_fault_handler &rArr; nrf_log_frontend_dequeue &rArr; nrf_memobj_write &rArr; memobj_op &rArr; __aeabi_memcpy
+<P><STRONG><a name="[1b0]"></a>twi_init</STRONG> (Thumb, 54 bytes, Stack size 32 bytes, usr_twi.o(i.twi_init))
+<BR><BR>[Stack]<UL><LI>Max Depth = 320<LI>Call Chain = twi_init &rArr; app_error_handler_bare &rArr; app_error_fault_handler &rArr; nrf_log_frontend_std_0 &rArr; std_n &rArr; nrf_log_frontend_dequeue &rArr;  nrf_log_frontend_std_0 (Cycle)
 </UL>
-<BR>[Calls]<UL><LI><a href="#[204]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrfx_twim_enable
-<LI><a href="#[1c1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_drv_twi_init
+<BR>[Calls]<UL><LI><a href="#[1c1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_drv_twi_init
 <LI><a href="#[90]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_error_handler_bare
+<LI><a href="#[204]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrfx_twim_enable
 </UL>
 <BR>[Called By]<UL><LI><a href="#[31]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
@@ -3174,7 +3174,7 @@ Global Symbols
 Local Symbols
 </H3>
 <P><STRONG><a name="[aa]"></a>check_rc</STRONG> (Thumb, 50 bytes, Stack size 8 bytes, main.o(i.check_rc))
-<BR><BR>[Stack]<UL><LI>Max Depth = 272<LI>Call Chain = check_rc &rArr; nrf_log_frontend_std_1 &rArr; std_n &rArr; nrf_log_frontend_dequeue &rArr; nrf_memobj_write &rArr; memobj_op &rArr; __aeabi_memcpy
+<BR><BR>[Stack]<UL><LI>Max Depth = 272<LI>Call Chain = check_rc &rArr; nrf_log_frontend_std_1 &rArr; std_n &rArr; nrf_log_frontend_dequeue &rArr;  nrf_log_frontend_std_0 (Cycle)
 </UL>
 <BR>[Calls]<UL><LI><a href="#[ab]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_log_frontend_std_1
 <LI><a href="#[8e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_log_frontend_dequeue
@@ -3183,7 +3183,7 @@ Local Symbols
 </UL>
 
 <P><STRONG><a name="[dd]"></a>gpio_init</STRONG> (Thumb, 78 bytes, Stack size 16 bytes, main.o(i.gpio_init))
-<BR><BR>[Stack]<UL><LI>Max Depth = 248<LI>Call Chain = gpio_init &rArr; app_error_handler_bare &rArr; app_error_fault_handler &rArr; nrf_log_frontend_dequeue &rArr; nrf_memobj_write &rArr; memobj_op &rArr; __aeabi_memcpy
+<BR><BR>[Stack]<UL><LI>Max Depth = 304<LI>Call Chain = gpio_init &rArr; app_error_handler_bare &rArr; app_error_fault_handler &rArr; nrf_log_frontend_std_0 &rArr; std_n &rArr; nrf_log_frontend_dequeue &rArr;  nrf_log_frontend_std_0 (Cycle)
 </UL>
 <BR>[Calls]<UL><LI><a href="#[de]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrfx_gpiote_init
 <LI><a href="#[df]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrfx_gpiote_in_init
@@ -3194,7 +3194,7 @@ Local Symbols
 </UL>
 
 <P><STRONG><a name="[36]"></a>msg_printer</STRONG> (Thumb, 28 bytes, Stack size 16 bytes, main.o(i.msg_printer))
-<BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = msg_printer &rArr; nrf_log_frontend_std_0 &rArr;  std_n (Cycle)
+<BR><BR>[Stack]<UL><LI>Max Depth = 272<LI>Call Chain = msg_printer &rArr; nrf_log_frontend_std_0 &rArr; std_n &rArr; nrf_log_frontend_dequeue &rArr;  nrf_log_frontend_std_0 (Cycle)
 </UL>
 <BR>[Calls]<UL><LI><a href="#[8f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_log_frontend_std_0
 </UL>
@@ -3208,15 +3208,6 @@ Local Symbols
 <BR>[Called By]<UL><LI><a href="#[31]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[e6]"></a>nrf_drv_twi_tx</STRONG> (Thumb, 44 bytes, Stack size 32 bytes, main.o(i.nrf_drv_twi_tx))
-<BR><BR>[Stack]<UL><LI>Max Depth = 168<LI>Call Chain = nrf_drv_twi_tx &rArr; nrfx_twim_tx &rArr; nrfx_twim_xfer &rArr; twim_xfer &rArr; xfer_completeness_check
-</UL>
-<BR>[Calls]<UL><LI><a href="#[1c4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrfx_twim_tx
-</UL>
-<BR>[Called By]<UL><LI><a href="#[e2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2c_write_forread_byte
-<LI><a href="#[e4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2c_write_byte
-</UL>
-
 <P><STRONG><a name="[19f]"></a>nrfx_coredep_delay_us</STRONG> (Thumb, 20 bytes, Stack size 16 bytes, main.o(i.nrfx_coredep_delay_us))
 <BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = nrfx_coredep_delay_us
 </UL>
@@ -3225,7 +3216,7 @@ Local Symbols
 </UL>
 
 <P><STRONG><a name="[1]"></a>sensor_event_cb</STRONG> (Thumb, 1030 bytes, Stack size 40 bytes, main.o(i.sensor_event_cb))
-<BR><BR>[Stack]<UL><LI>Max Depth = 344<LI>Call Chain = sensor_event_cb &rArr; nrf_log_frontend_std_6 &rArr; std_n &rArr; nrf_log_frontend_dequeue &rArr; nrf_memobj_write &rArr; memobj_op &rArr; __aeabi_memcpy
+<BR><BR>[Stack]<UL><LI>Max Depth = 344<LI>Call Chain = sensor_event_cb &rArr; nrf_log_frontend_std_6 &rArr; std_n &rArr; nrf_log_frontend_dequeue &rArr;  nrf_log_frontend_std_0 (Cycle)
 </UL>
 <BR>[Calls]<UL><LI><a href="#[1e4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_log_frontend_std_6
 <LI><a href="#[1e3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_log_frontend_std_5
@@ -4024,7 +4015,7 @@ Local Symbols
 <BR>[Address Reference Count : 1]<UL><LI> nrf_log_backend_uart.o(.constdata)
 </UL>
 <P><STRONG><a name="[47]"></a>nrf_log_backend_uart_panic_set</STRONG> (Thumb, 48 bytes, Stack size 16 bytes, nrf_log_backend_uart.o(i.nrf_log_backend_uart_panic_set))
-<BR><BR>[Stack]<UL><LI>Max Depth = 296<LI>Call Chain = nrf_log_backend_uart_panic_set &rArr; uart_init &rArr; app_error_handler_bare &rArr; app_error_fault_handler &rArr; nrf_log_frontend_dequeue &rArr; nrf_memobj_write &rArr; memobj_op &rArr; __aeabi_memcpy
+<BR><BR>[Stack]<UL><LI>Max Depth = 352<LI>Call Chain = nrf_log_backend_uart_panic_set &rArr; uart_init &rArr; app_error_handler_bare &rArr; app_error_fault_handler &rArr; nrf_log_frontend_std_0 &rArr; std_n &rArr; nrf_log_frontend_dequeue &rArr;  nrf_log_frontend_std_0 (Cycle)
 </UL>
 <BR>[Calls]<UL><LI><a href="#[1dc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrfx_uart_uninit
 <LI><a href="#[1db]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrfx_uarte_uninit
@@ -4040,7 +4031,7 @@ Local Symbols
 <BR>[Address Reference Count : 1]<UL><LI> nrf_log_backend_uart.o(.constdata)
 </UL>
 <P><STRONG><a name="[3b]"></a>serial_tx</STRONG> (Thumb, 112 bytes, Stack size 40 bytes, nrf_log_backend_uart.o(i.serial_tx))
-<BR><BR>[Stack]<UL><LI>Max Depth = 272<LI>Call Chain = serial_tx &rArr; app_error_handler_bare &rArr; app_error_fault_handler &rArr; nrf_log_frontend_dequeue &rArr; nrf_memobj_write &rArr; memobj_op &rArr; __aeabi_memcpy
+<BR><BR>[Stack]<UL><LI>Max Depth = 328<LI>Call Chain = serial_tx &rArr; app_error_handler_bare &rArr; app_error_fault_handler &rArr; nrf_log_frontend_std_0 &rArr; std_n &rArr; nrf_log_frontend_dequeue &rArr;  nrf_log_frontend_std_0 (Cycle)
 </UL>
 <BR>[Calls]<UL><LI><a href="#[90]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_error_handler_bare
 <LI><a href="#[20b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrfx_uart_tx
@@ -4052,7 +4043,7 @@ Local Symbols
 <BR>[Address Reference Count : 1]<UL><LI> nrf_log_backend_uart.o(i.uart_init)
 </UL>
 <P><STRONG><a name="[1da]"></a>uart_init</STRONG> (Thumb, 80 bytes, Stack size 48 bytes, nrf_log_backend_uart.o(i.uart_init))
-<BR><BR>[Stack]<UL><LI>Max Depth = 280<LI>Call Chain = uart_init &rArr; app_error_handler_bare &rArr; app_error_fault_handler &rArr; nrf_log_frontend_dequeue &rArr; nrf_memobj_write &rArr; memobj_op &rArr; __aeabi_memcpy
+<BR><BR>[Stack]<UL><LI>Max Depth = 336<LI>Call Chain = uart_init &rArr; app_error_handler_bare &rArr; app_error_fault_handler &rArr; nrf_log_frontend_std_0 &rArr; std_n &rArr; nrf_log_frontend_dequeue &rArr;  nrf_log_frontend_std_0 (Cycle)
 </UL>
 <BR>[Calls]<UL><LI><a href="#[1c5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_drv_uart_init
 <LI><a href="#[90]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;app_error_handler_bare
@@ -4123,7 +4114,7 @@ Local Symbols
 </UL>
 
 <P><STRONG><a name="[1e1]"></a>std_n</STRONG> (Thumb, 104 bytes, Stack size 40 bytes, nrf_log_frontend.o(i.std_n))
-<BR><BR>[Stack]<UL><LI>Max Depth = 240<LI>Call Chain = std_n &rArr; nrf_log_frontend_dequeue &rArr; nrf_memobj_write &rArr; memobj_op &rArr; __aeabi_memcpy
+<BR><BR>[Stack]<UL><LI>Max Depth = 240<LI>Call Chain = std_n &rArr; nrf_log_frontend_dequeue &rArr;  nrf_log_frontend_std_0 (Cycle)
 </UL>
 <BR>[Calls]<UL><LI><a href="#[8e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_log_frontend_dequeue
 <LI><a href="#[221]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;std_header_set
@@ -4233,11 +4224,11 @@ Local Symbols
 </UL>
 
 <P><STRONG><a name="[f9]"></a>idd_sensortype_2_driver</STRONG> (Thumb, 128 bytes, Stack size 0 bytes, deviceicm20948.o(i.idd_sensortype_2_driver))
-<BR><BR>[Called By]<UL><LI><a href="#[52]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;inv_device_icm20948_set_sensor_period_us
-<LI><a href="#[54]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;inv_device_icm20948_set_sensor_mounting_matrix
-<LI><a href="#[55]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;inv_device_icm20948_set_sensor_config
+<BR><BR>[Called By]<UL><LI><a href="#[55]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;inv_device_icm20948_set_sensor_config
 <LI><a href="#[56]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;inv_device_icm20948_get_sensor_config
 <LI><a href="#[51]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;inv_device_icm20948_enable_sensor
+<LI><a href="#[52]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;inv_device_icm20948_set_sensor_period_us
+<LI><a href="#[54]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;inv_device_icm20948_set_sensor_mounting_matrix
 </UL>
 
 <P><STRONG><a name="[64]"></a>DividerRateSet</STRONG> (Thumb, 80 bytes, Stack size 32 bytes, icm20948databasecontrol.o(i.DividerRateSet))
@@ -4619,6 +4610,15 @@ Local Symbols
 <LI><a href="#[b3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;inv_icm20948_read_mems_reg
 <LI><a href="#[bb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;inv_icm20948_write_mems
 <LI><a href="#[b5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;inv_icm20948_read_mems
+</UL>
+
+<P><STRONG><a name="[e6]"></a>nrf_drv_twi_tx</STRONG> (Thumb, 44 bytes, Stack size 32 bytes, usr_twi.o(i.nrf_drv_twi_tx))
+<BR><BR>[Stack]<UL><LI>Max Depth = 168<LI>Call Chain = nrf_drv_twi_tx &rArr; nrfx_twim_tx &rArr; nrfx_twim_xfer &rArr; twim_xfer &rArr; xfer_completeness_check
+</UL>
+<BR>[Calls]<UL><LI><a href="#[1c4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrfx_twim_tx
+</UL>
+<BR>[Called By]<UL><LI><a href="#[e4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2c_write_byte
+<LI><a href="#[e2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2c_write_forread_byte
 </UL>
 
 <P><STRONG><a name="[7c]"></a>nrf52_errata_108</STRONG> (Thumb, 82 bytes, Stack size 0 bytes, system_nrf52.o(i.nrf52_errata_108))
