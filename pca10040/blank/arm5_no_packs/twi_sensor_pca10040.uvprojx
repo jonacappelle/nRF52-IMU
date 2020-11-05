@@ -1071,6 +1071,16 @@
           </Files>
         </Group>
         <Group>
+          <GroupName>GPIO</GroupName>
+          <Files>
+            <File>
+              <FileName>usr_gpio.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\usr_gpio.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
           <GroupName>::CMSIS</GroupName>
         </Group>
         <Group>

@@ -68,6 +68,7 @@
 ".\_build\icm20948transport.o"
 ".\_build\usr_twi.o"
 ".\_build\usr_tmr.o"
+".\_build\usr_gpio.o"
 ".\_build\arm_startup_nrf52.o"
 ".\_build\system_nrf52.o"
 --library_type=microlib --strict --scatter ".\_build\nrf52832_xxaa.sct"

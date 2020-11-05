@@ -7,12 +7,6 @@ Section Cross References
     main.o(i.check_rc) refers to nrf_log_frontend.o(i.nrf_log_frontend_std_1) for nrf_log_frontend_std_1
     main.o(i.check_rc) refers to nrf_log_frontend.o(i.nrf_log_frontend_dequeue) for nrf_log_frontend_dequeue
     main.o(i.check_rc) refers to nrf_log_frontend.o(log_const_data) for m_nrf_log_app_logs_data_const
-    main.o(i.gpio_init) refers to nrfx_gpiote.o(i.nrfx_gpiote_init) for nrfx_gpiote_init
-    main.o(i.gpio_init) refers to app_error.o(i.app_error_handler_bare) for app_error_handler_bare
-    main.o(i.gpio_init) refers to nrfx_gpiote.o(i.nrfx_gpiote_in_init) for nrfx_gpiote_in_init
-    main.o(i.gpio_init) refers to nrfx_gpiote.o(i.nrfx_gpiote_in_event_enable) for nrfx_gpiote_in_event_enable
-    main.o(i.gpio_init) refers to main.o(.constdata) for .constdata
-    main.o(i.gpio_init) refers to main.o(i.in_pin_handler) for in_pin_handler
     main.o(i.in_pin_handler) refers to main.o(.data) for interrupt
     main.o(i.main) refers to nrf_log_frontend.o(i.nrf_log_init) for nrf_log_init
     main.o(i.main) refers to app_error.o(i.app_error_handler_bare) for app_error_handler_bare
@@ -21,7 +15,7 @@ Section Cross References
     main.o(i.main) refers to nrf_log_frontend.o(i.nrf_log_frontend_dequeue) for nrf_log_frontend_dequeue
     main.o(i.main) refers to message.o(i.inv_msg_setup) for inv_msg_setup
     main.o(i.main) refers to message.o(i.inv_msg) for inv_msg
-    main.o(i.main) refers to main.o(i.gpio_init) for gpio_init
+    main.o(i.main) refers to usr_gpio.o(i.gpio_init) for gpio_init
     main.o(i.main) refers to usr_tmr.o(i.timer_init) for timer_init
     main.o(i.main) refers to usr_twi.o(i.twi_init) for twi_init
     main.o(i.main) refers to deviceicm20948.o(i.inv_device_icm20948_init2) for inv_device_icm20948_init2
@@ -29,21 +23,12 @@ Section Cross References
     main.o(i.main) refers to nrf_log_frontend.o(i.nrf_log_frontend_std_1) for nrf_log_frontend_std_1
     main.o(i.main) refers to main.o(i.nrf_delay_ms) for nrf_delay_ms
     main.o(i.main) refers to nrf_log_frontend.o(log_const_data) for m_nrf_log_app_logs_data_const
-    main.o(i.main) refers to main.o(i.msg_printer) for msg_printer
+    main.o(i.main) refers to imu.o(i.msg_printer) for msg_printer
     main.o(i.main) refers to main.o(.data) for dmp3_image
+    main.o(i.main) refers to imu.o(.data) for sensor_listener
     main.o(i.main) refers to imu.o(.constdata) for my_serif_instance
     main.o(i.main) refers to main.o(.bss) for device_icm20948
-    main.o(i.msg_printer) refers to nrf_log_frontend.o(i.nrf_log_frontend_std_0) for nrf_log_frontend_std_0
-    main.o(i.msg_printer) refers to nrf_log_frontend.o(log_const_data) for m_nrf_log_app_logs_data_const
     main.o(i.nrf_delay_ms) refers to main.o(.constdata) for delay_machine_code
-    main.o(i.sensor_event_cb) refers to sensor.o(i.inv_sensor_str) for inv_sensor_str
-    main.o(i.sensor_event_cb) refers to nrf_log_frontend.o(i.nrf_log_frontend_std_5) for nrf_log_frontend_std_5
-    main.o(i.sensor_event_cb) refers to message.o(i.inv_msg) for inv_msg
-    main.o(i.sensor_event_cb) refers to nrf_log_frontend.o(i.nrf_log_frontend_std_6) for nrf_log_frontend_std_6
-    main.o(i.sensor_event_cb) refers to main.o(i.activityName) for activityName
-    main.o(i.sensor_event_cb) refers to nrf_log_frontend.o(i.nrf_log_frontend_std_2) for nrf_log_frontend_std_2
-    main.o(i.sensor_event_cb) refers to nrf_log_frontend.o(log_const_data) for m_nrf_log_app_logs_data_const
-    main.o(.data) refers to main.o(i.sensor_event_cb) for sensor_event_cb
     boards.o(i.bsp_board_button_idx_to_pin) refers to boards.o(.constdata) for m_board_btn_list
     boards.o(i.bsp_board_button_state_get) refers to boards.o(.constdata) for m_board_btn_list
     boards.o(i.bsp_board_buttons_init) refers to boards.o(i.nrf_gpio_cfg) for nrf_gpio_cfg
@@ -769,12 +754,22 @@ Section Cross References
     imu.o(i.inv_icm20948_get_time_us) refers to nrfx_timer.o(i.nrfx_timer_capture) for nrfx_timer_capture
     imu.o(i.inv_icm20948_get_time_us) refers to usr_tmr.o(.constdata) for TIMER_MICROS
     imu.o(i.inv_icm20948_sleep_us) refers to imu.o(.constdata) for delay_machine_code
+    imu.o(i.msg_printer) refers to nrf_log_frontend.o(i.nrf_log_frontend_std_0) for nrf_log_frontend_std_0
+    imu.o(i.msg_printer) refers to nrf_log_frontend.o(log_const_data) for m_nrf_log_app_logs_data_const
     imu.o(i.my_serif_open_read_reg) refers to usr_twi.o(i.i2c_read_bytes) for i2c_read_bytes
     imu.o(i.my_serif_open_read_reg) refers to usr_twi.o(.constdata) for m_twi
     imu.o(i.my_serif_open_write_reg) refers to usr_twi.o(i.i2c_write_byte) for i2c_write_byte
     imu.o(i.my_serif_open_write_reg) refers to usr_twi.o(.constdata) for m_twi
+    imu.o(i.sensor_event_cb) refers to sensor.o(i.inv_sensor_str) for inv_sensor_str
+    imu.o(i.sensor_event_cb) refers to nrf_log_frontend.o(i.nrf_log_frontend_std_5) for nrf_log_frontend_std_5
+    imu.o(i.sensor_event_cb) refers to message.o(i.inv_msg) for inv_msg
+    imu.o(i.sensor_event_cb) refers to nrf_log_frontend.o(i.nrf_log_frontend_std_6) for nrf_log_frontend_std_6
+    imu.o(i.sensor_event_cb) refers to imu.o(i.activityName) for activityName
+    imu.o(i.sensor_event_cb) refers to nrf_log_frontend.o(i.nrf_log_frontend_std_2) for nrf_log_frontend_std_2
+    imu.o(i.sensor_event_cb) refers to nrf_log_frontend.o(log_const_data) for m_nrf_log_app_logs_data_const
     imu.o(.constdata) refers to imu.o(i.my_serif_open_read_reg) for my_serif_open_read_reg
     imu.o(.constdata) refers to imu.o(i.my_serif_open_write_reg) for my_serif_open_write_reg
+    imu.o(.data) refers to imu.o(i.sensor_event_cb) for sensor_event_cb
     vsensor.o(i.VSensorListener_attach) refers to vsensor.o(i.setupVSensor) for setupVSensor
     vsensor.o(i.VSensorListener_attach) refers to vsensor.o(i.dummyHandler) for dummyHandler
     vsensor.o(i.VSensorListener_disable) refers to vsensor.o(i.isListenerValid) for isListenerValid
@@ -1512,6 +1507,12 @@ Section Cross References
     usr_tmr.o(i.timer_init) refers to nrfx_timer.o(i.nrfx_timer_enable) for nrfx_timer_enable
     usr_tmr.o(i.timer_init) refers to usr_tmr.o(.constdata) for .constdata
     usr_tmr.o(i.timer_init) refers to usr_tmr.o(i.timer_event_handler) for timer_event_handler
+    usr_gpio.o(i.gpio_init) refers to nrfx_gpiote.o(i.nrfx_gpiote_init) for nrfx_gpiote_init
+    usr_gpio.o(i.gpio_init) refers to app_error.o(i.app_error_handler_bare) for app_error_handler_bare
+    usr_gpio.o(i.gpio_init) refers to nrfx_gpiote.o(i.nrfx_gpiote_in_init) for nrfx_gpiote_in_init
+    usr_gpio.o(i.gpio_init) refers to nrfx_gpiote.o(i.nrfx_gpiote_in_event_enable) for nrfx_gpiote_in_event_enable
+    usr_gpio.o(i.gpio_init) refers to usr_gpio.o(.constdata) for .constdata
+    usr_gpio.o(i.gpio_init) refers to main.o(i.in_pin_handler) for in_pin_handler
     arm_startup_nrf52.o(RESET) refers to arm_startup_nrf52.o(STACK) for __initial_sp
     arm_startup_nrf52.o(RESET) refers to arm_startup_nrf52.o(.text) for Reset_Handler
     arm_startup_nrf52.o(RESET) refers to nrfx_prs.o(i.UARTE0_UART0_IRQHandler) for UARTE0_UART0_IRQHandler
@@ -2369,6 +2370,9 @@ Removing Unused input sections from the image.
     Removing usr_tmr.o(.rev16_text), (4 bytes).
     Removing usr_tmr.o(.revsh_text), (4 bytes).
     Removing usr_tmr.o(.rrx_text), (6 bytes).
+    Removing usr_gpio.o(.rev16_text), (4 bytes).
+    Removing usr_gpio.o(.revsh_text), (4 bytes).
+    Removing usr_gpio.o(.rrx_text), (6 bytes).
     Removing system_nrf52.o(.rev16_text), (4 bytes).
     Removing system_nrf52.o(.revsh_text), (4 bytes).
     Removing system_nrf52.o(.rrx_text), (6 bytes).
@@ -2735,7 +2739,7 @@ Removing Unused input sections from the image.
     Removing cdrcmple.o(.text), (48 bytes).
     Removing depilogue.o(.text), (186 bytes).
 
-828 unused section(s) (total 42859 bytes) removed from the image.
+831 unused section(s) (total 42873 bytes) removed from the image.
 
 ==============================================================================
 
@@ -2747,76 +2751,76 @@ Image Symbol Table
 
     RESET                                    0x00000000   Section      512  arm_startup_nrf52.o(RESET)
     ../clib/../cmprslib/zerorunl2.c          0x00000000   Number         0  __dczerorl2.o ABSOLUTE
+    ../clib/microlib/ctype/ctype.c           0x00000000   Number         0  isalnum_o.o ABSOLUTE
+    ../clib/microlib/ctype/ctype.c           0x00000000   Number         0  isalpha_o.o ABSOLUTE
     ../clib/microlib/ctype/ctype.c           0x00000000   Number         0  isblank_o.o ABSOLUTE
     ../clib/microlib/ctype/ctype.c           0x00000000   Number         0  iscntrl_o.o ABSOLUTE
-    ../clib/microlib/ctype/ctype.c           0x00000000   Number         0  isupper_o.o ABSOLUTE
-    ../clib/microlib/ctype/ctype.c           0x00000000   Number         0  isxdigit_o.o ABSOLUTE
-    ../clib/microlib/ctype/ctype.c           0x00000000   Number         0  isalpha_o.o ABSOLUTE
-    ../clib/microlib/ctype/ctype.c           0x00000000   Number         0  ctype_o.o ABSOLUTE
     ../clib/microlib/ctype/ctype.c           0x00000000   Number         0  isdigit_o.o ABSOLUTE
-    ../clib/microlib/ctype/ctype.c           0x00000000   Number         0  ispunct_o.o ABSOLUTE
+    ../clib/microlib/ctype/ctype.c           0x00000000   Number         0  ctype_o.o ABSOLUTE
     ../clib/microlib/ctype/ctype.c           0x00000000   Number         0  isgraph_o.o ABSOLUTE
     ../clib/microlib/ctype/ctype.c           0x00000000   Number         0  islower_o.o ABSOLUTE
-    ../clib/microlib/ctype/ctype.c           0x00000000   Number         0  isalnum_o.o ABSOLUTE
     ../clib/microlib/ctype/ctype.c           0x00000000   Number         0  isprint_o.o ABSOLUTE
+    ../clib/microlib/ctype/ctype.c           0x00000000   Number         0  ispunct_o.o ABSOLUTE
     ../clib/microlib/ctype/ctype.c           0x00000000   Number         0  isspace_o.o ABSOLUTE
+    ../clib/microlib/ctype/ctype.c           0x00000000   Number         0  isupper_o.o ABSOLUTE
+    ../clib/microlib/ctype/ctype.c           0x00000000   Number         0  isxdigit_o.o ABSOLUTE
     ../clib/microlib/division.c              0x00000000   Number         0  uldiv.o ABSOLUTE
     ../clib/microlib/division.c              0x00000000   Number         0  uidiv.o ABSOLUTE
     ../clib/microlib/errno.c                 0x00000000   Number         0  errno.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry7b.o ABSOLUTE
     ../clib/microlib/init/entry.s            0x00000000   Number         0  entry7a.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry2.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry5.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry12a.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry11b.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry11a.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry10b.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry10a.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry7b.o ABSOLUTE
     ../clib/microlib/init/entry.s            0x00000000   Number         0  entry9b.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry9a.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry8b.o ABSOLUTE
     ../clib/microlib/init/entry.s            0x00000000   Number         0  entry.o ABSOLUTE
     ../clib/microlib/init/entry.s            0x00000000   Number         0  entry8a.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry8b.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry11a.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry2.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry5.o ABSOLUTE
     ../clib/microlib/init/entry.s            0x00000000   Number         0  entry12b.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry9a.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry12a.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry11b.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry10b.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry10a.o ABSOLUTE
     ../clib/microlib/longlong.c              0x00000000   Number         0  llushr.o ABSOLUTE
     ../clib/microlib/longlong.c              0x00000000   Number         0  llshl.o ABSOLUTE
     ../clib/microlib/longlong.c              0x00000000   Number         0  llsshr.o ABSOLUTE
-    ../clib/microlib/malloc/malloc.c         0x00000000   Number         0  malloca.o ABSOLUTE
-    ../clib/microlib/malloc/malloc.c         0x00000000   Number         0  mallocra.o ABSOLUTE
-    ../clib/microlib/malloc/malloc.c         0x00000000   Number         0  mallocr.o ABSOLUTE
     ../clib/microlib/malloc/malloc.c         0x00000000   Number         0  malloc.o ABSOLUTE
+    ../clib/microlib/malloc/malloc.c         0x00000000   Number         0  mallocra.o ABSOLUTE
+    ../clib/microlib/malloc/malloc.c         0x00000000   Number         0  malloca.o ABSOLUTE
+    ../clib/microlib/malloc/malloc.c         0x00000000   Number         0  mallocr.o ABSOLUTE
     ../clib/microlib/malloc/mvars.c          0x00000000   Number         0  mvars.o ABSOLUTE
-    ../clib/microlib/printf/printf.c         0x00000000   Number         0  printfa.o ABSOLUTE
-    ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf8.o ABSOLUTE
-    ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf4.o ABSOLUTE
-    ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf0.o ABSOLUTE
-    ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf7.o ABSOLUTE
-    ../clib/microlib/printf/printf.c         0x00000000   Number         0  printfb.o ABSOLUTE
-    ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf6.o ABSOLUTE
     ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf5.o ABSOLUTE
-    ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf1.o ABSOLUTE
     ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf2.o ABSOLUTE
     ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf3.o ABSOLUTE
+    ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf4.o ABSOLUTE
+    ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf6.o ABSOLUTE
+    ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf7.o ABSOLUTE
+    ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf8.o ABSOLUTE
+    ../clib/microlib/printf/printf.c         0x00000000   Number         0  printfa.o ABSOLUTE
+    ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf1.o ABSOLUTE
+    ../clib/microlib/printf/printf.c         0x00000000   Number         0  printfb.o ABSOLUTE
+    ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf0.o ABSOLUTE
     ../clib/microlib/printf/stubs.s          0x00000000   Number         0  stubs.o ABSOLUTE
     ../clib/microlib/stdio/fflush.c          0x00000000   Number         0  fflush.o ABSOLUTE
     ../clib/microlib/stdio/fputc.c           0x00000000   Number         0  fputc.o ABSOLUTE
     ../clib/microlib/stdio/putc.c            0x00000000   Number         0  putc.o ABSOLUTE
     ../clib/microlib/stdio/semi.s            0x00000000   Number         0  semi.o ABSOLUTE
-    ../clib/microlib/stdio/streams.c         0x00000000   Number         0  stdout.o ABSOLUTE
     ../clib/microlib/stdio/streams.c         0x00000000   Number         0  stderr.o ABSOLUTE
+    ../clib/microlib/stdio/streams.c         0x00000000   Number         0  stdout.o ABSOLUTE
     ../clib/microlib/string/memcmp.c         0x00000000   Number         0  memcmp.o ABSOLUTE
-    ../clib/microlib/string/memcpy.c         0x00000000   Number         0  memmoveb.o ABSOLUTE
+    ../clib/microlib/string/memcpy.c         0x00000000   Number         0  memcpyb.o ABSOLUTE
     ../clib/microlib/string/memcpy.c         0x00000000   Number         0  memcpya.o ABSOLUTE
     ../clib/microlib/string/memcpy.c         0x00000000   Number         0  memmovea.o ABSOLUTE
-    ../clib/microlib/string/memcpy.c         0x00000000   Number         0  memcpyb.o ABSOLUTE
-    ../clib/microlib/string/memset.c         0x00000000   Number         0  memset.o ABSOLUTE
+    ../clib/microlib/string/memcpy.c         0x00000000   Number         0  memmoveb.o ABSOLUTE
     ../clib/microlib/string/memset.c         0x00000000   Number         0  memseta.o ABSOLUTE
+    ../clib/microlib/string/memset.c         0x00000000   Number         0  memset.o ABSOLUTE
     ../clib/microlib/string/strcmp.c         0x00000000   Number         0  strcmp.o ABSOLUTE
     ../clib/microlib/string/strcpy.c         0x00000000   Number         0  strcpy.o ABSOLUTE
     ../clib/microlib/string/strlen.c         0x00000000   Number         0  strlen.o ABSOLUTE
-    ../clib/microlib/stubs.s                 0x00000000   Number         0  useno.o ABSOLUTE
     ../clib/microlib/stubs.s                 0x00000000   Number         0  iusefp.o ABSOLUTE
     ../clib/microlib/stubs.s                 0x00000000   Number         0  iusesemip.o ABSOLUTE
+    ../clib/microlib/stubs.s                 0x00000000   Number         0  useno.o ABSOLUTE
     ../fplib/microlib/fpadd.c                0x00000000   Number         0  dadd.o ABSOLUTE
     ../fplib/microlib/fpdiv.c                0x00000000   Number         0  ddiv.o ABSOLUTE
     ../fplib/microlib/fpepilogue.c           0x00000000   Number         0  depilogue.o ABSOLUTE
@@ -2827,8 +2831,8 @@ Image Symbol Table
     ../mathlib/fpclassifyf.c                 0x00000000   Number         0  fpclassifyf.o ABSOLUTE
     ../mathlib/funder.c                      0x00000000   Number         0  funder.o ABSOLUTE
     ../mathlib/rredf.c                       0x00000000   Number         0  rredf.o ABSOLUTE
-    ../mathlib/sinf.c                        0x00000000   Number         0  sinf.o ABSOLUTE
     ../mathlib/sinf.c                        0x00000000   Number         0  sinf_x.o ABSOLUTE
+    ../mathlib/sinf.c                        0x00000000   Number         0  sinf.o ABSOLUTE
     ../mathlib/sqrtf.c                       0x00000000   Number         0  sqrtf_x.o ABSOLUTE
     ../mathlib/sqrtf.c                       0x00000000   Number         0  sqrtf.o ABSOLUTE
     ..\..\..\..\..\..\components\boards\boards.c 0x00000000   Number         0  boards.o ABSOLUTE
@@ -2939,6 +2943,8 @@ Image Symbol Table
     imu.c                                    0x00000000   Number         0  imu.o ABSOLUTE
     imu.c                                    0x00000000   Number         0  imu.o ABSOLUTE
     init.s                                   0x00000000   Number         0  init.o ABSOLUTE
+    usr_gpio.c                               0x00000000   Number         0  usr_gpio.o ABSOLUTE
+    usr_gpio.c                               0x00000000   Number         0  usr_gpio.o ABSOLUTE
     usr_tmr.c                                0x00000000   Number         0  usr_tmr.o ABSOLUTE
     usr_tmr.c                                0x00000000   Number         0  usr_tmr.o ABSOLUTE
     usr_twi.c                                0x00000000   Number         0  usr_twi.o ABSOLUTE
@@ -3011,7 +3017,7 @@ Image Symbol Table
     i.__set_errno                            0x0000103c   Section        0  errno.o(i.__set_errno)
     i.activate_compass                       0x00001048   Section        0  icm20948databasedriver.o(i.activate_compass)
     activate_compass                         0x00001049   Thumb Code     8  icm20948databasedriver.o(i.activate_compass)
-    i.activityName                           0x00001050   Section        0  main.o(i.activityName)
+    i.activityName                           0x00001050   Section        0  imu.o(i.activityName)
     i.app_error_fault_handler                0x00001164   Section        0  app_error_weak.o(i.app_error_fault_handler)
     i.app_error_handler_bare                 0x00001224   Section        0  app_error.o(i.app_error_handler_bare)
     i.app_util_critical_region_enter         0x00001240   Section        0  app_util_platform.o(i.app_util_critical_region_enter)
@@ -3100,8 +3106,7 @@ Image Symbol Table
     get_multiple_56_rate                     0x0000267d   Thumb Code    60  icm20948databasecontrol.o(i.get_multiple_56_rate)
     i.get_packet_size_and_samplecnt          0x000026b8   Section        0  icm20948mpufifocontrol.o(i.get_packet_size_and_samplecnt)
     get_packet_size_and_samplecnt            0x000026b9   Thumb Code   326  icm20948mpufifocontrol.o(i.get_packet_size_and_samplecnt)
-    i.gpio_init                              0x00002800   Section        0  main.o(i.gpio_init)
-    gpio_init                                0x00002801   Thumb Code    78  main.o(i.gpio_init)
+    i.gpio_init                              0x00002800   Section        0  usr_gpio.o(i.gpio_init)
     i.host_serif_read_reg_legacy             0x00002858   Section        0  deviceicm20948.o(i.host_serif_read_reg_legacy)
     host_serif_read_reg_legacy               0x00002859   Thumb Code    30  deviceicm20948.o(i.host_serif_read_reg_legacy)
     i.host_serif_write_reg_legacy            0x00002876   Section        0  deviceicm20948.o(i.host_serif_write_reg_legacy)
@@ -3350,8 +3355,7 @@ Image Symbol Table
     memobj_op                                0x000096c9   Thumb Code   202  nrf_memobj.o(i.memobj_op)
     i.module_idx_get                         0x00009794   Section        0  nrf_log_frontend.o(i.module_idx_get)
     module_idx_get                           0x00009795   Thumb Code    52  nrf_log_frontend.o(i.module_idx_get)
-    i.msg_printer                            0x000097cc   Section        0  main.o(i.msg_printer)
-    msg_printer                              0x000097cd   Thumb Code    28  main.o(i.msg_printer)
+    i.msg_printer                            0x000097cc   Section        0  imu.o(i.msg_printer)
     i.my_serif_open_read_reg                 0x000097f0   Section        0  imu.o(i.my_serif_open_read_reg)
     i.my_serif_open_write_reg                0x00009820   Section        0  imu.o(i.my_serif_open_write_reg)
     i.nrf52_errata_108                       0x00009854   Section        0  system_nrf52.o(i.nrf52_errata_108)
@@ -3629,8 +3633,8 @@ Image Symbol Table
     rx_done_event                            0x0000bbf3   Thumb Code    28  nrfx_uart.o(i.rx_done_event)
     i.rx_done_event                          0x0000bc0e   Section        0  nrfx_uarte.o(i.rx_done_event)
     rx_done_event                            0x0000bc0f   Thumb Code    28  nrfx_uarte.o(i.rx_done_event)
-    i.sensor_event_cb                        0x0000bc2c   Section        0  main.o(i.sensor_event_cb)
-    sensor_event_cb                          0x0000bc2d   Thumb Code  1028  main.o(i.sensor_event_cb)
+    i.sensor_event_cb                        0x0000bc2c   Section        0  imu.o(i.sensor_event_cb)
+    sensor_event_cb                          0x0000bc2d   Thumb Code  1028  imu.o(i.sensor_event_cb)
     i.sensor_needs_bac_algo                  0x0000c18c   Section        0  icm20948databasecontrol.o(i.sensor_needs_bac_algo)
     sensor_needs_bac_algo                    0x0000c18d   Thumb Code    68  icm20948databasecontrol.o(i.sensor_needs_bac_algo)
     i.sensor_needs_compass                   0x0000c1d0   Section        0  icm20948databasecontrol.o(i.sensor_needs_compass)
@@ -3689,7 +3693,7 @@ Image Symbol Table
     unsigned_print                           0x0000d08d   Thumb Code   178  nrf_fprintf_format.o(i.unsigned_print)
     i.xfer_completeness_check                0x0000d144   Section        0  nrfx_twim.o(i.xfer_completeness_check)
     xfer_completeness_check                  0x0000d145   Thumb Code   160  nrfx_twim.o(i.xfer_completeness_check)
-    .constdata                               0x0000d1f0   Section       11  main.o(.constdata)
+    .constdata                               0x0000d1f0   Section        6  main.o(.constdata)
     delay_machine_code                       0x0000d1f0   Data           6  main.o(.constdata)
     .constdata                               0x0000d200   Section        6  nrf_drv_twi.o(.constdata)
     delay_machine_code                       0x0000d200   Data           6  nrf_drv_twi.o(.constdata)
@@ -3732,7 +3736,8 @@ Image Symbol Table
     .constdata                               0x0000d6fc   Section       12  icm20948setup.o(.constdata)
     .constdata                               0x0000d708   Section       32  usr_twi.o(.constdata)
     .constdata                               0x0000d728   Section       16  usr_tmr.o(.constdata)
-    .constdata                               0x0000d738   Section      129  ctype_o.o(.constdata)
+    .constdata                               0x0000d738   Section        3  usr_gpio.o(.constdata)
+    .constdata                               0x0000d73b   Section      129  ctype_o.o(.constdata)
     .constdata                               0x0000d7bc   Section        4  ctype_o.o(.constdata)
     table                                    0x0000d7bc   Data           4  ctype_o.o(.constdata)
     .constdata                               0x0000d7c0   Section       32  rredf.o(.constdata)
@@ -3768,60 +3773,60 @@ Image Symbol Table
     __tagsym$$used                           0x0000e404   Number         0  nrf_log_frontend.o(log_const_data)
     nrf_balloc                               0x0000e40c   Section       20  nrf_log_frontend.o(nrf_balloc)
     __tagsym$$used                           0x0000e40c   Number         0  nrf_log_frontend.o(nrf_balloc)
-    .data                                    0x20000000   Section    14302  main.o(.data)
+    .data                                    0x20000000   Section    14291  main.o(.data)
     interrupt                                0x20000000   Data           1  main.o(.data)
-    sensor_listener                          0x20000004   Data           8  main.o(.data)
-    dmp3_image                               0x2000000c   Data       14290  main.o(.data)
-    .data                                    0x200037e0   Section       16  nrf_drv_twi.o(.data)
-    m_handlers                               0x200037e0   Data           8  nrf_drv_twi.o(.data)
-    m_contexts                               0x200037e8   Data           8  nrf_drv_twi.o(.data)
-    .data                                    0x200037f0   Section        9  nrf_drv_uart.o(.data)
-    m_handlers                               0x200037f0   Data           4  nrf_drv_uart.o(.data)
-    m_contexts                               0x200037f4   Data           4  nrf_drv_uart.o(.data)
-    .data                                    0x200037fc   Section        8  nrfx_prs.o(.data)
-    m_prs_box_4                              0x200037fc   Data           8  nrfx_prs.o(.data)
-    .data                                    0x20003804   Section        4  app_util_platform.o(.data)
-    m_in_critical_region                     0x20003804   Data           4  app_util_platform.o(.data)
-    .data                                    0x20003808   Section        1  nrf_log_backend_rtt.o(.data)
-    m_host_present                           0x20003808   Data           1  nrf_log_backend_rtt.o(.data)
-    .data                                    0x2000380c   Section       22  nrf_log_backend_uart.o(.data)
-    m_xfer_done                              0x20003820   Data           1  nrf_log_backend_uart.o(.data)
-    m_async_mode                             0x20003821   Data           1  nrf_log_backend_uart.o(.data)
-    .data                                    0x20003824   Section       16  nrf_log_default_backends.o(.data)
-    log_backend_cb_rtt_log_backend           0x20003824   Data           8  nrf_log_default_backends.o(.data)
-    log_backend_cb_uart_log_backend          0x2000382c   Data           8  nrf_log_default_backends.o(.data)
-    .data                                    0x20003834   Section       20  nrf_log_frontend.o(.data)
-    log_mempool_nrf_balloc_pool_stack        0x20003834   Data           8  nrf_log_frontend.o(.data)
-    log_mempool_nrf_balloc_cb                0x2000383c   Data           8  nrf_log_frontend.o(.data)
-    m_buffer_mask                            0x20003844   Data           4  nrf_log_frontend.o(.data)
-    .data                                    0x20003848   Section       64  nrf_log_str_formatter.o(.data)
-    severity_names                           0x20003848   Data          20  nrf_log_str_formatter.o(.data)
-    m_colors                                 0x2000385c   Data          36  nrf_log_str_formatter.o(.data)
-    m_freq                                   0x20003880   Data           4  nrf_log_str_formatter.o(.data)
-    m_timestamp_div                          0x20003884   Data           4  nrf_log_str_formatter.o(.data)
-    .data                                    0x20003888   Section        8  message.o(.data)
-    msg_level                                0x20003888   Data           4  message.o(.data)
-    msg_printer                              0x2000388c   Data           4  message.o(.data)
-    .data                                    0x20003890   Section      520  sensor.o(.data)
-    sensor_str                               0x20003890   Data         520  sensor.o(.data)
-    .data                                    0x20003a98   Section        8  icm20948databasedriver.o(.data)
-    lIsInited                                0x20003a98   Data           1  icm20948databasedriver.o(.data)
-    data                                     0x20003a99   Data           1  icm20948databasedriver.o(.data)
-    lLastGyroSf                              0x20003a9c   Data           4  icm20948databasedriver.o(.data)
-    .data                                    0x20003aa0   Section       20  icm20948dataconverter.o(.data)
-    constA7                                  0x20003aa0   Data          16  icm20948dataconverter.o(.data)
-    PI15                                     0x20003ab0   Data           4  icm20948dataconverter.o(.data)
-    .data                                    0x20003ab4   Section        2  icm20948dmp3driver.o(.data)
-    data_output_control_reg2                 0x20003ab4   Data           2  icm20948dmp3driver.o(.data)
-    .data                                    0x20003ab8   Section        4  icm20948transport.o(.data)
-    .data                                    0x20003abc   Section        1  usr_twi.o(.data)
-    m_xfer_done                              0x20003abc   Data           1  usr_twi.o(.data)
-    .data                                    0x20003ac0   Section        4  system_nrf52.o(.data)
-    __tagsym$$used                           0x20003ac0   Number         0  system_nrf52.o(.data)
+    dmp3_image                               0x20000001   Data       14290  main.o(.data)
+    .data                                    0x200037d4   Section       16  nrf_drv_twi.o(.data)
+    m_handlers                               0x200037d4   Data           8  nrf_drv_twi.o(.data)
+    m_contexts                               0x200037dc   Data           8  nrf_drv_twi.o(.data)
+    .data                                    0x200037e4   Section        9  nrf_drv_uart.o(.data)
+    m_handlers                               0x200037e4   Data           4  nrf_drv_uart.o(.data)
+    m_contexts                               0x200037e8   Data           4  nrf_drv_uart.o(.data)
+    .data                                    0x200037f0   Section        8  nrfx_prs.o(.data)
+    m_prs_box_4                              0x200037f0   Data           8  nrfx_prs.o(.data)
+    .data                                    0x200037f8   Section        4  app_util_platform.o(.data)
+    m_in_critical_region                     0x200037f8   Data           4  app_util_platform.o(.data)
+    .data                                    0x200037fc   Section        1  nrf_log_backend_rtt.o(.data)
+    m_host_present                           0x200037fc   Data           1  nrf_log_backend_rtt.o(.data)
+    .data                                    0x20003800   Section       22  nrf_log_backend_uart.o(.data)
+    m_xfer_done                              0x20003814   Data           1  nrf_log_backend_uart.o(.data)
+    m_async_mode                             0x20003815   Data           1  nrf_log_backend_uart.o(.data)
+    .data                                    0x20003818   Section       16  nrf_log_default_backends.o(.data)
+    log_backend_cb_rtt_log_backend           0x20003818   Data           8  nrf_log_default_backends.o(.data)
+    log_backend_cb_uart_log_backend          0x20003820   Data           8  nrf_log_default_backends.o(.data)
+    .data                                    0x20003828   Section       20  nrf_log_frontend.o(.data)
+    log_mempool_nrf_balloc_pool_stack        0x20003828   Data           8  nrf_log_frontend.o(.data)
+    log_mempool_nrf_balloc_cb                0x20003830   Data           8  nrf_log_frontend.o(.data)
+    m_buffer_mask                            0x20003838   Data           4  nrf_log_frontend.o(.data)
+    .data                                    0x2000383c   Section       64  nrf_log_str_formatter.o(.data)
+    severity_names                           0x2000383c   Data          20  nrf_log_str_formatter.o(.data)
+    m_colors                                 0x20003850   Data          36  nrf_log_str_formatter.o(.data)
+    m_freq                                   0x20003874   Data           4  nrf_log_str_formatter.o(.data)
+    m_timestamp_div                          0x20003878   Data           4  nrf_log_str_formatter.o(.data)
+    .data                                    0x2000387c   Section        8  imu.o(.data)
+    .data                                    0x20003884   Section        8  message.o(.data)
+    msg_level                                0x20003884   Data           4  message.o(.data)
+    msg_printer                              0x20003888   Data           4  message.o(.data)
+    .data                                    0x2000388c   Section      520  sensor.o(.data)
+    sensor_str                               0x2000388c   Data         520  sensor.o(.data)
+    .data                                    0x20003a94   Section        8  icm20948databasedriver.o(.data)
+    lIsInited                                0x20003a94   Data           1  icm20948databasedriver.o(.data)
+    data                                     0x20003a95   Data           1  icm20948databasedriver.o(.data)
+    lLastGyroSf                              0x20003a98   Data           4  icm20948databasedriver.o(.data)
+    .data                                    0x20003a9c   Section       20  icm20948dataconverter.o(.data)
+    constA7                                  0x20003a9c   Data          16  icm20948dataconverter.o(.data)
+    PI15                                     0x20003aac   Data           4  icm20948dataconverter.o(.data)
+    .data                                    0x20003ab0   Section        2  icm20948dmp3driver.o(.data)
+    data_output_control_reg2                 0x20003ab0   Data           2  icm20948dmp3driver.o(.data)
+    .data                                    0x20003ab4   Section        4  icm20948transport.o(.data)
+    .data                                    0x20003ab8   Section        1  usr_twi.o(.data)
+    m_xfer_done                              0x20003ab8   Data           1  usr_twi.o(.data)
+    .data                                    0x20003abc   Section        4  system_nrf52.o(.data)
+    __tagsym$$used                           0x20003abc   Number         0  system_nrf52.o(.data)
+    .data                                    0x20003ac0   Section        4  mvars.o(.data)
     .data                                    0x20003ac4   Section        4  mvars.o(.data)
-    .data                                    0x20003ac8   Section        4  mvars.o(.data)
-    .data                                    0x20003acc   Section        4  errno.o(.data)
-    _errno                                   0x20003acc   Data           4  errno.o(.data)
+    .data                                    0x20003ac8   Section        4  errno.o(.data)
+    _errno                                   0x20003ac8   Data           4  errno.o(.data)
     .bss                                     0x20003ad0   Section     1328  main.o(.bss)
     device_icm20948                          0x20003ad0   Data        1328  main.o(.bss)
     .bss                                     0x20004000   Section       52  nrfx_twim.o(.bss)
@@ -4025,7 +4030,7 @@ Image Symbol Table
     __scatterload_null                       0x0000102b   Thumb Code     2  handlers.o(i.__scatterload_null)
     __scatterload_zeroinit                   0x0000102d   Thumb Code    14  handlers.o(i.__scatterload_zeroinit)
     __set_errno                              0x0000103d   Thumb Code     6  errno.o(i.__set_errno)
-    activityName                             0x00001051   Thumb Code    78  main.o(i.activityName)
+    activityName                             0x00001051   Thumb Code    78  imu.o(i.activityName)
     app_error_fault_handler                  0x00001165   Thumb Code   146  app_error_weak.o(i.app_error_fault_handler)
     app_error_handler_bare                   0x00001225   Thumb Code    28  app_error.o(i.app_error_handler_bare)
     app_util_critical_region_enter           0x00001241   Thumb Code    10  app_util_platform.o(i.app_util_critical_region_enter)
@@ -4060,6 +4065,7 @@ Image Symbol Table
     dmp_icm20948_set_ped_y_ratio             0x00002209   Thumb Code    40  icm20948dmp3driver.o(i.dmp_icm20948_set_ped_y_ratio)
     dmp_icm20948_set_sensor_rate             0x00002231   Thumb Code   146  icm20948dmp3driver.o(i.dmp_icm20948_set_sensor_rate)
     free                                     0x00002425   Thumb Code    76  malloc.o(i.free)
+    gpio_init                                0x00002801   Thumb Code    78  usr_gpio.o(i.gpio_init)
     i2c_read_bytes                           0x00002895   Thumb Code    96  usr_twi.o(i.i2c_read_bytes)
     i2c_write_byte                           0x000028f9   Thumb Code   118  usr_twi.o(i.i2c_write_byte)
     i2c_write_forread_byte                   0x00002975   Thumb Code    66  usr_twi.o(i.i2c_write_forread_byte)
@@ -4232,6 +4238,7 @@ Image Symbol Table
     inv_sensor_str                           0x00008a19   Thumb Code    32  sensor.o(i.inv_sensor_str)
     main                                     0x00009301   Thumb Code   658  main.o(i.main)
     malloc                                   0x0000965d   Thumb Code    92  malloc.o(i.malloc)
+    msg_printer                              0x000097cd   Thumb Code    28  imu.o(i.msg_printer)
     my_serif_open_read_reg                   0x000097f1   Thumb Code    44  imu.o(i.my_serif_open_read_reg)
     my_serif_open_write_reg                  0x00009821   Thumb Code    46  imu.o(i.my_serif_open_write_reg)
     nrf_atomic_flag_clear_fetch              0x00009bbd   Thumb Code    14  nrf_atomic.o(i.nrf_atomic_flag_clear_fetch)
@@ -4308,7 +4315,7 @@ Image Symbol Table
     my_serif_instance                        0x0000d350   Data          24  imu.o(.constdata)
     m_twi                                    0x0000d708   Data          16  usr_twi.o(.constdata)
     TIMER_MICROS                             0x0000d728   Data           8  usr_tmr.o(.constdata)
-    __ctype_table                            0x0000d738   Data         129  ctype_o.o(.constdata)
+    __ctype_table                            0x0000d73b   Data         129  ctype_o.o(.constdata)
     Region$$Table$$Base                      0x0000e394   Number         0  anon$$obj.o(Region$$Table)
     Region$$Table$$Limit                     0x0000e3b4   Number         0  anon$$obj.o(Region$$Table)
     log_const_data$$Base                     0x0000e3d4   Number         0  nrfx_prs.o(log_const_data)
@@ -4321,12 +4328,13 @@ Image Symbol Table
     m_nrf_log_app_logs_data_const            0x0000e404   Data           8  nrf_log_frontend.o(log_const_data)
     log_const_data$$Limit                    0x0000e40c   Number         0  nrf_log_frontend.o(log_const_data)
     log_mempool                              0x0000e40c   Data          20  nrf_log_frontend.o(nrf_balloc)
-    nrf_drv_uart_use_easy_dma                0x200037f8   Data           1  nrf_drv_uart.o(.data)
-    m_uart                                   0x2000380c   Data          20  nrf_log_backend_uart.o(.data)
-    icm20948_instance                        0x20003ab8   Data           4  icm20948transport.o(.data)
-    SystemCoreClock                          0x20003ac0   Data           4  system_nrf52.o(.data)
-    __microlib_freelist                      0x20003ac4   Data           4  mvars.o(.data)
-    __microlib_freelist_initialised          0x20003ac8   Data           4  mvars.o(.data)
+    nrf_drv_uart_use_easy_dma                0x200037ec   Data           1  nrf_drv_uart.o(.data)
+    m_uart                                   0x20003800   Data          20  nrf_log_backend_uart.o(.data)
+    sensor_listener                          0x2000387c   Data           8  imu.o(.data)
+    icm20948_instance                        0x20003ab4   Data           4  icm20948transport.o(.data)
+    SystemCoreClock                          0x20003abc   Data           4  system_nrf52.o(.data)
+    __microlib_freelist                      0x20003ac0   Data           4  mvars.o(.data)
+    __microlib_freelist_initialised          0x20003ac4   Data           4  mvars.o(.data)
     _SEGGER_RTT                              0x200046d4   Data         120  segger_rtt.o(.bss)
     fd                                       0x2000495c   Data         164  icm20948mpufifocontrol.o(.bss)
     __heap_base                              0x20004e00   Data           0  arm_startup_nrf52.o(HEAP)
@@ -4341,683 +4349,685 @@ Memory Map of the image
 
   Image Entry point : 0x00000201
 
-  Load Region LR_IROM1 (Base: 0x00000000, Size: 0x00011ef0, Max: 0x00080000, ABSOLUTE, COMPRESSED[0x00010e1c])
+  Load Region LR_IROM1 (Base: 0x00000000, Size: 0x00011eec, Max: 0x00080000, ABSOLUTE, COMPRESSED[0x00010e1c])
 
     Execution Region ER_IROM1 (Exec base: 0x00000000, Load base: 0x00000000, Size: 0x0000e420, Max: 0x00080000, ABSOLUTE)
 
     Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
 
-    0x00000000   0x00000000   0x00000200   Data   RO         6501    RESET               arm_startup_nrf52.o
-    0x00000200   0x00000200   0x00000000   Code   RO         8428  * .ARM.Collect$$$$00000000  mc_w.l(entry.o)
-    0x00000200   0x00000200   0x00000004   Code   RO         8801    .ARM.Collect$$$$00000001  mc_w.l(entry2.o)
-    0x00000204   0x00000204   0x00000004   Code   RO         8804    .ARM.Collect$$$$00000004  mc_w.l(entry5.o)
-    0x00000208   0x00000208   0x00000000   Code   RO         8806    .ARM.Collect$$$$00000008  mc_w.l(entry7b.o)
-    0x00000208   0x00000208   0x00000000   Code   RO         8808    .ARM.Collect$$$$0000000A  mc_w.l(entry8b.o)
-    0x00000208   0x00000208   0x00000008   Code   RO         8809    .ARM.Collect$$$$0000000B  mc_w.l(entry9a.o)
-    0x00000210   0x00000210   0x00000004   Code   RO         8816    .ARM.Collect$$$$0000000E  mc_w.l(entry12b.o)
-    0x00000214   0x00000214   0x00000000   Code   RO         8811    .ARM.Collect$$$$0000000F  mc_w.l(entry10a.o)
-    0x00000214   0x00000214   0x00000000   Code   RO         8813    .ARM.Collect$$$$00000011  mc_w.l(entry11a.o)
-    0x00000214   0x00000214   0x00000004   Code   RO         8802    .ARM.Collect$$$$00002712  mc_w.l(entry2.o)
-    0x00000218   0x00000218   0x000000e2   Code   RO         2278    .emb_text           nrf_atomic.o
+    0x00000000   0x00000000   0x00000200   Data   RO         6548    RESET               arm_startup_nrf52.o
+    0x00000200   0x00000200   0x00000000   Code   RO         8475  * .ARM.Collect$$$$00000000  mc_w.l(entry.o)
+    0x00000200   0x00000200   0x00000004   Code   RO         8848    .ARM.Collect$$$$00000001  mc_w.l(entry2.o)
+    0x00000204   0x00000204   0x00000004   Code   RO         8851    .ARM.Collect$$$$00000004  mc_w.l(entry5.o)
+    0x00000208   0x00000208   0x00000000   Code   RO         8853    .ARM.Collect$$$$00000008  mc_w.l(entry7b.o)
+    0x00000208   0x00000208   0x00000000   Code   RO         8855    .ARM.Collect$$$$0000000A  mc_w.l(entry8b.o)
+    0x00000208   0x00000208   0x00000008   Code   RO         8856    .ARM.Collect$$$$0000000B  mc_w.l(entry9a.o)
+    0x00000210   0x00000210   0x00000004   Code   RO         8863    .ARM.Collect$$$$0000000E  mc_w.l(entry12b.o)
+    0x00000214   0x00000214   0x00000000   Code   RO         8858    .ARM.Collect$$$$0000000F  mc_w.l(entry10a.o)
+    0x00000214   0x00000214   0x00000000   Code   RO         8860    .ARM.Collect$$$$00000011  mc_w.l(entry11a.o)
+    0x00000214   0x00000214   0x00000004   Code   RO         8849    .ARM.Collect$$$$00002712  mc_w.l(entry2.o)
+    0x00000218   0x00000218   0x000000e2   Code   RO         2260    .emb_text           nrf_atomic.o
     0x000002fa   0x000002fa   0x00000002   PAD
-    0x000002fc   0x000002fc   0x00000024   Code   RO         6502    .text               arm_startup_nrf52.o
-    0x00000320   0x00000320   0x00000062   Code   RO         8439    .text               mc_w.l(uldiv.o)
-    0x00000382   0x00000382   0x0000001e   Code   RO         8441    .text               mc_w.l(llshl.o)
-    0x000003a0   0x000003a0   0x00000024   Code   RO         8443    .text               mc_w.l(llsshr.o)
-    0x000003c4   0x000003c4   0x00000008   Code   RO         8445    .text               mc_w.l(ctype_o.o)
-    0x000003cc   0x000003cc   0x00000040   Code   RO         8475    .text               mc_w.l(memmovea.o)
-    0x0000040c   0x0000040c   0x00000024   Code   RO         8479    .text               mc_w.l(memseta.o)
-    0x00000430   0x00000430   0x0000000e   Code   RO         8481    .text               mc_w.l(strlen.o)
-    0x0000043e   0x0000043e   0x0000001a   Code   RO         8485    .text               mc_w.l(memcmp.o)
-    0x00000458   0x00000458   0x00000012   Code   RO         8487    .text               mc_w.l(strcpy.o)
-    0x0000046a   0x0000046a   0x00000020   Code   RO         8820    .text               mc_w.l(llushr.o)
-    0x0000048a   0x0000048a   0x00000000   Code   RO         8831    .text               mc_w.l(iusefp.o)
+    0x000002fc   0x000002fc   0x00000024   Code   RO         6549    .text               arm_startup_nrf52.o
+    0x00000320   0x00000320   0x00000062   Code   RO         8486    .text               mc_w.l(uldiv.o)
+    0x00000382   0x00000382   0x0000001e   Code   RO         8488    .text               mc_w.l(llshl.o)
+    0x000003a0   0x000003a0   0x00000024   Code   RO         8490    .text               mc_w.l(llsshr.o)
+    0x000003c4   0x000003c4   0x00000008   Code   RO         8492    .text               mc_w.l(ctype_o.o)
+    0x000003cc   0x000003cc   0x00000040   Code   RO         8522    .text               mc_w.l(memmovea.o)
+    0x0000040c   0x0000040c   0x00000024   Code   RO         8526    .text               mc_w.l(memseta.o)
+    0x00000430   0x00000430   0x0000000e   Code   RO         8528    .text               mc_w.l(strlen.o)
+    0x0000043e   0x0000043e   0x0000001a   Code   RO         8532    .text               mc_w.l(memcmp.o)
+    0x00000458   0x00000458   0x00000012   Code   RO         8534    .text               mc_w.l(strcpy.o)
+    0x0000046a   0x0000046a   0x00000020   Code   RO         8867    .text               mc_w.l(llushr.o)
+    0x0000048a   0x0000048a   0x00000000   Code   RO         8878    .text               mc_w.l(iusefp.o)
     0x0000048a   0x0000048a   0x00000002   PAD
-    0x0000048c   0x0000048c   0x00000024   Code   RO         8843    .text               mc_w.l(init.o)
-    0x000004b0   0x000004b0   0x00000056   Code   RO         8855    .text               mc_w.l(__dczerorl2.o)
-    0x00000506   0x00000506   0x00000050   Code   RO         5013    i.DividerRateSet    icm20948databasecontrol.o
-    0x00000556   0x00000556   0x00000018   Code   RO         6127    i.DmpDriver_convertion  icm20948setup.o
+    0x0000048c   0x0000048c   0x00000024   Code   RO         8890    .text               mc_w.l(init.o)
+    0x000004b0   0x000004b0   0x00000056   Code   RO         8902    .text               mc_w.l(__dczerorl2.o)
+    0x00000506   0x00000506   0x00000050   Code   RO         5026    i.DividerRateSet    icm20948databasecontrol.o
+    0x00000556   0x00000556   0x00000018   Code   RO         6140    i.DmpDriver_convertion  icm20948setup.o
     0x0000056e   0x0000056e   0x00000002   PAD
-    0x00000570   0x00000570   0x000000bc   Code   RO         1545    i.GPIOTE_IRQHandler  nrfx_gpiote.o
-    0x0000062c   0x0000062c   0x00000038   Code   RO         5014    i.MinDelayGenActual  icm20948databasecontrol.o
-    0x00000664   0x00000664   0x00000008   Code   RO         3215    i.SEGGER_RTT_Init   segger_rtt.o
-    0x0000066c   0x0000066c   0x00000084   Code   RO         3229    i.SEGGER_RTT_WriteNoLock  segger_rtt.o
-    0x000006f0   0x000006f0   0x00000014   Code   RO          856    i.SPIM0_SPIS0_TWIM0_TWIS0_SPI0_TWI0_IRQHandler  nrfx_twim.o
-    0x00000704   0x00000704   0x00000020   Code   RO         5015    i.SampleRateDividerGet  icm20948databasecontrol.o
-    0x00000724   0x00000724   0x00000010   Code   RO         6509    i.SystemCoreClockUpdate  system_nrf52.o
-    0x00000734   0x00000734   0x00000298   Code   RO         6510    i.SystemInit        system_nrf52.o
-    0x000009cc   0x000009cc   0x00000018   Code   RO         1915    i.TIMER0_IRQHandler  nrfx_timer.o
-    0x000009e4   0x000009e4   0x00000010   Code   RO          775    i.UARTE0_UART0_IRQHandler  nrfx_prs.o
-    0x000009f4   0x000009f4   0x00000070   Code   RO         3233    i._DoInit           segger_rtt.o
-    0x00000a64   0x00000a64   0x0000001c   Code   RO         3234    i._GetAvailWriteSpace  segger_rtt.o
-    0x00000a80   0x00000a80   0x00000024   Code   RO          857    i._NRFX_IRQ_PENDING_CLEAR  nrfx_twim.o
-    0x00000aa4   0x00000aa4   0x00000072   Code   RO         3236    i._WriteBlocking    segger_rtt.o
-    0x00000b16   0x00000b16   0x0000004c   Code   RO         3237    i._WriteNoCheck     segger_rtt.o
-    0x00000b62   0x00000b62   0x00000026   Code   RO         8782    i.__ARM_fpclassifyf  m_wm.l(fpclassifyf.o)
-    0x00000b88   0x00000b88   0x00000150   Code   RO         8392    i.__hardfp_cosf     m_wm.l(cosf.o)
-    0x00000cd8   0x00000cd8   0x00000190   Code   RO         8404    i.__hardfp_sinf     m_wm.l(sinf.o)
-    0x00000e68   0x00000e68   0x0000003a   Code   RO         8416    i.__hardfp_sqrtf    m_wm.l(sqrtf.o)
-    0x00000ea2   0x00000ea2   0x00000006   Code   RO         8785    i.__mathlib_flt_infnan  m_wm.l(funder.o)
-    0x00000ea8   0x00000ea8   0x00000010   Code   RO         8787    i.__mathlib_flt_invalid  m_wm.l(funder.o)
-    0x00000eb8   0x00000eb8   0x00000010   Code   RO         8790    i.__mathlib_flt_underflow  m_wm.l(funder.o)
-    0x00000ec8   0x00000ec8   0x00000154   Code   RO         8798    i.__mathlib_rredf2  m_wm.l(rredf.o)
-    0x0000101c   0x0000101c   0x0000000e   Code   RO         8849    i.__scatterload_copy  mc_w.l(handlers.o)
-    0x0000102a   0x0000102a   0x00000002   Code   RO         8850    i.__scatterload_null  mc_w.l(handlers.o)
-    0x0000102c   0x0000102c   0x0000000e   Code   RO         8851    i.__scatterload_zeroinit  mc_w.l(handlers.o)
+    0x00000570   0x00000570   0x000000bc   Code   RO         1527    i.GPIOTE_IRQHandler  nrfx_gpiote.o
+    0x0000062c   0x0000062c   0x00000038   Code   RO         5027    i.MinDelayGenActual  icm20948databasecontrol.o
+    0x00000664   0x00000664   0x00000008   Code   RO         3197    i.SEGGER_RTT_Init   segger_rtt.o
+    0x0000066c   0x0000066c   0x00000084   Code   RO         3211    i.SEGGER_RTT_WriteNoLock  segger_rtt.o
+    0x000006f0   0x000006f0   0x00000014   Code   RO          838    i.SPIM0_SPIS0_TWIM0_TWIS0_SPI0_TWI0_IRQHandler  nrfx_twim.o
+    0x00000704   0x00000704   0x00000020   Code   RO         5028    i.SampleRateDividerGet  icm20948databasecontrol.o
+    0x00000724   0x00000724   0x00000010   Code   RO         6556    i.SystemCoreClockUpdate  system_nrf52.o
+    0x00000734   0x00000734   0x00000298   Code   RO         6557    i.SystemInit        system_nrf52.o
+    0x000009cc   0x000009cc   0x00000018   Code   RO         1897    i.TIMER0_IRQHandler  nrfx_timer.o
+    0x000009e4   0x000009e4   0x00000010   Code   RO          757    i.UARTE0_UART0_IRQHandler  nrfx_prs.o
+    0x000009f4   0x000009f4   0x00000070   Code   RO         3215    i._DoInit           segger_rtt.o
+    0x00000a64   0x00000a64   0x0000001c   Code   RO         3216    i._GetAvailWriteSpace  segger_rtt.o
+    0x00000a80   0x00000a80   0x00000024   Code   RO          839    i._NRFX_IRQ_PENDING_CLEAR  nrfx_twim.o
+    0x00000aa4   0x00000aa4   0x00000072   Code   RO         3218    i._WriteBlocking    segger_rtt.o
+    0x00000b16   0x00000b16   0x0000004c   Code   RO         3219    i._WriteNoCheck     segger_rtt.o
+    0x00000b62   0x00000b62   0x00000026   Code   RO         8829    i.__ARM_fpclassifyf  m_wm.l(fpclassifyf.o)
+    0x00000b88   0x00000b88   0x00000150   Code   RO         8439    i.__hardfp_cosf     m_wm.l(cosf.o)
+    0x00000cd8   0x00000cd8   0x00000190   Code   RO         8451    i.__hardfp_sinf     m_wm.l(sinf.o)
+    0x00000e68   0x00000e68   0x0000003a   Code   RO         8463    i.__hardfp_sqrtf    m_wm.l(sqrtf.o)
+    0x00000ea2   0x00000ea2   0x00000006   Code   RO         8832    i.__mathlib_flt_infnan  m_wm.l(funder.o)
+    0x00000ea8   0x00000ea8   0x00000010   Code   RO         8834    i.__mathlib_flt_invalid  m_wm.l(funder.o)
+    0x00000eb8   0x00000eb8   0x00000010   Code   RO         8837    i.__mathlib_flt_underflow  m_wm.l(funder.o)
+    0x00000ec8   0x00000ec8   0x00000154   Code   RO         8845    i.__mathlib_rredf2  m_wm.l(rredf.o)
+    0x0000101c   0x0000101c   0x0000000e   Code   RO         8896    i.__scatterload_copy  mc_w.l(handlers.o)
+    0x0000102a   0x0000102a   0x00000002   Code   RO         8897    i.__scatterload_null  mc_w.l(handlers.o)
+    0x0000102c   0x0000102c   0x0000000e   Code   RO         8898    i.__scatterload_zeroinit  mc_w.l(handlers.o)
     0x0000103a   0x0000103a   0x00000002   PAD
-    0x0000103c   0x0000103c   0x0000000c   Code   RO         8826    i.__set_errno       mc_w.l(errno.o)
-    0x00001048   0x00001048   0x00000008   Code   RO         5223    i.activate_compass  icm20948databasedriver.o
-    0x00001050   0x00001050   0x00000114   Code   RO            4    i.activityName      main.o
-    0x00001164   0x00001164   0x000000c0   Code   RO         2160    i.app_error_fault_handler  app_error_weak.o
-    0x00001224   0x00001224   0x0000001c   Code   RO         2084    i.app_error_handler_bare  app_error.o
-    0x00001240   0x00001240   0x0000000a   Code   RO         2188    i.app_util_critical_region_enter  app_util_platform.o
-    0x0000124a   0x0000124a   0x0000000a   Code   RO         2189    i.app_util_critical_region_exit  app_util_platform.o
-    0x00001254   0x00001254   0x00000014   Code   RO         2190    i.app_util_disable_irq  app_util_platform.o
-    0x00001268   0x00001268   0x00000018   Code   RO         2191    i.app_util_enable_irq  app_util_platform.o
-    0x00001280   0x00001280   0x0000007c   Code   RO         1077    i.apply_config      nrfx_uart.o
-    0x000012fc   0x000012fc   0x0000007c   Code   RO         1326    i.apply_config      nrfx_uarte.o
-    0x00001378   0x00001378   0x0000003c   Code   RO         2947    i.backend_id_assign  nrf_log_frontend.o
-    0x000013b4   0x000013b4   0x000000e4   Code   RO         2948    i.buf_prealloc      nrf_log_frontend.o
-    0x00001498   0x00001498   0x0000002c   Code   RO         2503    i.buffer_add        nrf_fprintf_format.o
-    0x000014c4   0x000014c4   0x00000018   Code   RO         2949    i.buffer_is_empty   nrf_log_frontend.o
-    0x000014dc   0x000014dc   0x00000070   Code   RO         4536    i.build_sensor_event  deviceicm20948.o
-    0x0000154c   0x0000154c   0x00000134   Code   RO         4537    i.build_sensor_event_data  deviceicm20948.o
-    0x00001680   0x00001680   0x00000020   Code   RO         1546    i.channel_free      nrfx_gpiote.o
-    0x000016a0   0x000016a0   0x00000010   Code   RO         1547    i.channel_handler_get  nrfx_gpiote.o
-    0x000016b0   0x000016b0   0x00000080   Code   RO         1548    i.channel_port_alloc  nrfx_gpiote.o
-    0x00001730   0x00001730   0x0000000c   Code   RO         1549    i.channel_port_get  nrfx_gpiote.o
-    0x0000173c   0x0000173c   0x0000007e   Code   RO         5888    i.check_fifo_decoded_headers  icm20948mpufifocontrol.o
+    0x0000103c   0x0000103c   0x0000000c   Code   RO         8873    i.__set_errno       mc_w.l(errno.o)
+    0x00001048   0x00001048   0x00000008   Code   RO         5236    i.activate_compass  icm20948databasedriver.o
+    0x00001050   0x00001050   0x00000114   Code   RO         3542    i.activityName      imu.o
+    0x00001164   0x00001164   0x000000c0   Code   RO         2142    i.app_error_fault_handler  app_error_weak.o
+    0x00001224   0x00001224   0x0000001c   Code   RO         2066    i.app_error_handler_bare  app_error.o
+    0x00001240   0x00001240   0x0000000a   Code   RO         2170    i.app_util_critical_region_enter  app_util_platform.o
+    0x0000124a   0x0000124a   0x0000000a   Code   RO         2171    i.app_util_critical_region_exit  app_util_platform.o
+    0x00001254   0x00001254   0x00000014   Code   RO         2172    i.app_util_disable_irq  app_util_platform.o
+    0x00001268   0x00001268   0x00000018   Code   RO         2173    i.app_util_enable_irq  app_util_platform.o
+    0x00001280   0x00001280   0x0000007c   Code   RO         1059    i.apply_config      nrfx_uart.o
+    0x000012fc   0x000012fc   0x0000007c   Code   RO         1308    i.apply_config      nrfx_uarte.o
+    0x00001378   0x00001378   0x0000003c   Code   RO         2929    i.backend_id_assign  nrf_log_frontend.o
+    0x000013b4   0x000013b4   0x000000e4   Code   RO         2930    i.buf_prealloc      nrf_log_frontend.o
+    0x00001498   0x00001498   0x0000002c   Code   RO         2485    i.buffer_add        nrf_fprintf_format.o
+    0x000014c4   0x000014c4   0x00000018   Code   RO         2931    i.buffer_is_empty   nrf_log_frontend.o
+    0x000014dc   0x000014dc   0x00000070   Code   RO         4546    i.build_sensor_event  deviceicm20948.o
+    0x0000154c   0x0000154c   0x00000134   Code   RO         4547    i.build_sensor_event_data  deviceicm20948.o
+    0x00001680   0x00001680   0x00000020   Code   RO         1528    i.channel_free      nrfx_gpiote.o
+    0x000016a0   0x000016a0   0x00000010   Code   RO         1529    i.channel_handler_get  nrfx_gpiote.o
+    0x000016b0   0x000016b0   0x00000080   Code   RO         1530    i.channel_port_alloc  nrfx_gpiote.o
+    0x00001730   0x00001730   0x0000000c   Code   RO         1531    i.channel_port_get  nrfx_gpiote.o
+    0x0000173c   0x0000173c   0x0000007e   Code   RO         5901    i.check_fifo_decoded_headers  icm20948mpufifocontrol.o
     0x000017ba   0x000017ba   0x00000002   PAD
-    0x000017bc   0x000017bc   0x00000048   Code   RO            5    i.check_rc          main.o
-    0x00001804   0x00001804   0x00000072   Code   RO         6288    i.check_reg_access_lp_disable  icm20948transport.o
-    0x00001876   0x00001876   0x00000050   Code   RO         4538    i.data_handler      deviceicm20948.o
-    0x000018c6   0x000018c6   0x00000008   Code   RO         5224    i.desactivate_compass  icm20948databasedriver.o
-    0x000018ce   0x000018ce   0x00000068   Code   RO         5889    i.dmp_get_fifo_all  icm20948mpufifocontrol.o
-    0x00001936   0x00001936   0x00000044   Code   RO         5890    i.dmp_get_fifo_length  icm20948mpufifocontrol.o
-    0x0000197a   0x0000197a   0x0000005c   Code   RO         5644    i.dmp_icm20948_get_bias_acc  icm20948dmp3driver.o
-    0x000019d6   0x000019d6   0x0000005c   Code   RO         5645    i.dmp_icm20948_get_bias_cmp  icm20948dmp3driver.o
-    0x00001a32   0x00001a32   0x0000005c   Code   RO         5646    i.dmp_icm20948_get_bias_gyr  icm20948dmp3driver.o
-    0x00001a8e   0x00001a8e   0x00000042   Code   RO         5648    i.dmp_icm20948_get_pedometer_num_of_steps  icm20948dmp3driver.o
-    0x00001ad0   0x00001ad0   0x00000058   Code   RO         5650    i.dmp_icm20948_reset_control_registers  icm20948dmp3driver.o
-    0x00001b28   0x00001b28   0x000000fe   Code   RO         5651    i.dmp_icm20948_set_B2S_matrix  icm20948dmp3driver.o
-    0x00001c26   0x00001c26   0x0000002e   Code   RO         5652    i.dmp_icm20948_set_FIFO_watermark  icm20948dmp3driver.o
-    0x00001c54   0x00001c54   0x00000064   Code   RO         5653    i.dmp_icm20948_set_accel_cal_params  icm20948dmp3driver.o
-    0x00001cb8   0x00001cb8   0x0000002e   Code   RO         5654    i.dmp_icm20948_set_accel_feedback_gain  icm20948dmp3driver.o
-    0x00001ce6   0x00001ce6   0x0000006e   Code   RO         5655    i.dmp_icm20948_set_accel_fsr  icm20948dmp3driver.o
-    0x00001d54   0x00001d54   0x0000006e   Code   RO         5656    i.dmp_icm20948_set_accel_scale2  icm20948dmp3driver.o
-    0x00001dc2   0x00001dc2   0x0000006c   Code   RO         5657    i.dmp_icm20948_set_b2s_rate  icm20948dmp3driver.o
-    0x00001e2e   0x00001e2e   0x0000006c   Code   RO         5658    i.dmp_icm20948_set_bac_rate  icm20948dmp3driver.o
-    0x00001e9a   0x00001e9a   0x00000060   Code   RO         5659    i.dmp_icm20948_set_batchmode_params  icm20948dmp3driver.o
-    0x00001efa   0x00001efa   0x00000062   Code   RO         5660    i.dmp_icm20948_set_bias_acc  icm20948dmp3driver.o
-    0x00001f5c   0x00001f5c   0x00000062   Code   RO         5661    i.dmp_icm20948_set_bias_cmp  icm20948dmp3driver.o
-    0x00001fbe   0x00001fbe   0x00000062   Code   RO         5662    i.dmp_icm20948_set_bias_gyr  icm20948dmp3driver.o
-    0x00002020   0x00002020   0x000000fe   Code   RO         5664    i.dmp_icm20948_set_compass_matrix  icm20948dmp3driver.o
-    0x0000211e   0x0000211e   0x0000002c   Code   RO         5665    i.dmp_icm20948_set_data_interrupt_control  icm20948dmp3driver.o
-    0x0000214a   0x0000214a   0x00000024   Code   RO         5666    i.dmp_icm20948_set_data_output_control1  icm20948dmp3driver.o
+    0x000017bc   0x000017bc   0x00000048   Code   RO            4    i.check_rc          main.o
+    0x00001804   0x00001804   0x00000072   Code   RO         6301    i.check_reg_access_lp_disable  icm20948transport.o
+    0x00001876   0x00001876   0x00000050   Code   RO         4548    i.data_handler      deviceicm20948.o
+    0x000018c6   0x000018c6   0x00000008   Code   RO         5237    i.desactivate_compass  icm20948databasedriver.o
+    0x000018ce   0x000018ce   0x00000068   Code   RO         5902    i.dmp_get_fifo_all  icm20948mpufifocontrol.o
+    0x00001936   0x00001936   0x00000044   Code   RO         5903    i.dmp_get_fifo_length  icm20948mpufifocontrol.o
+    0x0000197a   0x0000197a   0x0000005c   Code   RO         5657    i.dmp_icm20948_get_bias_acc  icm20948dmp3driver.o
+    0x000019d6   0x000019d6   0x0000005c   Code   RO         5658    i.dmp_icm20948_get_bias_cmp  icm20948dmp3driver.o
+    0x00001a32   0x00001a32   0x0000005c   Code   RO         5659    i.dmp_icm20948_get_bias_gyr  icm20948dmp3driver.o
+    0x00001a8e   0x00001a8e   0x00000042   Code   RO         5661    i.dmp_icm20948_get_pedometer_num_of_steps  icm20948dmp3driver.o
+    0x00001ad0   0x00001ad0   0x00000058   Code   RO         5663    i.dmp_icm20948_reset_control_registers  icm20948dmp3driver.o
+    0x00001b28   0x00001b28   0x000000fe   Code   RO         5664    i.dmp_icm20948_set_B2S_matrix  icm20948dmp3driver.o
+    0x00001c26   0x00001c26   0x0000002e   Code   RO         5665    i.dmp_icm20948_set_FIFO_watermark  icm20948dmp3driver.o
+    0x00001c54   0x00001c54   0x00000064   Code   RO         5666    i.dmp_icm20948_set_accel_cal_params  icm20948dmp3driver.o
+    0x00001cb8   0x00001cb8   0x0000002e   Code   RO         5667    i.dmp_icm20948_set_accel_feedback_gain  icm20948dmp3driver.o
+    0x00001ce6   0x00001ce6   0x0000006e   Code   RO         5668    i.dmp_icm20948_set_accel_fsr  icm20948dmp3driver.o
+    0x00001d54   0x00001d54   0x0000006e   Code   RO         5669    i.dmp_icm20948_set_accel_scale2  icm20948dmp3driver.o
+    0x00001dc2   0x00001dc2   0x0000006c   Code   RO         5670    i.dmp_icm20948_set_b2s_rate  icm20948dmp3driver.o
+    0x00001e2e   0x00001e2e   0x0000006c   Code   RO         5671    i.dmp_icm20948_set_bac_rate  icm20948dmp3driver.o
+    0x00001e9a   0x00001e9a   0x00000060   Code   RO         5672    i.dmp_icm20948_set_batchmode_params  icm20948dmp3driver.o
+    0x00001efa   0x00001efa   0x00000062   Code   RO         5673    i.dmp_icm20948_set_bias_acc  icm20948dmp3driver.o
+    0x00001f5c   0x00001f5c   0x00000062   Code   RO         5674    i.dmp_icm20948_set_bias_cmp  icm20948dmp3driver.o
+    0x00001fbe   0x00001fbe   0x00000062   Code   RO         5675    i.dmp_icm20948_set_bias_gyr  icm20948dmp3driver.o
+    0x00002020   0x00002020   0x000000fe   Code   RO         5677    i.dmp_icm20948_set_compass_matrix  icm20948dmp3driver.o
+    0x0000211e   0x0000211e   0x0000002c   Code   RO         5678    i.dmp_icm20948_set_data_interrupt_control  icm20948dmp3driver.o
+    0x0000214a   0x0000214a   0x00000024   Code   RO         5679    i.dmp_icm20948_set_data_output_control1  icm20948dmp3driver.o
     0x0000216e   0x0000216e   0x00000002   PAD
-    0x00002170   0x00002170   0x00000024   Code   RO         5667    i.dmp_icm20948_set_data_output_control2  icm20948dmp3driver.o
-    0x00002194   0x00002194   0x0000002c   Code   RO         5668    i.dmp_icm20948_set_data_rdy_status  icm20948dmp3driver.o
-    0x000021c0   0x000021c0   0x00000024   Code   RO         5671    i.dmp_icm20948_set_gyro_sf  icm20948dmp3driver.o
-    0x000021e4   0x000021e4   0x00000024   Code   RO         5672    i.dmp_icm20948_set_motion_event_control  icm20948dmp3driver.o
-    0x00002208   0x00002208   0x00000028   Code   RO         5673    i.dmp_icm20948_set_ped_y_ratio  icm20948dmp3driver.o
-    0x00002230   0x00002230   0x00000092   Code   RO         5675    i.dmp_icm20948_set_sensor_rate  icm20948dmp3driver.o
-    0x000022c2   0x000022c2   0x0000004e   Code   RO         5891    i.dmp_read_fifo     icm20948mpufifocontrol.o
-    0x00002310   0x00002310   0x00000082   Code   RO         5892    i.dmp_reset_fifo    icm20948mpufifocontrol.o
+    0x00002170   0x00002170   0x00000024   Code   RO         5680    i.dmp_icm20948_set_data_output_control2  icm20948dmp3driver.o
+    0x00002194   0x00002194   0x0000002c   Code   RO         5681    i.dmp_icm20948_set_data_rdy_status  icm20948dmp3driver.o
+    0x000021c0   0x000021c0   0x00000024   Code   RO         5684    i.dmp_icm20948_set_gyro_sf  icm20948dmp3driver.o
+    0x000021e4   0x000021e4   0x00000024   Code   RO         5685    i.dmp_icm20948_set_motion_event_control  icm20948dmp3driver.o
+    0x00002208   0x00002208   0x00000028   Code   RO         5686    i.dmp_icm20948_set_ped_y_ratio  icm20948dmp3driver.o
+    0x00002230   0x00002230   0x00000092   Code   RO         5688    i.dmp_icm20948_set_sensor_rate  icm20948dmp3driver.o
+    0x000022c2   0x000022c2   0x0000004e   Code   RO         5904    i.dmp_read_fifo     icm20948mpufifocontrol.o
+    0x00002310   0x00002310   0x00000082   Code   RO         5905    i.dmp_reset_fifo    icm20948mpufifocontrol.o
     0x00002392   0x00002392   0x00000002   PAD
-    0x00002394   0x00002394   0x00000018   Code   RO         2950    i.dropped_sat16_get  nrf_log_frontend.o
-    0x000023ac   0x000023ac   0x00000078   Code   RO         5893    i.extract_sample_cnt  icm20948mpufifocontrol.o
-    0x00002424   0x00002424   0x00000050   Code   RO         8754    i.free              mc_w.l(malloc.o)
-    0x00002474   0x00002474   0x00000108   Code   RO         5016    i.getMinDlyAccel    icm20948databasecontrol.o
-    0x0000257c   0x0000257c   0x00000068   Code   RO         5017    i.getMinDlyCompass  icm20948databasecontrol.o
-    0x000025e4   0x000025e4   0x00000098   Code   RO         5018    i.getMinDlyGyro     icm20948databasecontrol.o
-    0x0000267c   0x0000267c   0x0000003c   Code   RO         5019    i.get_multiple_56_rate  icm20948databasecontrol.o
-    0x000026b8   0x000026b8   0x00000146   Code   RO         5894    i.get_packet_size_and_samplecnt  icm20948mpufifocontrol.o
+    0x00002394   0x00002394   0x00000018   Code   RO         2932    i.dropped_sat16_get  nrf_log_frontend.o
+    0x000023ac   0x000023ac   0x00000078   Code   RO         5906    i.extract_sample_cnt  icm20948mpufifocontrol.o
+    0x00002424   0x00002424   0x00000050   Code   RO         8801    i.free              mc_w.l(malloc.o)
+    0x00002474   0x00002474   0x00000108   Code   RO         5029    i.getMinDlyAccel    icm20948databasecontrol.o
+    0x0000257c   0x0000257c   0x00000068   Code   RO         5030    i.getMinDlyCompass  icm20948databasecontrol.o
+    0x000025e4   0x000025e4   0x00000098   Code   RO         5031    i.getMinDlyGyro     icm20948databasecontrol.o
+    0x0000267c   0x0000267c   0x0000003c   Code   RO         5032    i.get_multiple_56_rate  icm20948databasecontrol.o
+    0x000026b8   0x000026b8   0x00000146   Code   RO         5907    i.get_packet_size_and_samplecnt  icm20948mpufifocontrol.o
     0x000027fe   0x000027fe   0x00000002   PAD
-    0x00002800   0x00002800   0x00000058   Code   RO            6    i.gpio_init         main.o
-    0x00002858   0x00002858   0x0000001e   Code   RO         4539    i.host_serif_read_reg_legacy  deviceicm20948.o
-    0x00002876   0x00002876   0x0000001e   Code   RO         4540    i.host_serif_write_reg_legacy  deviceicm20948.o
-    0x00002894   0x00002894   0x00000064   Code   RO         6385    i.i2c_read_bytes    usr_twi.o
-    0x000028f8   0x000028f8   0x0000007c   Code   RO         6386    i.i2c_write_byte    usr_twi.o
-    0x00002974   0x00002974   0x00000048   Code   RO         6387    i.i2c_write_forread_byte  usr_twi.o
-    0x000029bc   0x000029bc   0x00000072   Code   RO         4541    i.idd_driver_2_sensortype  deviceicm20948.o
-    0x00002a2e   0x00002a2e   0x00000080   Code   RO         4542    i.idd_sensortype_2_driver  deviceicm20948.o
+    0x00002800   0x00002800   0x00000058   Code   RO         6512    i.gpio_init         usr_gpio.o
+    0x00002858   0x00002858   0x0000001e   Code   RO         4549    i.host_serif_read_reg_legacy  deviceicm20948.o
+    0x00002876   0x00002876   0x0000001e   Code   RO         4550    i.host_serif_write_reg_legacy  deviceicm20948.o
+    0x00002894   0x00002894   0x00000064   Code   RO         6398    i.i2c_read_bytes    usr_twi.o
+    0x000028f8   0x000028f8   0x0000007c   Code   RO         6399    i.i2c_write_byte    usr_twi.o
+    0x00002974   0x00002974   0x00000048   Code   RO         6400    i.i2c_write_forread_byte  usr_twi.o
+    0x000029bc   0x000029bc   0x00000072   Code   RO         4551    i.idd_driver_2_sensortype  deviceicm20948.o
+    0x00002a2e   0x00002a2e   0x00000080   Code   RO         4552    i.idd_sensortype_2_driver  deviceicm20948.o
     0x00002aae   0x00002aae   0x00000002   PAD
-    0x00002ab0   0x00002ab0   0x0000000c   Code   RO            7    i.in_pin_handler    main.o
-    0x00002abc   0x00002abc   0x000000be   Code   RO         2504    i.int_print         nrf_fprintf_format.o
+    0x00002ab0   0x00002ab0   0x0000000c   Code   RO            5    i.in_pin_handler    main.o
+    0x00002abc   0x00002abc   0x000000be   Code   RO         2486    i.int_print         nrf_fprintf_format.o
     0x00002b7a   0x00002b7a   0x00000002   PAD
-    0x00002b7c   0x00002b7c   0x00000058   Code   RO         1078    i.interrupts_disable  nrfx_uart.o
-    0x00002bd4   0x00002bd4   0x00000058   Code   RO         1327    i.interrupts_disable  nrfx_uarte.o
-    0x00002c2c   0x00002c2c   0x00000094   Code   RO         1079    i.interrupts_enable  nrfx_uart.o
-    0x00002cc0   0x00002cc0   0x000000b4   Code   RO         1328    i.interrupts_enable  nrfx_uarte.o
-    0x00002d74   0x00002d74   0x00000090   Code   RO         6083    i.inv_check_accelgyro_self_test  icm20948selftest.o
-    0x00002e04   0x00002e04   0x000000be   Code   RO         5020    i.inv_convert_androidSensor_to_control  icm20948databasecontrol.o
-    0x00002ec2   0x00002ec2   0x00000026   Code   RO         5895    i.inv_decode_3_16bit_elements  icm20948mpufifocontrol.o
-    0x00002ee8   0x00002ee8   0x00000044   Code   RO         5896    i.inv_decode_3_32bit_elements  icm20948mpufifocontrol.o
-    0x00002f2c   0x00002f2c   0x00000030   Code   RO         4543    i.inv_device_icm20948_cleanup  deviceicm20948.o
-    0x00002f5c   0x00002f5c   0x00000024   Code   RO         4544    i.inv_device_icm20948_enable_sensor  deviceicm20948.o
-    0x00002f80   0x00002f80   0x00000066   Code   RO         4545    i.inv_device_icm20948_get_sensor_config  deviceicm20948.o
+    0x00002b7c   0x00002b7c   0x00000058   Code   RO         1060    i.interrupts_disable  nrfx_uart.o
+    0x00002bd4   0x00002bd4   0x00000058   Code   RO         1309    i.interrupts_disable  nrfx_uarte.o
+    0x00002c2c   0x00002c2c   0x00000094   Code   RO         1061    i.interrupts_enable  nrfx_uart.o
+    0x00002cc0   0x00002cc0   0x000000b4   Code   RO         1310    i.interrupts_enable  nrfx_uarte.o
+    0x00002d74   0x00002d74   0x00000090   Code   RO         6096    i.inv_check_accelgyro_self_test  icm20948selftest.o
+    0x00002e04   0x00002e04   0x000000be   Code   RO         5033    i.inv_convert_androidSensor_to_control  icm20948databasecontrol.o
+    0x00002ec2   0x00002ec2   0x00000026   Code   RO         5908    i.inv_decode_3_16bit_elements  icm20948mpufifocontrol.o
+    0x00002ee8   0x00002ee8   0x00000044   Code   RO         5909    i.inv_decode_3_32bit_elements  icm20948mpufifocontrol.o
+    0x00002f2c   0x00002f2c   0x00000030   Code   RO         4553    i.inv_device_icm20948_cleanup  deviceicm20948.o
+    0x00002f5c   0x00002f5c   0x00000024   Code   RO         4554    i.inv_device_icm20948_enable_sensor  deviceicm20948.o
+    0x00002f80   0x00002f80   0x00000066   Code   RO         4555    i.inv_device_icm20948_get_sensor_config  deviceicm20948.o
     0x00002fe6   0x00002fe6   0x00000002   PAD
-    0x00002fe8   0x00002fe8   0x0000009c   Code   RO         4547    i.inv_device_icm20948_init2  deviceicm20948.o
-    0x00003084   0x00003084   0x00000016   Code   RO         4548    i.inv_device_icm20948_init_aux_compass  deviceicm20948.o
-    0x0000309a   0x0000309a   0x00000022   Code   RO         4549    i.inv_device_icm20948_load  deviceicm20948.o
-    0x000030bc   0x000030bc   0x00000070   Code   RO         4550    i.inv_device_icm20948_ping_sensor  deviceicm20948.o
-    0x0000312c   0x0000312c   0x00000018   Code   RO         4551    i.inv_device_icm20948_poll  deviceicm20948.o
-    0x00003144   0x00003144   0x00000022   Code   RO         4552    i.inv_device_icm20948_read_mems_register  deviceicm20948.o
+    0x00002fe8   0x00002fe8   0x0000009c   Code   RO         4557    i.inv_device_icm20948_init2  deviceicm20948.o
+    0x00003084   0x00003084   0x00000016   Code   RO         4558    i.inv_device_icm20948_init_aux_compass  deviceicm20948.o
+    0x0000309a   0x0000309a   0x00000022   Code   RO         4559    i.inv_device_icm20948_load  deviceicm20948.o
+    0x000030bc   0x000030bc   0x00000070   Code   RO         4560    i.inv_device_icm20948_ping_sensor  deviceicm20948.o
+    0x0000312c   0x0000312c   0x00000018   Code   RO         4561    i.inv_device_icm20948_poll  deviceicm20948.o
+    0x00003144   0x00003144   0x00000022   Code   RO         4562    i.inv_device_icm20948_read_mems_register  deviceicm20948.o
     0x00003166   0x00003166   0x00000002   PAD
-    0x00003168   0x00003168   0x00000064   Code   RO         4553    i.inv_device_icm20948_reset  deviceicm20948.o
-    0x000031cc   0x000031cc   0x00000094   Code   RO         4554    i.inv_device_icm20948_self_test  deviceicm20948.o
-    0x00003260   0x00003260   0x0000009a   Code   RO         4555    i.inv_device_icm20948_set_sensor_config  deviceicm20948.o
-    0x000032fa   0x000032fa   0x00000024   Code   RO         4556    i.inv_device_icm20948_set_sensor_mounting_matrix  deviceicm20948.o
-    0x0000331e   0x0000331e   0x0000002c   Code   RO         4557    i.inv_device_icm20948_set_sensor_period_us  deviceicm20948.o
-    0x0000334a   0x0000334a   0x0000001a   Code   RO         4558    i.inv_device_icm20948_set_sensor_timeout  deviceicm20948.o
-    0x00003364   0x00003364   0x000001a4   Code   RO         4559    i.inv_device_icm20948_setup  deviceicm20948.o
-    0x00003508   0x00003508   0x00000014   Code   RO         4560    i.inv_device_icm20948_whoami  deviceicm20948.o
-    0x0000351c   0x0000351c   0x00000022   Code   RO         4561    i.inv_device_icm20948_write_mems_register  deviceicm20948.o
-    0x0000353e   0x0000353e   0x000000bc   Code   RO         6084    i.inv_do_test_accelgyro  icm20948selftest.o
+    0x00003168   0x00003168   0x00000064   Code   RO         4563    i.inv_device_icm20948_reset  deviceicm20948.o
+    0x000031cc   0x000031cc   0x00000094   Code   RO         4564    i.inv_device_icm20948_self_test  deviceicm20948.o
+    0x00003260   0x00003260   0x0000009a   Code   RO         4565    i.inv_device_icm20948_set_sensor_config  deviceicm20948.o
+    0x000032fa   0x000032fa   0x00000024   Code   RO         4566    i.inv_device_icm20948_set_sensor_mounting_matrix  deviceicm20948.o
+    0x0000331e   0x0000331e   0x0000002c   Code   RO         4567    i.inv_device_icm20948_set_sensor_period_us  deviceicm20948.o
+    0x0000334a   0x0000334a   0x0000001a   Code   RO         4568    i.inv_device_icm20948_set_sensor_timeout  deviceicm20948.o
+    0x00003364   0x00003364   0x000001a4   Code   RO         4569    i.inv_device_icm20948_setup  deviceicm20948.o
+    0x00003508   0x00003508   0x00000014   Code   RO         4570    i.inv_device_icm20948_whoami  deviceicm20948.o
+    0x0000351c   0x0000351c   0x00000022   Code   RO         4571    i.inv_device_icm20948_write_mems_register  deviceicm20948.o
+    0x0000353e   0x0000353e   0x000000bc   Code   RO         6097    i.inv_do_test_accelgyro  icm20948selftest.o
     0x000035fa   0x000035fa   0x00000002   PAD
-    0x000035fc   0x000035fc   0x000004a0   Code   RO         5021    i.inv_enable_sensor_internal  icm20948databasecontrol.o
-    0x00003a9c   0x00003a9c   0x00000016   Code   RO         5226    i.inv_icm20948_allow_lpen_control  icm20948databasedriver.o
-    0x00003ab2   0x00003ab2   0x00000054   Code   RO         4864    i.inv_icm20948_apply_raw_compass_matrix  icm20948auxcompassakm.o
-    0x00003b06   0x00003b06   0x00000026   Code   RO         4779    i.inv_icm20948_augmented_init  icm20948augmented.o
-    0x00003b2c   0x00003b2c   0x00000098   Code   RO         4780    i.inv_icm20948_augmented_sensors_get_gravity  icm20948augmented.o
-    0x00003bc4   0x00003bc4   0x00000038   Code   RO         4781    i.inv_icm20948_augmented_sensors_get_linearacceleration  icm20948augmented.o
-    0x00003bfc   0x00003bfc   0x000000b0   Code   RO         4782    i.inv_icm20948_augmented_sensors_get_orientation  icm20948augmented.o
-    0x00003cac   0x00003cac   0x00000366   Code   RO         4783    i.inv_icm20948_augmented_sensors_set_odr  icm20948augmented.o
-    0x00004012   0x00004012   0x00000186   Code   RO         4784    i.inv_icm20948_augmented_sensors_update_odr  icm20948augmented.o
-    0x00004198   0x00004198   0x00000104   Code   RO         5022    i.inv_icm20948_base_control_init  icm20948databasecontrol.o
-    0x0000429c   0x0000429c   0x0000024e   Code   RO         4865    i.inv_icm20948_check_akm_self_test  icm20948auxcompassakm.o
+    0x000035fc   0x000035fc   0x000004a0   Code   RO         5034    i.inv_enable_sensor_internal  icm20948databasecontrol.o
+    0x00003a9c   0x00003a9c   0x00000016   Code   RO         5239    i.inv_icm20948_allow_lpen_control  icm20948databasedriver.o
+    0x00003ab2   0x00003ab2   0x00000054   Code   RO         4877    i.inv_icm20948_apply_raw_compass_matrix  icm20948auxcompassakm.o
+    0x00003b06   0x00003b06   0x00000026   Code   RO         4792    i.inv_icm20948_augmented_init  icm20948augmented.o
+    0x00003b2c   0x00003b2c   0x00000098   Code   RO         4793    i.inv_icm20948_augmented_sensors_get_gravity  icm20948augmented.o
+    0x00003bc4   0x00003bc4   0x00000038   Code   RO         4794    i.inv_icm20948_augmented_sensors_get_linearacceleration  icm20948augmented.o
+    0x00003bfc   0x00003bfc   0x000000b0   Code   RO         4795    i.inv_icm20948_augmented_sensors_get_orientation  icm20948augmented.o
+    0x00003cac   0x00003cac   0x00000366   Code   RO         4796    i.inv_icm20948_augmented_sensors_set_odr  icm20948augmented.o
+    0x00004012   0x00004012   0x00000186   Code   RO         4797    i.inv_icm20948_augmented_sensors_update_odr  icm20948augmented.o
+    0x00004198   0x00004198   0x00000104   Code   RO         5035    i.inv_icm20948_base_control_init  icm20948databasecontrol.o
+    0x0000429c   0x0000429c   0x0000024e   Code   RO         4878    i.inv_icm20948_check_akm_self_test  icm20948auxcompassakm.o
     0x000044ea   0x000044ea   0x00000002   PAD
-    0x000044ec   0x000044ec   0x0000017c   Code   RO         4866    i.inv_icm20948_compass_dmp_cal  icm20948auxcompassakm.o
-    0x00004668   0x00004668   0x00000012   Code   RO         4868    i.inv_icm20948_compass_isconnected  icm20948auxcompassakm.o
-    0x0000467a   0x0000467a   0x0000001a   Code   RO         5442    i.inv_icm20948_convert_big8_to_int32  icm20948dataconverter.o
-    0x00004694   0x00004694   0x0000004a   Code   RO         5443    i.inv_icm20948_convert_compute_scalar_part_fxp  icm20948dataconverter.o
-    0x000046de   0x000046de   0x00000056   Code   RO         5445    i.inv_icm20948_convert_dmp3_to_body  icm20948dataconverter.o
-    0x00004734   0x00004734   0x000000dc   Code   RO         5446    i.inv_icm20948_convert_fast_sqrt_fxp  icm20948dataconverter.o
-    0x00004810   0x00004810   0x0000006e   Code   RO         5447    i.inv_icm20948_convert_get_highest_bit_position  icm20948dataconverter.o
-    0x0000487e   0x0000487e   0x0000000c   Code   RO         5448    i.inv_icm20948_convert_int16_to_big8  icm20948dataconverter.o
-    0x0000488a   0x0000488a   0x00000014   Code   RO         5449    i.inv_icm20948_convert_int32_to_big8  icm20948dataconverter.o
+    0x000044ec   0x000044ec   0x0000017c   Code   RO         4879    i.inv_icm20948_compass_dmp_cal  icm20948auxcompassakm.o
+    0x00004668   0x00004668   0x00000012   Code   RO         4881    i.inv_icm20948_compass_isconnected  icm20948auxcompassakm.o
+    0x0000467a   0x0000467a   0x0000001a   Code   RO         5455    i.inv_icm20948_convert_big8_to_int32  icm20948dataconverter.o
+    0x00004694   0x00004694   0x0000004a   Code   RO         5456    i.inv_icm20948_convert_compute_scalar_part_fxp  icm20948dataconverter.o
+    0x000046de   0x000046de   0x00000056   Code   RO         5458    i.inv_icm20948_convert_dmp3_to_body  icm20948dataconverter.o
+    0x00004734   0x00004734   0x000000dc   Code   RO         5459    i.inv_icm20948_convert_fast_sqrt_fxp  icm20948dataconverter.o
+    0x00004810   0x00004810   0x0000006e   Code   RO         5460    i.inv_icm20948_convert_get_highest_bit_position  icm20948dataconverter.o
+    0x0000487e   0x0000487e   0x0000000c   Code   RO         5461    i.inv_icm20948_convert_int16_to_big8  icm20948dataconverter.o
+    0x0000488a   0x0000488a   0x00000014   Code   RO         5462    i.inv_icm20948_convert_int32_to_big8  icm20948dataconverter.o
     0x0000489e   0x0000489e   0x00000002   PAD
-    0x000048a0   0x000048a0   0x00000364   Code   RO         5452    i.inv_icm20948_convert_matrix_to_quat_flt  icm20948dataconverter.o
-    0x00004c04   0x00004c04   0x00000012   Code   RO         5454    i.inv_icm20948_convert_mult_q30_fxp  icm20948dataconverter.o
-    0x00004c16   0x00004c16   0x00000026   Code   RO         5455    i.inv_icm20948_convert_mult_qfix_fxp  icm20948dataconverter.o
-    0x00004c3c   0x00004c3c   0x00000042   Code   RO         5456    i.inv_icm20948_convert_quat_rotate_fxp  icm20948dataconverter.o
-    0x00004c7e   0x00004c7e   0x000000da   Code   RO         5457    i.inv_icm20948_convert_quat_to_col_major_matrix_fxp  icm20948dataconverter.o
-    0x00004d58   0x00004d58   0x000000e0   Code   RO         5458    i.inv_icm20948_convert_rotation_vector  icm20948dataconverter.o
-    0x00004e38   0x00004e38   0x000000a4   Code   RO         5462    i.inv_icm20948_convert_test_limits_and_scale_fxp  icm20948dataconverter.o
-    0x00004edc   0x00004edc   0x0000001a   Code   RO         5023    i.inv_icm20948_ctrl_androidSensor_enabled  icm20948databasecontrol.o
-    0x00004ef6   0x00004ef6   0x00000052   Code   RO         5024    i.inv_icm20948_ctrl_enable_activity_classifier  icm20948databasecontrol.o
-    0x00004f48   0x00004f48   0x0000003c   Code   RO         5025    i.inv_icm20948_ctrl_enable_batch  icm20948databasecontrol.o
-    0x00004f84   0x00004f84   0x00000056   Code   RO         5027    i.inv_icm20948_ctrl_enable_sensor  icm20948databasecontrol.o
-    0x00004fda   0x00004fda   0x00000044   Code   RO         5028    i.inv_icm20948_ctrl_enable_tilt  icm20948databasecontrol.o
-    0x0000501e   0x0000501e   0x00000010   Code   RO         5029    i.inv_icm20948_ctrl_get_acc_bias  icm20948databasecontrol.o
-    0x0000502e   0x0000502e   0x00000008   Code   RO         5030    i.inv_icm20948_ctrl_get_activitiy_classifier_on_flag  icm20948databasecontrol.o
-    0x00005036   0x00005036   0x00000008   Code   RO         5032    i.inv_icm20948_ctrl_get_batch_mode_status  icm20948databasecontrol.o
-    0x0000503e   0x0000503e   0x00000010   Code   RO         5033    i.inv_icm20948_ctrl_get_gyr_bias  icm20948databasecontrol.o
-    0x0000504e   0x0000504e   0x00000010   Code   RO         5034    i.inv_icm20948_ctrl_get_mag_bias  icm20948databasecontrol.o
-    0x0000505e   0x0000505e   0x0000002c   Code   RO         5036    i.inv_icm20948_ctrl_set_acc_bias  icm20948databasecontrol.o
+    0x000048a0   0x000048a0   0x00000364   Code   RO         5465    i.inv_icm20948_convert_matrix_to_quat_flt  icm20948dataconverter.o
+    0x00004c04   0x00004c04   0x00000012   Code   RO         5467    i.inv_icm20948_convert_mult_q30_fxp  icm20948dataconverter.o
+    0x00004c16   0x00004c16   0x00000026   Code   RO         5468    i.inv_icm20948_convert_mult_qfix_fxp  icm20948dataconverter.o
+    0x00004c3c   0x00004c3c   0x00000042   Code   RO         5469    i.inv_icm20948_convert_quat_rotate_fxp  icm20948dataconverter.o
+    0x00004c7e   0x00004c7e   0x000000da   Code   RO         5470    i.inv_icm20948_convert_quat_to_col_major_matrix_fxp  icm20948dataconverter.o
+    0x00004d58   0x00004d58   0x000000e0   Code   RO         5471    i.inv_icm20948_convert_rotation_vector  icm20948dataconverter.o
+    0x00004e38   0x00004e38   0x000000a4   Code   RO         5475    i.inv_icm20948_convert_test_limits_and_scale_fxp  icm20948dataconverter.o
+    0x00004edc   0x00004edc   0x0000001a   Code   RO         5036    i.inv_icm20948_ctrl_androidSensor_enabled  icm20948databasecontrol.o
+    0x00004ef6   0x00004ef6   0x00000052   Code   RO         5037    i.inv_icm20948_ctrl_enable_activity_classifier  icm20948databasecontrol.o
+    0x00004f48   0x00004f48   0x0000003c   Code   RO         5038    i.inv_icm20948_ctrl_enable_batch  icm20948databasecontrol.o
+    0x00004f84   0x00004f84   0x00000056   Code   RO         5040    i.inv_icm20948_ctrl_enable_sensor  icm20948databasecontrol.o
+    0x00004fda   0x00004fda   0x00000044   Code   RO         5041    i.inv_icm20948_ctrl_enable_tilt  icm20948databasecontrol.o
+    0x0000501e   0x0000501e   0x00000010   Code   RO         5042    i.inv_icm20948_ctrl_get_acc_bias  icm20948databasecontrol.o
+    0x0000502e   0x0000502e   0x00000008   Code   RO         5043    i.inv_icm20948_ctrl_get_activitiy_classifier_on_flag  icm20948databasecontrol.o
+    0x00005036   0x00005036   0x00000008   Code   RO         5045    i.inv_icm20948_ctrl_get_batch_mode_status  icm20948databasecontrol.o
+    0x0000503e   0x0000503e   0x00000010   Code   RO         5046    i.inv_icm20948_ctrl_get_gyr_bias  icm20948databasecontrol.o
+    0x0000504e   0x0000504e   0x00000010   Code   RO         5047    i.inv_icm20948_ctrl_get_mag_bias  icm20948databasecontrol.o
+    0x0000505e   0x0000505e   0x0000002c   Code   RO         5049    i.inv_icm20948_ctrl_set_acc_bias  icm20948databasecontrol.o
     0x0000508a   0x0000508a   0x00000002   PAD
-    0x0000508c   0x0000508c   0x000000ac   Code   RO         5037    i.inv_icm20948_ctrl_set_accel_cal_params  icm20948databasecontrol.o
-    0x00005138   0x00005138   0x00000048   Code   RO         5038    i.inv_icm20948_ctrl_set_accel_quaternion_gain  icm20948databasecontrol.o
-    0x00005180   0x00005180   0x00000012   Code   RO         5039    i.inv_icm20948_ctrl_set_batch_mode_status  icm20948databasecontrol.o
-    0x00005192   0x00005192   0x000000fe   Code   RO         5041    i.inv_icm20948_ctrl_set_batch_timeout_ms  icm20948databasecontrol.o
-    0x00005290   0x00005290   0x0000002c   Code   RO         5042    i.inv_icm20948_ctrl_set_gyr_bias  icm20948databasecontrol.o
-    0x000052bc   0x000052bc   0x0000002c   Code   RO         5043    i.inv_icm20948_ctrl_set_mag_bias  icm20948databasecontrol.o
-    0x000052e8   0x000052e8   0x0000001c   Code   RO         5897    i.inv_icm20948_dmp_get_6quaternion  icm20948mpufifocontrol.o
-    0x00005304   0x00005304   0x0000001c   Code   RO         5898    i.inv_icm20948_dmp_get_9quaternion  icm20948mpufifocontrol.o
-    0x00005320   0x00005320   0x0000001c   Code   RO         5899    i.inv_icm20948_dmp_get_accel  icm20948mpufifocontrol.o
-    0x0000533c   0x0000533c   0x0000001c   Code   RO         5900    i.inv_icm20948_dmp_get_bac_state  icm20948mpufifocontrol.o
-    0x00005358   0x00005358   0x0000001c   Code   RO         5901    i.inv_icm20948_dmp_get_bac_ts  icm20948mpufifocontrol.o
-    0x00005374   0x00005374   0x0000001c   Code   RO         5902    i.inv_icm20948_dmp_get_calibrated_compass  icm20948mpufifocontrol.o
-    0x00005390   0x00005390   0x00000038   Code   RO         5903    i.inv_icm20948_dmp_get_calibrated_gyro  icm20948mpufifocontrol.o
-    0x000053c8   0x000053c8   0x0000001c   Code   RO         5904    i.inv_icm20948_dmp_get_flip_pickup_state  icm20948mpufifocontrol.o
-    0x000053e4   0x000053e4   0x0000001c   Code   RO         5905    i.inv_icm20948_dmp_get_gmrvquaternion  icm20948mpufifocontrol.o
-    0x00005400   0x00005400   0x0000001c   Code   RO         5906    i.inv_icm20948_dmp_get_gyro_bias  icm20948mpufifocontrol.o
-    0x0000541c   0x0000541c   0x0000001c   Code   RO         5907    i.inv_icm20948_dmp_get_raw_compass  icm20948mpufifocontrol.o
-    0x00005438   0x00005438   0x0000002c   Code   RO         5908    i.inv_icm20948_dmp_get_raw_gyro  icm20948mpufifocontrol.o
-    0x00005464   0x00005464   0x00000034   Code   RO         6128    i.inv_icm20948_enable_batch_timeout  icm20948setup.o
-    0x00005498   0x00005498   0x00000072   Code   RO         5227    i.inv_icm20948_enable_hw_sensors  icm20948databasedriver.o
-    0x0000550a   0x0000550a   0x0000003a   Code   RO         6129    i.inv_icm20948_enable_sensor  icm20948setup.o
-    0x00005544   0x00005544   0x0000001a   Code   RO         5228    i.inv_icm20948_enter_duty_cycle_mode  icm20948databasedriver.o
-    0x0000555e   0x0000555e   0x0000001a   Code   RO         5229    i.inv_icm20948_enter_low_noise_mode  icm20948databasedriver.o
-    0x00005578   0x00005578   0x0000005a   Code   RO         4941    i.inv_icm20948_execute_read_secondary  icm20948auxtransport.o
-    0x000055d2   0x000055d2   0x0000004c   Code   RO         4942    i.inv_icm20948_execute_write_secondary  icm20948auxtransport.o
+    0x0000508c   0x0000508c   0x000000ac   Code   RO         5050    i.inv_icm20948_ctrl_set_accel_cal_params  icm20948databasecontrol.o
+    0x00005138   0x00005138   0x00000048   Code   RO         5051    i.inv_icm20948_ctrl_set_accel_quaternion_gain  icm20948databasecontrol.o
+    0x00005180   0x00005180   0x00000012   Code   RO         5052    i.inv_icm20948_ctrl_set_batch_mode_status  icm20948databasecontrol.o
+    0x00005192   0x00005192   0x000000fe   Code   RO         5054    i.inv_icm20948_ctrl_set_batch_timeout_ms  icm20948databasecontrol.o
+    0x00005290   0x00005290   0x0000002c   Code   RO         5055    i.inv_icm20948_ctrl_set_gyr_bias  icm20948databasecontrol.o
+    0x000052bc   0x000052bc   0x0000002c   Code   RO         5056    i.inv_icm20948_ctrl_set_mag_bias  icm20948databasecontrol.o
+    0x000052e8   0x000052e8   0x0000001c   Code   RO         5910    i.inv_icm20948_dmp_get_6quaternion  icm20948mpufifocontrol.o
+    0x00005304   0x00005304   0x0000001c   Code   RO         5911    i.inv_icm20948_dmp_get_9quaternion  icm20948mpufifocontrol.o
+    0x00005320   0x00005320   0x0000001c   Code   RO         5912    i.inv_icm20948_dmp_get_accel  icm20948mpufifocontrol.o
+    0x0000533c   0x0000533c   0x0000001c   Code   RO         5913    i.inv_icm20948_dmp_get_bac_state  icm20948mpufifocontrol.o
+    0x00005358   0x00005358   0x0000001c   Code   RO         5914    i.inv_icm20948_dmp_get_bac_ts  icm20948mpufifocontrol.o
+    0x00005374   0x00005374   0x0000001c   Code   RO         5915    i.inv_icm20948_dmp_get_calibrated_compass  icm20948mpufifocontrol.o
+    0x00005390   0x00005390   0x00000038   Code   RO         5916    i.inv_icm20948_dmp_get_calibrated_gyro  icm20948mpufifocontrol.o
+    0x000053c8   0x000053c8   0x0000001c   Code   RO         5917    i.inv_icm20948_dmp_get_flip_pickup_state  icm20948mpufifocontrol.o
+    0x000053e4   0x000053e4   0x0000001c   Code   RO         5918    i.inv_icm20948_dmp_get_gmrvquaternion  icm20948mpufifocontrol.o
+    0x00005400   0x00005400   0x0000001c   Code   RO         5919    i.inv_icm20948_dmp_get_gyro_bias  icm20948mpufifocontrol.o
+    0x0000541c   0x0000541c   0x0000001c   Code   RO         5920    i.inv_icm20948_dmp_get_raw_compass  icm20948mpufifocontrol.o
+    0x00005438   0x00005438   0x0000002c   Code   RO         5921    i.inv_icm20948_dmp_get_raw_gyro  icm20948mpufifocontrol.o
+    0x00005464   0x00005464   0x00000034   Code   RO         6141    i.inv_icm20948_enable_batch_timeout  icm20948setup.o
+    0x00005498   0x00005498   0x00000072   Code   RO         5240    i.inv_icm20948_enable_hw_sensors  icm20948databasedriver.o
+    0x0000550a   0x0000550a   0x0000003a   Code   RO         6142    i.inv_icm20948_enable_sensor  icm20948setup.o
+    0x00005544   0x00005544   0x0000001a   Code   RO         5241    i.inv_icm20948_enter_duty_cycle_mode  icm20948databasedriver.o
+    0x0000555e   0x0000555e   0x0000001a   Code   RO         5242    i.inv_icm20948_enter_low_noise_mode  icm20948databasedriver.o
+    0x00005578   0x00005578   0x0000005a   Code   RO         4954    i.inv_icm20948_execute_read_secondary  icm20948auxtransport.o
+    0x000055d2   0x000055d2   0x0000004c   Code   RO         4955    i.inv_icm20948_execute_write_secondary  icm20948auxtransport.o
     0x0000561e   0x0000561e   0x00000002   PAD
-    0x00005620   0x00005620   0x0000008c   Code   RO         5910    i.inv_icm20948_fifo_pop  icm20948mpufifocontrol.o
-    0x000056ac   0x000056ac   0x00000058   Code   RO         5911    i.inv_icm20948_fifo_swmirror  icm20948mpufifocontrol.o
-    0x00005704   0x00005704   0x000000d4   Code   RO         5876    i.inv_icm20948_firmware_load  icm20948loadfirmware.o
-    0x000057d8   0x000057d8   0x0000000c   Code   RO         5912    i.inv_icm20948_get_accel_accuracy  icm20948mpufifocontrol.o
-    0x000057e4   0x000057e4   0x00000008   Code   RO         5230    i.inv_icm20948_get_accel_divider  icm20948databasedriver.o
-    0x000057ec   0x000057ec   0x00000008   Code   RO         5231    i.inv_icm20948_get_accel_fullscale  icm20948databasedriver.o
-    0x000057f4   0x000057f4   0x000000b6   Code   RO         6130    i.inv_icm20948_get_bias  icm20948setup.o
-    0x000058aa   0x000058aa   0x00000006   Code   RO         5232    i.inv_icm20948_get_chip_power_state  icm20948databasedriver.o
-    0x000058b0   0x000058b0   0x00000008   Code   RO         5233    i.inv_icm20948_get_compass_availability  icm20948databasedriver.o
-    0x000058b8   0x000058b8   0x00000008   Code   RO         5679    i.inv_icm20948_get_dmp_start_address  icm20948dmp3driver.o
-    0x000058c0   0x000058c0   0x0000009e   Code   RO         6131    i.inv_icm20948_get_fsr  icm20948setup.o
+    0x00005620   0x00005620   0x0000008c   Code   RO         5923    i.inv_icm20948_fifo_pop  icm20948mpufifocontrol.o
+    0x000056ac   0x000056ac   0x00000058   Code   RO         5924    i.inv_icm20948_fifo_swmirror  icm20948mpufifocontrol.o
+    0x00005704   0x00005704   0x000000d4   Code   RO         5889    i.inv_icm20948_firmware_load  icm20948loadfirmware.o
+    0x000057d8   0x000057d8   0x0000000c   Code   RO         5925    i.inv_icm20948_get_accel_accuracy  icm20948mpufifocontrol.o
+    0x000057e4   0x000057e4   0x00000008   Code   RO         5243    i.inv_icm20948_get_accel_divider  icm20948databasedriver.o
+    0x000057ec   0x000057ec   0x00000008   Code   RO         5244    i.inv_icm20948_get_accel_fullscale  icm20948databasedriver.o
+    0x000057f4   0x000057f4   0x000000b6   Code   RO         6143    i.inv_icm20948_get_bias  icm20948setup.o
+    0x000058aa   0x000058aa   0x00000006   Code   RO         5245    i.inv_icm20948_get_chip_power_state  icm20948databasedriver.o
+    0x000058b0   0x000058b0   0x00000008   Code   RO         5246    i.inv_icm20948_get_compass_availability  icm20948databasedriver.o
+    0x000058b8   0x000058b8   0x00000008   Code   RO         5692    i.inv_icm20948_get_dmp_start_address  icm20948dmp3driver.o
+    0x000058c0   0x000058c0   0x0000009e   Code   RO         6144    i.inv_icm20948_get_fsr  icm20948setup.o
     0x0000595e   0x0000595e   0x00000002   PAD
-    0x00005960   0x00005960   0x0000000c   Code   RO         5913    i.inv_icm20948_get_gmrv_accuracy  icm20948mpufifocontrol.o
-    0x0000596c   0x0000596c   0x0000000c   Code   RO         5914    i.inv_icm20948_get_gyro_accuracy  icm20948mpufifocontrol.o
-    0x00005978   0x00005978   0x00000006   Code   RO         5234    i.inv_icm20948_get_gyro_divider  icm20948databasedriver.o
-    0x0000597e   0x0000597e   0x00000008   Code   RO         5235    i.inv_icm20948_get_gyro_fullscale  icm20948databasedriver.o
-    0x00005986   0x00005986   0x0000000a   Code   RO         6132    i.inv_icm20948_get_lowpower_or_highperformance  icm20948setup.o
-    0x00005990   0x00005990   0x00000008   Code   RO         5236    i.inv_icm20948_get_lpen_control  icm20948databasedriver.o
-    0x00005998   0x00005998   0x0000000c   Code   RO         5915    i.inv_icm20948_get_mag_accuracy  icm20948mpufifocontrol.o
-    0x000059a4   0x000059a4   0x0000000c   Code   RO         5916    i.inv_icm20948_get_rv_accuracy  icm20948mpufifocontrol.o
-    0x000059b0   0x000059b0   0x00000006   Code   RO         5239    i.inv_icm20948_get_secondary_divider  icm20948databasedriver.o
+    0x00005960   0x00005960   0x0000000c   Code   RO         5926    i.inv_icm20948_get_gmrv_accuracy  icm20948mpufifocontrol.o
+    0x0000596c   0x0000596c   0x0000000c   Code   RO         5927    i.inv_icm20948_get_gyro_accuracy  icm20948mpufifocontrol.o
+    0x00005978   0x00005978   0x00000006   Code   RO         5247    i.inv_icm20948_get_gyro_divider  icm20948databasedriver.o
+    0x0000597e   0x0000597e   0x00000008   Code   RO         5248    i.inv_icm20948_get_gyro_fullscale  icm20948databasedriver.o
+    0x00005986   0x00005986   0x0000000a   Code   RO         6145    i.inv_icm20948_get_lowpower_or_highperformance  icm20948setup.o
+    0x00005990   0x00005990   0x00000008   Code   RO         5249    i.inv_icm20948_get_lpen_control  icm20948databasedriver.o
+    0x00005998   0x00005998   0x0000000c   Code   RO         5928    i.inv_icm20948_get_mag_accuracy  icm20948mpufifocontrol.o
+    0x000059a4   0x000059a4   0x0000000c   Code   RO         5929    i.inv_icm20948_get_rv_accuracy  icm20948mpufifocontrol.o
+    0x000059b0   0x000059b0   0x00000006   Code   RO         5252    i.inv_icm20948_get_secondary_divider  icm20948databasedriver.o
     0x000059b6   0x000059b6   0x00000002   PAD
-    0x000059b8   0x000059b8   0x00000018   Code   RO         3560    i.inv_icm20948_get_time_us  imu.o
-    0x000059d0   0x000059d0   0x00000016   Code   RO         6133    i.inv_icm20948_get_whoami  icm20948setup.o
-    0x000059e6   0x000059e6   0x00000046   Code   RO         5917    i.inv_icm20948_identify_interrupt  icm20948mpufifocontrol.o
-    0x00005a2c   0x00005a2c   0x00000060   Code   RO         6134    i.inv_icm20948_init_matrix  icm20948setup.o
-    0x00005a8c   0x00005a8c   0x00000018   Code   RO         6135    i.inv_icm20948_init_scale  icm20948setup.o
-    0x00005aa4   0x00005aa4   0x00000074   Code   RO         4943    i.inv_icm20948_init_secondary  icm20948auxtransport.o
-    0x00005b18   0x00005b18   0x00000042   Code   RO         6136    i.inv_icm20948_init_structure  icm20948setup.o
-    0x00005b5a   0x00005b5a   0x00000038   Code   RO         6137    i.inv_icm20948_initialize  icm20948setup.o
-    0x00005b92   0x00005b92   0x0000001a   Code   RO         6138    i.inv_icm20948_initialize_auxiliary  icm20948setup.o
-    0x00005bac   0x00005bac   0x000001bc   Code   RO         5240    i.inv_icm20948_initialize_lower_driver  icm20948databasedriver.o
-    0x00005d68   0x00005d68   0x000001fc   Code   RO         5918    i.inv_icm20948_inv_decode_one_ivory_fifo_packet  icm20948mpufifocontrol.o
-    0x00005f64   0x00005f64   0x00000038   Code   RO         6139    i.inv_icm20948_is_streamed_sensor  icm20948setup.o
-    0x00005f9c   0x00005f9c   0x00000016   Code   RO         6140    i.inv_icm20948_load  icm20948setup.o
-    0x00005fb2   0x00005fb2   0x00000016   Code   RO         5680    i.inv_icm20948_load_firmware  icm20948dmp3driver.o
-    0x00005fc8   0x00005fc8   0x00000104   Code   RO         5464    i.inv_icm20948_math_atan2_q15_fxp  icm20948dataconverter.o
-    0x000060cc   0x000060cc   0x0000003a   Code   RO         5919    i.inv_icm20948_mpu_set_FIFO_RST_Diamond  icm20948mpufifocontrol.o
+    0x000059b8   0x000059b8   0x00000018   Code   RO         3543    i.inv_icm20948_get_time_us  imu.o
+    0x000059d0   0x000059d0   0x00000016   Code   RO         6146    i.inv_icm20948_get_whoami  icm20948setup.o
+    0x000059e6   0x000059e6   0x00000046   Code   RO         5930    i.inv_icm20948_identify_interrupt  icm20948mpufifocontrol.o
+    0x00005a2c   0x00005a2c   0x00000060   Code   RO         6147    i.inv_icm20948_init_matrix  icm20948setup.o
+    0x00005a8c   0x00005a8c   0x00000018   Code   RO         6148    i.inv_icm20948_init_scale  icm20948setup.o
+    0x00005aa4   0x00005aa4   0x00000074   Code   RO         4956    i.inv_icm20948_init_secondary  icm20948auxtransport.o
+    0x00005b18   0x00005b18   0x00000042   Code   RO         6149    i.inv_icm20948_init_structure  icm20948setup.o
+    0x00005b5a   0x00005b5a   0x00000038   Code   RO         6150    i.inv_icm20948_initialize  icm20948setup.o
+    0x00005b92   0x00005b92   0x0000001a   Code   RO         6151    i.inv_icm20948_initialize_auxiliary  icm20948setup.o
+    0x00005bac   0x00005bac   0x000001bc   Code   RO         5253    i.inv_icm20948_initialize_lower_driver  icm20948databasedriver.o
+    0x00005d68   0x00005d68   0x000001fc   Code   RO         5931    i.inv_icm20948_inv_decode_one_ivory_fifo_packet  icm20948mpufifocontrol.o
+    0x00005f64   0x00005f64   0x00000038   Code   RO         6152    i.inv_icm20948_is_streamed_sensor  icm20948setup.o
+    0x00005f9c   0x00005f9c   0x00000016   Code   RO         6153    i.inv_icm20948_load  icm20948setup.o
+    0x00005fb2   0x00005fb2   0x00000016   Code   RO         5693    i.inv_icm20948_load_firmware  icm20948dmp3driver.o
+    0x00005fc8   0x00005fc8   0x00000104   Code   RO         5477    i.inv_icm20948_math_atan2_q15_fxp  icm20948dataconverter.o
+    0x000060cc   0x000060cc   0x0000003a   Code   RO         5932    i.inv_icm20948_mpu_set_FIFO_RST_Diamond  icm20948mpufifocontrol.o
     0x00006106   0x00006106   0x00000002   PAD
-    0x00006108   0x00006108   0x00000d00   Code   RO         6141    i.inv_icm20948_poll_sensor  icm20948setup.o
-    0x00006e08   0x00006e08   0x00000008   Code   RO         5241    i.inv_icm20948_prevent_lpen_control  icm20948databasedriver.o
-    0x00006e10   0x00006e10   0x000000b2   Code   RO         5465    i.inv_icm20948_q_mult_q_qi  icm20948dataconverter.o
-    0x00006ec2   0x00006ec2   0x0000013e   Code   RO         6290    i.inv_icm20948_read_mems  icm20948transport.o
-    0x00007000   0x00007000   0x000000ea   Code   RO         6291    i.inv_icm20948_read_mems_reg  icm20948transport.o
-    0x000070ea   0x000070ea   0x00000038   Code   RO         6292    i.inv_icm20948_read_reg  icm20948transport.o
-    0x00007122   0x00007122   0x00000068   Code   RO         4944    i.inv_icm20948_read_secondary  icm20948auxtransport.o
-    0x0000718a   0x0000718a   0x0000003e   Code   RO         4870    i.inv_icm20948_register_aux_compass  icm20948auxcompassakm.o
-    0x000071c8   0x000071c8   0x00000070   Code   RO         4871    i.inv_icm20948_resume_akm  icm20948auxcompassakm.o
-    0x00007238   0x00007238   0x000000c0   Code   RO         6085    i.inv_icm20948_run_selftest  icm20948selftest.o
-    0x000072f8   0x000072f8   0x00000018   Code   RO         4945    i.inv_icm20948_secondary_disable_i2c  icm20948auxtransport.o
-    0x00007310   0x00007310   0x00000018   Code   RO         4946    i.inv_icm20948_secondary_enable_i2c  icm20948auxtransport.o
-    0x00007328   0x00007328   0x00000030   Code   RO         4949    i.inv_icm20948_secondary_set_odr  icm20948auxtransport.o
-    0x00007358   0x00007358   0x0000001a   Code   RO         4950    i.inv_icm20948_secondary_stop_channel  icm20948auxtransport.o
-    0x00007372   0x00007372   0x000000a0   Code   RO         6142    i.inv_icm20948_sensor_android_2_sensor_type  icm20948setup.o
-    0x00007412   0x00007412   0x00000028   Code   RO         5242    i.inv_icm20948_set_accel_divider  icm20948databasedriver.o
-    0x0000743a   0x0000743a   0x00000034   Code   RO         5243    i.inv_icm20948_set_accel_fullscale  icm20948databasedriver.o
-    0x0000746e   0x0000746e   0x000000b6   Code   RO         6143    i.inv_icm20948_set_bias  icm20948setup.o
-    0x00007524   0x00007524   0x000000e0   Code   RO         5244    i.inv_icm20948_set_chip_power_state  icm20948databasedriver.o
-    0x00007604   0x00007604   0x00000010   Code   RO         5466    i.inv_icm20948_set_chip_to_body  icm20948dataconverter.o
-    0x00007614   0x00007614   0x000000e8   Code   RO         5467    i.inv_icm20948_set_chip_to_body_axis_quaternion  icm20948dataconverter.o
-    0x000076fc   0x000076fc   0x00000038   Code   RO         5245    i.inv_icm20948_set_dmp_address  icm20948databasedriver.o
-    0x00007734   0x00007734   0x000000a0   Code   RO         6144    i.inv_icm20948_set_fsr  icm20948setup.o
-    0x000077d4   0x000077d4   0x00000018   Code   RO         5246    i.inv_icm20948_set_gyro_divider  icm20948databasedriver.o
-    0x000077ec   0x000077ec   0x00000024   Code   RO         5247    i.inv_icm20948_set_gyro_fullscale  icm20948databasedriver.o
-    0x00007810   0x00007810   0x00000154   Code   RO         5248    i.inv_icm20948_set_gyro_sf  icm20948databasedriver.o
-    0x00007964   0x00007964   0x000000d8   Code   RO         5249    i.inv_icm20948_set_icm20948_accel_fullscale  icm20948databasedriver.o
-    0x00007a3c   0x00007a3c   0x000000d4   Code   RO         5250    i.inv_icm20948_set_icm20948_gyro_fullscale  icm20948databasedriver.o
-    0x00007b10   0x00007b10   0x0000001e   Code   RO         6145    i.inv_icm20948_set_lowpower_or_highperformance  icm20948setup.o
+    0x00006108   0x00006108   0x00000d00   Code   RO         6154    i.inv_icm20948_poll_sensor  icm20948setup.o
+    0x00006e08   0x00006e08   0x00000008   Code   RO         5254    i.inv_icm20948_prevent_lpen_control  icm20948databasedriver.o
+    0x00006e10   0x00006e10   0x000000b2   Code   RO         5478    i.inv_icm20948_q_mult_q_qi  icm20948dataconverter.o
+    0x00006ec2   0x00006ec2   0x0000013e   Code   RO         6303    i.inv_icm20948_read_mems  icm20948transport.o
+    0x00007000   0x00007000   0x000000ea   Code   RO         6304    i.inv_icm20948_read_mems_reg  icm20948transport.o
+    0x000070ea   0x000070ea   0x00000038   Code   RO         6305    i.inv_icm20948_read_reg  icm20948transport.o
+    0x00007122   0x00007122   0x00000068   Code   RO         4957    i.inv_icm20948_read_secondary  icm20948auxtransport.o
+    0x0000718a   0x0000718a   0x0000003e   Code   RO         4883    i.inv_icm20948_register_aux_compass  icm20948auxcompassakm.o
+    0x000071c8   0x000071c8   0x00000070   Code   RO         4884    i.inv_icm20948_resume_akm  icm20948auxcompassakm.o
+    0x00007238   0x00007238   0x000000c0   Code   RO         6098    i.inv_icm20948_run_selftest  icm20948selftest.o
+    0x000072f8   0x000072f8   0x00000018   Code   RO         4958    i.inv_icm20948_secondary_disable_i2c  icm20948auxtransport.o
+    0x00007310   0x00007310   0x00000018   Code   RO         4959    i.inv_icm20948_secondary_enable_i2c  icm20948auxtransport.o
+    0x00007328   0x00007328   0x00000030   Code   RO         4962    i.inv_icm20948_secondary_set_odr  icm20948auxtransport.o
+    0x00007358   0x00007358   0x0000001a   Code   RO         4963    i.inv_icm20948_secondary_stop_channel  icm20948auxtransport.o
+    0x00007372   0x00007372   0x000000a0   Code   RO         6155    i.inv_icm20948_sensor_android_2_sensor_type  icm20948setup.o
+    0x00007412   0x00007412   0x00000028   Code   RO         5255    i.inv_icm20948_set_accel_divider  icm20948databasedriver.o
+    0x0000743a   0x0000743a   0x00000034   Code   RO         5256    i.inv_icm20948_set_accel_fullscale  icm20948databasedriver.o
+    0x0000746e   0x0000746e   0x000000b6   Code   RO         6156    i.inv_icm20948_set_bias  icm20948setup.o
+    0x00007524   0x00007524   0x000000e0   Code   RO         5257    i.inv_icm20948_set_chip_power_state  icm20948databasedriver.o
+    0x00007604   0x00007604   0x00000010   Code   RO         5479    i.inv_icm20948_set_chip_to_body  icm20948dataconverter.o
+    0x00007614   0x00007614   0x000000e8   Code   RO         5480    i.inv_icm20948_set_chip_to_body_axis_quaternion  icm20948dataconverter.o
+    0x000076fc   0x000076fc   0x00000038   Code   RO         5258    i.inv_icm20948_set_dmp_address  icm20948databasedriver.o
+    0x00007734   0x00007734   0x000000a0   Code   RO         6157    i.inv_icm20948_set_fsr  icm20948setup.o
+    0x000077d4   0x000077d4   0x00000018   Code   RO         5259    i.inv_icm20948_set_gyro_divider  icm20948databasedriver.o
+    0x000077ec   0x000077ec   0x00000024   Code   RO         5260    i.inv_icm20948_set_gyro_fullscale  icm20948databasedriver.o
+    0x00007810   0x00007810   0x00000154   Code   RO         5261    i.inv_icm20948_set_gyro_sf  icm20948databasedriver.o
+    0x00007964   0x00007964   0x000000d8   Code   RO         5262    i.inv_icm20948_set_icm20948_accel_fullscale  icm20948databasedriver.o
+    0x00007a3c   0x00007a3c   0x000000d4   Code   RO         5263    i.inv_icm20948_set_icm20948_gyro_fullscale  icm20948databasedriver.o
+    0x00007b10   0x00007b10   0x0000001e   Code   RO         6158    i.inv_icm20948_set_lowpower_or_highperformance  icm20948setup.o
     0x00007b2e   0x00007b2e   0x00000002   PAD
-    0x00007b30   0x00007b30   0x000000d4   Code   RO         6146    i.inv_icm20948_set_matrix  icm20948setup.o
-    0x00007c04   0x00007c04   0x000002dc   Code   RO         5044    i.inv_icm20948_set_odr  icm20948databasecontrol.o
-    0x00007ee0   0x00007ee0   0x00000038   Code   RO         5252    i.inv_icm20948_set_secondary  icm20948databasedriver.o
-    0x00007f18   0x00007f18   0x0000001a   Code   RO         5253    i.inv_icm20948_set_secondary_divider  icm20948databasedriver.o
-    0x00007f32   0x00007f32   0x0000004e   Code   RO         6147    i.inv_icm20948_set_sensor_period  icm20948setup.o
-    0x00007f80   0x00007f80   0x0000004a   Code   RO         5255    i.inv_icm20948_set_slave_compass_id  icm20948databasedriver.o
+    0x00007b30   0x00007b30   0x000000d4   Code   RO         6159    i.inv_icm20948_set_matrix  icm20948setup.o
+    0x00007c04   0x00007c04   0x000002dc   Code   RO         5057    i.inv_icm20948_set_odr  icm20948databasecontrol.o
+    0x00007ee0   0x00007ee0   0x00000038   Code   RO         5265    i.inv_icm20948_set_secondary  icm20948databasedriver.o
+    0x00007f18   0x00007f18   0x0000001a   Code   RO         5266    i.inv_icm20948_set_secondary_divider  icm20948databasedriver.o
+    0x00007f32   0x00007f32   0x0000004e   Code   RO         6160    i.inv_icm20948_set_sensor_period  icm20948setup.o
+    0x00007f80   0x00007f80   0x0000004a   Code   RO         5268    i.inv_icm20948_set_slave_compass_id  icm20948databasedriver.o
     0x00007fca   0x00007fca   0x00000002   PAD
-    0x00007fcc   0x00007fcc   0x000000a8   Code   RO         4872    i.inv_icm20948_setup_compass_akm  icm20948auxcompassakm.o
-    0x00008074   0x00008074   0x00000010   Code   RO         6293    i.inv_icm20948_sleep_100us  icm20948transport.o
-    0x00008084   0x00008084   0x00000026   Code   RO         5256    i.inv_icm20948_sleep_mems  icm20948databasedriver.o
+    0x00007fcc   0x00007fcc   0x000000a8   Code   RO         4885    i.inv_icm20948_setup_compass_akm  icm20948auxcompassakm.o
+    0x00008074   0x00008074   0x00000010   Code   RO         6306    i.inv_icm20948_sleep_100us  icm20948transport.o
+    0x00008084   0x00008084   0x00000026   Code   RO         5269    i.inv_icm20948_sleep_mems  icm20948databasedriver.o
     0x000080aa   0x000080aa   0x00000002   PAD
-    0x000080ac   0x000080ac   0x00000020   Code   RO         3561    i.inv_icm20948_sleep_us  imu.o
-    0x000080cc   0x000080cc   0x00000020   Code   RO         6148    i.inv_icm20948_soft_reset  icm20948setup.o
-    0x000080ec   0x000080ec   0x0000003a   Code   RO         4873    i.inv_icm20948_suspend_akm  icm20948auxcompassakm.o
-    0x00008126   0x00008126   0x0000000e   Code   RO         6294    i.inv_icm20948_transport_init  icm20948transport.o
-    0x00008134   0x00008134   0x000001ec   Code   RO         6149    i.inv_icm20948_updateTs  icm20948setup.o
-    0x00008320   0x00008320   0x0000006c   Code   RO         5257    i.inv_icm20948_wakeup_mems  icm20948databasedriver.o
-    0x0000838c   0x0000838c   0x000000d2   Code   RO         6295    i.inv_icm20948_write_mems  icm20948transport.o
-    0x0000845e   0x0000845e   0x0000009e   Code   RO         6296    i.inv_icm20948_write_mems_reg  icm20948transport.o
-    0x000084fc   0x000084fc   0x0000003a   Code   RO         6297    i.inv_icm20948_write_reg  icm20948transport.o
-    0x00008536   0x00008536   0x0000007c   Code   RO         4951    i.inv_icm20948_write_secondary  icm20948auxtransport.o
-    0x000085b2   0x000085b2   0x00000074   Code   RO         6298    i.inv_icm20948_write_single_mems_reg  icm20948transport.o
-    0x00008626   0x00008626   0x0000002a   Code   RO         6299    i.inv_icm20948_write_single_mems_reg_core  icm20948transport.o
-    0x00008650   0x00008650   0x0000003c   Code   RO         4226    i.inv_msg           message.o
-    0x0000868c   0x0000868c   0x00000028   Code   RO         4229    i.inv_msg_setup     message.o
-    0x000086b4   0x000086b4   0x00000060   Code   RO         5045    i.inv_reGenerate_sensorControl  icm20948databasecontrol.o
-    0x00008714   0x00008714   0x00000116   Code   RO         6086    i.inv_recover_setting  icm20948selftest.o
+    0x000080ac   0x000080ac   0x00000020   Code   RO         3544    i.inv_icm20948_sleep_us  imu.o
+    0x000080cc   0x000080cc   0x00000020   Code   RO         6161    i.inv_icm20948_soft_reset  icm20948setup.o
+    0x000080ec   0x000080ec   0x0000003a   Code   RO         4886    i.inv_icm20948_suspend_akm  icm20948auxcompassakm.o
+    0x00008126   0x00008126   0x0000000e   Code   RO         6307    i.inv_icm20948_transport_init  icm20948transport.o
+    0x00008134   0x00008134   0x000001ec   Code   RO         6162    i.inv_icm20948_updateTs  icm20948setup.o
+    0x00008320   0x00008320   0x0000006c   Code   RO         5270    i.inv_icm20948_wakeup_mems  icm20948databasedriver.o
+    0x0000838c   0x0000838c   0x000000d2   Code   RO         6308    i.inv_icm20948_write_mems  icm20948transport.o
+    0x0000845e   0x0000845e   0x0000009e   Code   RO         6309    i.inv_icm20948_write_mems_reg  icm20948transport.o
+    0x000084fc   0x000084fc   0x0000003a   Code   RO         6310    i.inv_icm20948_write_reg  icm20948transport.o
+    0x00008536   0x00008536   0x0000007c   Code   RO         4964    i.inv_icm20948_write_secondary  icm20948auxtransport.o
+    0x000085b2   0x000085b2   0x00000074   Code   RO         6311    i.inv_icm20948_write_single_mems_reg  icm20948transport.o
+    0x00008626   0x00008626   0x0000002a   Code   RO         6312    i.inv_icm20948_write_single_mems_reg_core  icm20948transport.o
+    0x00008650   0x00008650   0x0000003c   Code   RO         4236    i.inv_msg           message.o
+    0x0000868c   0x0000868c   0x00000028   Code   RO         4239    i.inv_msg_setup     message.o
+    0x000086b4   0x000086b4   0x00000060   Code   RO         5058    i.inv_reGenerate_sensorControl  icm20948databasecontrol.o
+    0x00008714   0x00008714   0x00000116   Code   RO         6099    i.inv_recover_setting  icm20948selftest.o
     0x0000882a   0x0000882a   0x00000002   PAD
-    0x0000882c   0x0000882c   0x00000068   Code   RO         5468    i.inv_rotation_to_quaternion  icm20948dataconverter.o
-    0x00008894   0x00008894   0x00000108   Code   RO         6087    i.inv_save_setting  icm20948selftest.o
-    0x0000899c   0x0000899c   0x0000007a   Code   RO         6088    i.inv_selftest_read_samples  icm20948selftest.o
+    0x0000882c   0x0000882c   0x00000068   Code   RO         5481    i.inv_rotation_to_quaternion  icm20948dataconverter.o
+    0x00008894   0x00008894   0x00000108   Code   RO         6100    i.inv_save_setting  icm20948selftest.o
+    0x0000899c   0x0000899c   0x0000007a   Code   RO         6101    i.inv_selftest_read_samples  icm20948selftest.o
     0x00008a16   0x00008a16   0x00000002   PAD
-    0x00008a18   0x00008a18   0x00000028   Code   RO         4741    i.inv_sensor_str    sensor.o
-    0x00008a40   0x00008a40   0x00000058   Code   RO         6300    i.inv_set_bank      icm20948transport.o
-    0x00008a98   0x00008a98   0x00000390   Code   RO         5046    i.inv_set_hw_smplrt_dmp_odrs  icm20948databasecontrol.o
-    0x00008e28   0x00008e28   0x00000140   Code   RO         6089    i.inv_setup_selftest  icm20948selftest.o
-    0x00008f68   0x00008f68   0x00000046   Code   RO         2952    i.invalid_packets_omit  nrf_log_frontend.o
-    0x00008fae   0x00008fae   0x000000d4   Code   RO         5469    i.invn_convert_inv_sqrt_q15_fxp  icm20948dataconverter.o
-    0x00009082   0x00009082   0x00000044   Code   RO         5470    i.invn_convert_inverse_q15_fxp  icm20948dataconverter.o
-    0x000090c6   0x000090c6   0x00000010   Code   RO         5471    i.invn_convert_mult_q15_fxp  icm20948dataconverter.o
-    0x000090d6   0x000090d6   0x00000012   Code   RO         5472    i.invn_convert_mult_q29_fxp  icm20948dataconverter.o
-    0x000090e8   0x000090e8   0x00000018   Code   RO         5473    i.invn_convert_quat_invert_fxp  icm20948dataconverter.o
-    0x00009100   0x00009100   0x000000b2   Code   RO         5474    i.invn_convert_quat_mult_fxp  icm20948dataconverter.o
-    0x000091b2   0x000091b2   0x0000005c   Code   RO         1916    i.irq_handler       nrfx_timer.o
-    0x0000920e   0x0000920e   0x00000026   Code   RO         1550    i.latch_pending_read_and_check  nrfx_gpiote.o
-    0x00009234   0x00009234   0x000000cc   Code   RO         2953    i.log_skip          nrf_log_frontend.o
-    0x00009300   0x00009300   0x0000035c   Code   RO            8    i.main              main.o
-    0x0000965c   0x0000965c   0x0000006c   Code   RO         8755    i.malloc            mc_w.l(malloc.o)
-    0x000096c8   0x000096c8   0x000000ca   Code   RO         2548    i.memobj_op         nrf_memobj.o
+    0x00008a18   0x00008a18   0x00000028   Code   RO         4754    i.inv_sensor_str    sensor.o
+    0x00008a40   0x00008a40   0x00000058   Code   RO         6313    i.inv_set_bank      icm20948transport.o
+    0x00008a98   0x00008a98   0x00000390   Code   RO         5059    i.inv_set_hw_smplrt_dmp_odrs  icm20948databasecontrol.o
+    0x00008e28   0x00008e28   0x00000140   Code   RO         6102    i.inv_setup_selftest  icm20948selftest.o
+    0x00008f68   0x00008f68   0x00000046   Code   RO         2934    i.invalid_packets_omit  nrf_log_frontend.o
+    0x00008fae   0x00008fae   0x000000d4   Code   RO         5482    i.invn_convert_inv_sqrt_q15_fxp  icm20948dataconverter.o
+    0x00009082   0x00009082   0x00000044   Code   RO         5483    i.invn_convert_inverse_q15_fxp  icm20948dataconverter.o
+    0x000090c6   0x000090c6   0x00000010   Code   RO         5484    i.invn_convert_mult_q15_fxp  icm20948dataconverter.o
+    0x000090d6   0x000090d6   0x00000012   Code   RO         5485    i.invn_convert_mult_q29_fxp  icm20948dataconverter.o
+    0x000090e8   0x000090e8   0x00000018   Code   RO         5486    i.invn_convert_quat_invert_fxp  icm20948dataconverter.o
+    0x00009100   0x00009100   0x000000b2   Code   RO         5487    i.invn_convert_quat_mult_fxp  icm20948dataconverter.o
+    0x000091b2   0x000091b2   0x0000005c   Code   RO         1898    i.irq_handler       nrfx_timer.o
+    0x0000920e   0x0000920e   0x00000026   Code   RO         1532    i.latch_pending_read_and_check  nrfx_gpiote.o
+    0x00009234   0x00009234   0x000000cc   Code   RO         2935    i.log_skip          nrf_log_frontend.o
+    0x00009300   0x00009300   0x0000035c   Code   RO            6    i.main              main.o
+    0x0000965c   0x0000965c   0x0000006c   Code   RO         8802    i.malloc            mc_w.l(malloc.o)
+    0x000096c8   0x000096c8   0x000000ca   Code   RO         2530    i.memobj_op         nrf_memobj.o
     0x00009792   0x00009792   0x00000002   PAD
-    0x00009794   0x00009794   0x00000038   Code   RO         2954    i.module_idx_get    nrf_log_frontend.o
-    0x000097cc   0x000097cc   0x00000024   Code   RO            9    i.msg_printer       main.o
-    0x000097f0   0x000097f0   0x00000030   Code   RO         3562    i.my_serif_open_read_reg  imu.o
-    0x00009820   0x00009820   0x00000034   Code   RO         3563    i.my_serif_open_write_reg  imu.o
-    0x00009854   0x00009854   0x0000005c   Code   RO         6597    i.nrf52_errata_108  system_nrf52.o
-    0x000098b0   0x000098b0   0x0000005c   Code   RO         6609    i.nrf52_errata_12   system_nrf52.o
-    0x0000990c   0x0000990c   0x0000005c   Code   RO         6620    i.nrf52_errata_136  system_nrf52.o
-    0x00009968   0x00009968   0x00000040   Code   RO         6639    i.nrf52_errata_16   system_nrf52.o
-    0x000099a8   0x000099a8   0x00000040   Code   RO         6656    i.nrf52_errata_182  system_nrf52.o
-    0x000099e8   0x000099e8   0x0000005c   Code   RO         6710    i.nrf52_errata_31   system_nrf52.o
-    0x00009a44   0x00009a44   0x00000040   Code   RO         6711    i.nrf52_errata_32   system_nrf52.o
-    0x00009a84   0x00009a84   0x0000005c   Code   RO         6715    i.nrf52_errata_36   system_nrf52.o
-    0x00009ae0   0x00009ae0   0x00000040   Code   RO         6716    i.nrf52_errata_37   system_nrf52.o
-    0x00009b20   0x00009b20   0x00000040   Code   RO         6732    i.nrf52_errata_57   system_nrf52.o
-    0x00009b60   0x00009b60   0x0000005c   Code   RO         6738    i.nrf52_errata_66   system_nrf52.o
-    0x00009bbc   0x00009bbc   0x0000000e   Code   RO         2280    i.nrf_atomic_flag_clear_fetch  nrf_atomic.o
-    0x00009bca   0x00009bca   0x0000000e   Code   RO         2281    i.nrf_atomic_flag_set  nrf_atomic.o
-    0x00009bd8   0x00009bd8   0x00000016   Code   RO         2283    i.nrf_atomic_u32_add  nrf_atomic.o
-    0x00009bee   0x00009bee   0x00000016   Code   RO         2287    i.nrf_atomic_u32_fetch_and  nrf_atomic.o
-    0x00009c04   0x00009c04   0x00000016   Code   RO         2289    i.nrf_atomic_u32_fetch_store  nrf_atomic.o
-    0x00009c1a   0x00009c1a   0x00000016   Code   RO         2293    i.nrf_atomic_u32_or  nrf_atomic.o
-    0x00009c30   0x00009c30   0x00000016   Code   RO         2295    i.nrf_atomic_u32_sub  nrf_atomic.o
-    0x00009c46   0x00009c46   0x0000004c   Code   RO         2420    i.nrf_balloc_alloc  nrf_balloc.o
-    0x00009c92   0x00009c92   0x00000010   Code   RO         2421    i.nrf_balloc_block2idx  nrf_balloc.o
-    0x00009ca2   0x00009ca2   0x0000002a   Code   RO         2422    i.nrf_balloc_free   nrf_balloc.o
-    0x00009ccc   0x00009ccc   0x0000000c   Code   RO         2423    i.nrf_balloc_idx2block  nrf_balloc.o
-    0x00009cd8   0x00009cd8   0x0000003c   Code   RO         2424    i.nrf_balloc_init   nrf_balloc.o
-    0x00009d14   0x00009d14   0x00000016   Code   RO         1551    i.nrf_bitmask_bit_is_set  nrfx_gpiote.o
+    0x00009794   0x00009794   0x00000038   Code   RO         2936    i.module_idx_get    nrf_log_frontend.o
+    0x000097cc   0x000097cc   0x00000024   Code   RO         3545    i.msg_printer       imu.o
+    0x000097f0   0x000097f0   0x00000030   Code   RO         3546    i.my_serif_open_read_reg  imu.o
+    0x00009820   0x00009820   0x00000034   Code   RO         3547    i.my_serif_open_write_reg  imu.o
+    0x00009854   0x00009854   0x0000005c   Code   RO         6644    i.nrf52_errata_108  system_nrf52.o
+    0x000098b0   0x000098b0   0x0000005c   Code   RO         6656    i.nrf52_errata_12   system_nrf52.o
+    0x0000990c   0x0000990c   0x0000005c   Code   RO         6667    i.nrf52_errata_136  system_nrf52.o
+    0x00009968   0x00009968   0x00000040   Code   RO         6686    i.nrf52_errata_16   system_nrf52.o
+    0x000099a8   0x000099a8   0x00000040   Code   RO         6703    i.nrf52_errata_182  system_nrf52.o
+    0x000099e8   0x000099e8   0x0000005c   Code   RO         6757    i.nrf52_errata_31   system_nrf52.o
+    0x00009a44   0x00009a44   0x00000040   Code   RO         6758    i.nrf52_errata_32   system_nrf52.o
+    0x00009a84   0x00009a84   0x0000005c   Code   RO         6762    i.nrf52_errata_36   system_nrf52.o
+    0x00009ae0   0x00009ae0   0x00000040   Code   RO         6763    i.nrf52_errata_37   system_nrf52.o
+    0x00009b20   0x00009b20   0x00000040   Code   RO         6779    i.nrf52_errata_57   system_nrf52.o
+    0x00009b60   0x00009b60   0x0000005c   Code   RO         6785    i.nrf52_errata_66   system_nrf52.o
+    0x00009bbc   0x00009bbc   0x0000000e   Code   RO         2262    i.nrf_atomic_flag_clear_fetch  nrf_atomic.o
+    0x00009bca   0x00009bca   0x0000000e   Code   RO         2263    i.nrf_atomic_flag_set  nrf_atomic.o
+    0x00009bd8   0x00009bd8   0x00000016   Code   RO         2265    i.nrf_atomic_u32_add  nrf_atomic.o
+    0x00009bee   0x00009bee   0x00000016   Code   RO         2269    i.nrf_atomic_u32_fetch_and  nrf_atomic.o
+    0x00009c04   0x00009c04   0x00000016   Code   RO         2271    i.nrf_atomic_u32_fetch_store  nrf_atomic.o
+    0x00009c1a   0x00009c1a   0x00000016   Code   RO         2275    i.nrf_atomic_u32_or  nrf_atomic.o
+    0x00009c30   0x00009c30   0x00000016   Code   RO         2277    i.nrf_atomic_u32_sub  nrf_atomic.o
+    0x00009c46   0x00009c46   0x0000004c   Code   RO         2402    i.nrf_balloc_alloc  nrf_balloc.o
+    0x00009c92   0x00009c92   0x00000010   Code   RO         2403    i.nrf_balloc_block2idx  nrf_balloc.o
+    0x00009ca2   0x00009ca2   0x0000002a   Code   RO         2404    i.nrf_balloc_free   nrf_balloc.o
+    0x00009ccc   0x00009ccc   0x0000000c   Code   RO         2405    i.nrf_balloc_idx2block  nrf_balloc.o
+    0x00009cd8   0x00009cd8   0x0000003c   Code   RO         2406    i.nrf_balloc_init   nrf_balloc.o
+    0x00009d14   0x00009d14   0x00000016   Code   RO         1533    i.nrf_bitmask_bit_is_set  nrfx_gpiote.o
     0x00009d2a   0x00009d2a   0x00000002   PAD
-    0x00009d2c   0x00009d2c   0x00000030   Code   RO           10    i.nrf_delay_ms      main.o
-    0x00009d5c   0x00009d5c   0x00000050   Code   RO          503    i.nrf_drv_twi_init  nrf_drv_twi.o
-    0x00009dac   0x00009dac   0x0000002c   Code   RO         6388    i.nrf_drv_twi_tx    usr_twi.o
-    0x00009dd8   0x00009dd8   0x0000008c   Code   RO          581    i.nrf_drv_uart_init  nrf_drv_uart.o
-    0x00009e64   0x00009e64   0x0000002a   Code   RO         2467    i.nrf_fprintf       nrf_fprintf.o
-    0x00009e8e   0x00009e8e   0x0000001c   Code   RO         2468    i.nrf_fprintf_buffer_flush  nrf_fprintf.o
-    0x00009eaa   0x00009eaa   0x000001f0   Code   RO         2505    i.nrf_fprintf_fmt   nrf_fprintf_format.o
-    0x0000a09a   0x0000a09a   0x00000028   Code   RO          858    i.nrf_gpio_cfg      nrfx_twim.o
-    0x0000a0c2   0x0000a0c2   0x00000028   Code   RO         1080    i.nrf_gpio_cfg      nrfx_uart.o
-    0x0000a0ea   0x0000a0ea   0x00000028   Code   RO         1329    i.nrf_gpio_cfg      nrfx_uarte.o
-    0x0000a112   0x0000a112   0x00000028   Code   RO         1552    i.nrf_gpio_cfg      nrfx_gpiote.o
-    0x0000a13a   0x0000a13a   0x00000018   Code   RO         1081    i.nrf_gpio_cfg_default  nrfx_uart.o
-    0x0000a152   0x0000a152   0x00000018   Code   RO         1330    i.nrf_gpio_cfg_default  nrfx_uarte.o
-    0x0000a16a   0x0000a16a   0x0000001a   Code   RO         1082    i.nrf_gpio_cfg_input  nrfx_uart.o
-    0x0000a184   0x0000a184   0x0000001a   Code   RO         1331    i.nrf_gpio_cfg_input  nrfx_uarte.o
-    0x0000a19e   0x0000a19e   0x00000018   Code   RO         1083    i.nrf_gpio_cfg_output  nrfx_uart.o
-    0x0000a1b6   0x0000a1b6   0x00000018   Code   RO         1332    i.nrf_gpio_cfg_output  nrfx_uarte.o
-    0x0000a1ce   0x0000a1ce   0x00000032   Code   RO         1554    i.nrf_gpio_cfg_sense_set  nrfx_gpiote.o
-    0x0000a200   0x0000a200   0x00000034   Code   RO         1555    i.nrf_gpio_latches_read_and_clear  nrfx_gpiote.o
-    0x0000a234   0x0000a234   0x00000016   Code   RO          504    i.nrf_gpio_pin_clear  nrf_drv_twi.o
-    0x0000a24a   0x0000a24a   0x00000022   Code   RO         1557    i.nrf_gpio_pin_present_check  nrfx_gpiote.o
-    0x0000a26c   0x0000a26c   0x00000018   Code   RO         1558    i.nrf_gpio_pin_read  nrfx_gpiote.o
-    0x0000a284   0x0000a284   0x00000016   Code   RO          505    i.nrf_gpio_pin_set  nrf_drv_twi.o
-    0x0000a29a   0x0000a29a   0x00000016   Code   RO         1084    i.nrf_gpio_pin_set  nrfx_uart.o
-    0x0000a2b0   0x0000a2b0   0x00000016   Code   RO         1333    i.nrf_gpio_pin_set  nrfx_uarte.o
+    0x00009d2c   0x00009d2c   0x00000030   Code   RO            7    i.nrf_delay_ms      main.o
+    0x00009d5c   0x00009d5c   0x00000050   Code   RO          485    i.nrf_drv_twi_init  nrf_drv_twi.o
+    0x00009dac   0x00009dac   0x0000002c   Code   RO         6401    i.nrf_drv_twi_tx    usr_twi.o
+    0x00009dd8   0x00009dd8   0x0000008c   Code   RO          563    i.nrf_drv_uart_init  nrf_drv_uart.o
+    0x00009e64   0x00009e64   0x0000002a   Code   RO         2449    i.nrf_fprintf       nrf_fprintf.o
+    0x00009e8e   0x00009e8e   0x0000001c   Code   RO         2450    i.nrf_fprintf_buffer_flush  nrf_fprintf.o
+    0x00009eaa   0x00009eaa   0x000001f0   Code   RO         2487    i.nrf_fprintf_fmt   nrf_fprintf_format.o
+    0x0000a09a   0x0000a09a   0x00000028   Code   RO          840    i.nrf_gpio_cfg      nrfx_twim.o
+    0x0000a0c2   0x0000a0c2   0x00000028   Code   RO         1062    i.nrf_gpio_cfg      nrfx_uart.o
+    0x0000a0ea   0x0000a0ea   0x00000028   Code   RO         1311    i.nrf_gpio_cfg      nrfx_uarte.o
+    0x0000a112   0x0000a112   0x00000028   Code   RO         1534    i.nrf_gpio_cfg      nrfx_gpiote.o
+    0x0000a13a   0x0000a13a   0x00000018   Code   RO         1063    i.nrf_gpio_cfg_default  nrfx_uart.o
+    0x0000a152   0x0000a152   0x00000018   Code   RO         1312    i.nrf_gpio_cfg_default  nrfx_uarte.o
+    0x0000a16a   0x0000a16a   0x0000001a   Code   RO         1064    i.nrf_gpio_cfg_input  nrfx_uart.o
+    0x0000a184   0x0000a184   0x0000001a   Code   RO         1313    i.nrf_gpio_cfg_input  nrfx_uarte.o
+    0x0000a19e   0x0000a19e   0x00000018   Code   RO         1065    i.nrf_gpio_cfg_output  nrfx_uart.o
+    0x0000a1b6   0x0000a1b6   0x00000018   Code   RO         1314    i.nrf_gpio_cfg_output  nrfx_uarte.o
+    0x0000a1ce   0x0000a1ce   0x00000032   Code   RO         1536    i.nrf_gpio_cfg_sense_set  nrfx_gpiote.o
+    0x0000a200   0x0000a200   0x00000034   Code   RO         1537    i.nrf_gpio_latches_read_and_clear  nrfx_gpiote.o
+    0x0000a234   0x0000a234   0x00000016   Code   RO          486    i.nrf_gpio_pin_clear  nrf_drv_twi.o
+    0x0000a24a   0x0000a24a   0x00000022   Code   RO         1539    i.nrf_gpio_pin_present_check  nrfx_gpiote.o
+    0x0000a26c   0x0000a26c   0x00000018   Code   RO         1540    i.nrf_gpio_pin_read  nrfx_gpiote.o
+    0x0000a284   0x0000a284   0x00000016   Code   RO          487    i.nrf_gpio_pin_set  nrf_drv_twi.o
+    0x0000a29a   0x0000a29a   0x00000016   Code   RO         1066    i.nrf_gpio_pin_set  nrfx_uart.o
+    0x0000a2b0   0x0000a2b0   0x00000016   Code   RO         1315    i.nrf_gpio_pin_set  nrfx_uarte.o
     0x0000a2c6   0x0000a2c6   0x00000002   PAD
-    0x0000a2c8   0x0000a2c8   0x0000000c   Code   RO         1560    i.nrf_gpiote_event_addr_get  nrfx_gpiote.o
-    0x0000a2d4   0x0000a2d4   0x0000001c   Code   RO         1561    i.nrf_gpiote_event_clear  nrfx_gpiote.o
-    0x0000a2f0   0x0000a2f0   0x00000016   Code   RO         1562    i.nrf_gpiote_event_is_set  nrfx_gpiote.o
+    0x0000a2c8   0x0000a2c8   0x0000000c   Code   RO         1542    i.nrf_gpiote_event_addr_get  nrfx_gpiote.o
+    0x0000a2d4   0x0000a2d4   0x0000001c   Code   RO         1543    i.nrf_gpiote_event_clear  nrfx_gpiote.o
+    0x0000a2f0   0x0000a2f0   0x00000016   Code   RO         1544    i.nrf_gpiote_event_is_set  nrfx_gpiote.o
     0x0000a306   0x0000a306   0x00000002   PAD
-    0x0000a308   0x0000a308   0x0000000c   Code   RO         1563    i.nrf_gpiote_int_enable  nrfx_gpiote.o
-    0x0000a314   0x0000a314   0x00000054   Code   RO         2955    i.nrf_log_backend_add  nrf_log_frontend.o
-    0x0000a368   0x0000a368   0x00000008   Code   RO         2902    i.nrf_log_backend_enable  nrf_log_default_backends.o
-    0x0000a370   0x0000a370   0x00000002   Code   RO         2722    i.nrf_log_backend_rtt_flush  nrf_log_backend_rtt.o
-    0x0000a372   0x0000a372   0x00000008   Code   RO         2723    i.nrf_log_backend_rtt_init  nrf_log_backend_rtt.o
-    0x0000a37a   0x0000a37a   0x00000002   Code   RO         2724    i.nrf_log_backend_rtt_panic_set  nrf_log_backend_rtt.o
-    0x0000a37c   0x0000a37c   0x00000020   Code   RO         2725    i.nrf_log_backend_rtt_put  nrf_log_backend_rtt.o
-    0x0000a39c   0x0000a39c   0x000000f2   Code   RO         2796    i.nrf_log_backend_serial_put  nrf_log_backend_serial.o
-    0x0000a48e   0x0000a48e   0x00000002   Code   RO         2830    i.nrf_log_backend_uart_flush  nrf_log_backend_uart.o
-    0x0000a490   0x0000a490   0x0000000c   Code   RO         2831    i.nrf_log_backend_uart_init  nrf_log_backend_uart.o
-    0x0000a49c   0x0000a49c   0x00000038   Code   RO         2832    i.nrf_log_backend_uart_panic_set  nrf_log_backend_uart.o
-    0x0000a4d4   0x0000a4d4   0x00000020   Code   RO         2833    i.nrf_log_backend_uart_put  nrf_log_backend_uart.o
-    0x0000a4f4   0x0000a4f4   0x00000038   Code   RO         2957    i.nrf_log_color_id_get  nrf_log_frontend.o
-    0x0000a52c   0x0000a52c   0x00000038   Code   RO         2903    i.nrf_log_default_backends_init  nrf_log_default_backends.o
-    0x0000a564   0x0000a564   0x00000314   Code   RO         2958    i.nrf_log_frontend_dequeue  nrf_log_frontend.o
-    0x0000a878   0x0000a878   0x00000014   Code   RO         2960    i.nrf_log_frontend_std_0  nrf_log_frontend.o
-    0x0000a88c   0x0000a88c   0x00000018   Code   RO         2961    i.nrf_log_frontend_std_1  nrf_log_frontend.o
-    0x0000a8a4   0x0000a8a4   0x00000020   Code   RO         2962    i.nrf_log_frontend_std_2  nrf_log_frontend.o
-    0x0000a8c4   0x0000a8c4   0x00000038   Code   RO         2965    i.nrf_log_frontend_std_5  nrf_log_frontend.o
-    0x0000a8fc   0x0000a8fc   0x0000003c   Code   RO         2966    i.nrf_log_frontend_std_6  nrf_log_frontend.o
-    0x0000a938   0x0000a938   0x000000bc   Code   RO         3151    i.nrf_log_hexdump_entry_process  nrf_log_str_formatter.o
-    0x0000a9f4   0x0000a9f4   0x00000048   Code   RO         2967    i.nrf_log_init      nrf_log_frontend.o
-    0x0000aa3c   0x0000aa3c   0x00000014   Code   RO         2968    i.nrf_log_module_cnt_get  nrf_log_frontend.o
-    0x0000aa50   0x0000aa50   0x00000024   Code   RO         2972    i.nrf_log_module_name_get  nrf_log_frontend.o
-    0x0000aa74   0x0000aa74   0x00000034   Code   RO         2973    i.nrf_log_panic     nrf_log_frontend.o
-    0x0000aaa8   0x0000aaa8   0x000000c8   Code   RO         3152    i.nrf_log_std_entry_process  nrf_log_str_formatter.o
-    0x0000ab70   0x0000ab70   0x0000007a   Code   RO         2549    i.nrf_memobj_alloc  nrf_memobj.o
-    0x0000abea   0x0000abea   0x00000040   Code   RO         2550    i.nrf_memobj_free   nrf_memobj.o
-    0x0000ac2a   0x0000ac2a   0x00000010   Code   RO         2551    i.nrf_memobj_get    nrf_memobj.o
-    0x0000ac3a   0x0000ac3a   0x0000000c   Code   RO         2552    i.nrf_memobj_pool_init  nrf_memobj.o
-    0x0000ac46   0x0000ac46   0x0000001e   Code   RO         2553    i.nrf_memobj_put    nrf_memobj.o
-    0x0000ac64   0x0000ac64   0x00000022   Code   RO         2554    i.nrf_memobj_read   nrf_memobj.o
-    0x0000ac86   0x0000ac86   0x00000022   Code   RO         2555    i.nrf_memobj_write  nrf_memobj.o
-    0x0000aca8   0x0000aca8   0x0000001c   Code   RO         2631    i.nrf_ringbuf_init  nrf_ringbuf.o
-    0x0000acc4   0x0000acc4   0x0000000e   Code   RO         1917    i.nrf_timer_compare_event_get  nrfx_timer.o
-    0x0000acd2   0x0000acd2   0x0000000a   Code   RO         1918    i.nrf_timer_compare_int_get  nrfx_timer.o
-    0x0000acdc   0x0000acdc   0x0000000e   Code   RO         1919    i.nrf_timer_event_clear  nrfx_timer.o
-    0x0000acea   0x0000acea   0x00000006   Code   RO         1923    i.nrf_timer_task_trigger  nrfx_timer.o
-    0x0000acf0   0x0000acf0   0x00000008   Code   RO          860    i.nrf_twim_enable   nrfx_twim.o
-    0x0000acf8   0x0000acf8   0x0000000c   Code   RO          861    i.nrf_twim_errorsrc_get_and_clear  nrfx_twim.o
-    0x0000ad04   0x0000ad04   0x0000000e   Code   RO          862    i.nrf_twim_event_check  nrfx_twim.o
-    0x0000ad12   0x0000ad12   0x0000000e   Code   RO          863    i.nrf_twim_event_clear  nrfx_twim.o
-    0x0000ad20   0x0000ad20   0x00000006   Code   RO          864    i.nrf_twim_int_disable  nrfx_twim.o
-    0x0000ad26   0x0000ad26   0x00000006   Code   RO          865    i.nrf_twim_int_enable  nrfx_twim.o
-    0x0000ad2c   0x0000ad2c   0x0000000c   Code   RO          866    i.nrf_twim_rx_buffer_set  nrfx_twim.o
-    0x0000ad38   0x0000ad38   0x0000000a   Code   RO          867    i.nrf_twim_rxd_amount_get  nrfx_twim.o
-    0x0000ad42   0x0000ad42   0x00000006   Code   RO          868    i.nrf_twim_shorts_set  nrfx_twim.o
-    0x0000ad48   0x0000ad48   0x00000006   Code   RO          869    i.nrf_twim_task_trigger  nrfx_twim.o
-    0x0000ad4e   0x0000ad4e   0x0000000c   Code   RO          870    i.nrf_twim_tx_buffer_set  nrfx_twim.o
-    0x0000ad5a   0x0000ad5a   0x0000000a   Code   RO          871    i.nrf_twim_txd_amount_get  nrfx_twim.o
-    0x0000ad64   0x0000ad64   0x0000000c   Code   RO         1085    i.nrf_uart_errorsrc_get_and_clear  nrfx_uart.o
-    0x0000ad70   0x0000ad70   0x0000000e   Code   RO         1086    i.nrf_uart_event_check  nrfx_uart.o
-    0x0000ad7e   0x0000ad7e   0x0000000e   Code   RO         1087    i.nrf_uart_event_clear  nrfx_uart.o
-    0x0000ad8c   0x0000ad8c   0x0000000a   Code   RO         1088    i.nrf_uart_hwfc_pins_set  nrfx_uart.o
-    0x0000ad96   0x0000ad96   0x00000006   Code   RO         1089    i.nrf_uart_int_disable  nrfx_uart.o
-    0x0000ad9c   0x0000ad9c   0x00000006   Code   RO         1090    i.nrf_uart_int_enable  nrfx_uart.o
-    0x0000ada2   0x0000ada2   0x00000012   Code   RO         1091    i.nrf_uart_int_enable_check  nrfx_uart.o
-    0x0000adb4   0x0000adb4   0x00000006   Code   RO         1092    i.nrf_uart_task_trigger  nrfx_uart.o
-    0x0000adba   0x0000adba   0x0000000a   Code   RO         1093    i.nrf_uart_txrx_pins_set  nrfx_uart.o
-    0x0000adc4   0x0000adc4   0x0000000c   Code   RO         1334    i.nrf_uarte_errorsrc_get_and_clear  nrfx_uarte.o
-    0x0000add0   0x0000add0   0x0000000e   Code   RO         1335    i.nrf_uarte_event_check  nrfx_uarte.o
-    0x0000adde   0x0000adde   0x0000000e   Code   RO         1336    i.nrf_uarte_event_clear  nrfx_uarte.o
-    0x0000adec   0x0000adec   0x0000000c   Code   RO         1337    i.nrf_uarte_hwfc_pins_set  nrfx_uarte.o
-    0x0000adf8   0x0000adf8   0x00000006   Code   RO         1338    i.nrf_uarte_int_disable  nrfx_uarte.o
-    0x0000adfe   0x0000adfe   0x00000006   Code   RO         1339    i.nrf_uarte_int_enable  nrfx_uarte.o
-    0x0000ae04   0x0000ae04   0x0000000a   Code   RO         1340    i.nrf_uarte_rx_amount_get  nrfx_uarte.o
-    0x0000ae0e   0x0000ae0e   0x0000000c   Code   RO         1341    i.nrf_uarte_shorts_disable  nrfx_uarte.o
-    0x0000ae1a   0x0000ae1a   0x00000006   Code   RO         1342    i.nrf_uarte_task_trigger  nrfx_uarte.o
-    0x0000ae20   0x0000ae20   0x0000000a   Code   RO         1343    i.nrf_uarte_tx_amount_get  nrfx_uarte.o
-    0x0000ae2a   0x0000ae2a   0x0000000e   Code   RO         1344    i.nrf_uarte_txrx_pins_set  nrfx_uarte.o
-    0x0000ae38   0x0000ae38   0x00000018   Code   RO          506    i.nrfx_coredep_delay_us  nrf_drv_twi.o
-    0x0000ae50   0x0000ae50   0x00000008   Code   RO          872    i.nrfx_get_irq_number  nrfx_twim.o
-    0x0000ae58   0x0000ae58   0x00000008   Code   RO         1094    i.nrfx_get_irq_number  nrfx_uart.o
-    0x0000ae60   0x0000ae60   0x00000008   Code   RO         1345    i.nrfx_get_irq_number  nrfx_uarte.o
-    0x0000ae68   0x0000ae68   0x00000008   Code   RO         1566    i.nrfx_get_irq_number  nrfx_gpiote.o
-    0x0000ae70   0x0000ae70   0x00000008   Code   RO         1924    i.nrfx_get_irq_number  nrfx_timer.o
-    0x0000ae78   0x0000ae78   0x000000ac   Code   RO         1572    i.nrfx_gpiote_in_event_enable  nrfx_gpiote.o
-    0x0000af24   0x0000af24   0x000000f4   Code   RO         1574    i.nrfx_gpiote_in_init  nrfx_gpiote.o
-    0x0000b018   0x0000b018   0x000000d8   Code   RO         1577    i.nrfx_gpiote_init  nrfx_gpiote.o
-    0x0000b0f0   0x0000b0f0   0x00000014   Code   RO          873    i.nrfx_is_in_ram    nrfx_twim.o
-    0x0000b104   0x0000b104   0x00000014   Code   RO         1346    i.nrfx_is_in_ram    nrfx_uarte.o
-    0x0000b118   0x0000b118   0x00000048   Code   RO          776    i.nrfx_prs_acquire  nrfx_prs.o
-    0x0000b160   0x0000b160   0x00000016   Code   RO          777    i.nrfx_prs_release  nrfx_prs.o
-    0x0000b176   0x0000b176   0x00000028   Code   RO         1925    i.nrfx_timer_capture  nrfx_timer.o
-    0x0000b19e   0x0000b19e   0x0000000e   Code   RO         1926    i.nrfx_timer_clear  nrfx_timer.o
-    0x0000b1ac   0x0000b1ac   0x00000024   Code   RO         1931    i.nrfx_timer_enable  nrfx_timer.o
-    0x0000b1d0   0x0000b1d0   0x000000fc   Code   RO         1934    i.nrfx_timer_init   nrfx_timer.o
-    0x0000b2cc   0x0000b2cc   0x00000028   Code   RO          875    i.nrfx_twim_enable  nrfx_twim.o
-    0x0000b2f4   0x0000b2f4   0x00000128   Code   RO          876    i.nrfx_twim_init    nrfx_twim.o
-    0x0000b41c   0x0000b41c   0x00000030   Code   RO          878    i.nrfx_twim_rx      nrfx_twim.o
-    0x0000b44c   0x0000b44c   0x0000003e   Code   RO          881    i.nrfx_twim_tx      nrfx_twim.o
+    0x0000a308   0x0000a308   0x0000000c   Code   RO         1545    i.nrf_gpiote_int_enable  nrfx_gpiote.o
+    0x0000a314   0x0000a314   0x00000054   Code   RO         2937    i.nrf_log_backend_add  nrf_log_frontend.o
+    0x0000a368   0x0000a368   0x00000008   Code   RO         2884    i.nrf_log_backend_enable  nrf_log_default_backends.o
+    0x0000a370   0x0000a370   0x00000002   Code   RO         2704    i.nrf_log_backend_rtt_flush  nrf_log_backend_rtt.o
+    0x0000a372   0x0000a372   0x00000008   Code   RO         2705    i.nrf_log_backend_rtt_init  nrf_log_backend_rtt.o
+    0x0000a37a   0x0000a37a   0x00000002   Code   RO         2706    i.nrf_log_backend_rtt_panic_set  nrf_log_backend_rtt.o
+    0x0000a37c   0x0000a37c   0x00000020   Code   RO         2707    i.nrf_log_backend_rtt_put  nrf_log_backend_rtt.o
+    0x0000a39c   0x0000a39c   0x000000f2   Code   RO         2778    i.nrf_log_backend_serial_put  nrf_log_backend_serial.o
+    0x0000a48e   0x0000a48e   0x00000002   Code   RO         2812    i.nrf_log_backend_uart_flush  nrf_log_backend_uart.o
+    0x0000a490   0x0000a490   0x0000000c   Code   RO         2813    i.nrf_log_backend_uart_init  nrf_log_backend_uart.o
+    0x0000a49c   0x0000a49c   0x00000038   Code   RO         2814    i.nrf_log_backend_uart_panic_set  nrf_log_backend_uart.o
+    0x0000a4d4   0x0000a4d4   0x00000020   Code   RO         2815    i.nrf_log_backend_uart_put  nrf_log_backend_uart.o
+    0x0000a4f4   0x0000a4f4   0x00000038   Code   RO         2939    i.nrf_log_color_id_get  nrf_log_frontend.o
+    0x0000a52c   0x0000a52c   0x00000038   Code   RO         2885    i.nrf_log_default_backends_init  nrf_log_default_backends.o
+    0x0000a564   0x0000a564   0x00000314   Code   RO         2940    i.nrf_log_frontend_dequeue  nrf_log_frontend.o
+    0x0000a878   0x0000a878   0x00000014   Code   RO         2942    i.nrf_log_frontend_std_0  nrf_log_frontend.o
+    0x0000a88c   0x0000a88c   0x00000018   Code   RO         2943    i.nrf_log_frontend_std_1  nrf_log_frontend.o
+    0x0000a8a4   0x0000a8a4   0x00000020   Code   RO         2944    i.nrf_log_frontend_std_2  nrf_log_frontend.o
+    0x0000a8c4   0x0000a8c4   0x00000038   Code   RO         2947    i.nrf_log_frontend_std_5  nrf_log_frontend.o
+    0x0000a8fc   0x0000a8fc   0x0000003c   Code   RO         2948    i.nrf_log_frontend_std_6  nrf_log_frontend.o
+    0x0000a938   0x0000a938   0x000000bc   Code   RO         3133    i.nrf_log_hexdump_entry_process  nrf_log_str_formatter.o
+    0x0000a9f4   0x0000a9f4   0x00000048   Code   RO         2949    i.nrf_log_init      nrf_log_frontend.o
+    0x0000aa3c   0x0000aa3c   0x00000014   Code   RO         2950    i.nrf_log_module_cnt_get  nrf_log_frontend.o
+    0x0000aa50   0x0000aa50   0x00000024   Code   RO         2954    i.nrf_log_module_name_get  nrf_log_frontend.o
+    0x0000aa74   0x0000aa74   0x00000034   Code   RO         2955    i.nrf_log_panic     nrf_log_frontend.o
+    0x0000aaa8   0x0000aaa8   0x000000c8   Code   RO         3134    i.nrf_log_std_entry_process  nrf_log_str_formatter.o
+    0x0000ab70   0x0000ab70   0x0000007a   Code   RO         2531    i.nrf_memobj_alloc  nrf_memobj.o
+    0x0000abea   0x0000abea   0x00000040   Code   RO         2532    i.nrf_memobj_free   nrf_memobj.o
+    0x0000ac2a   0x0000ac2a   0x00000010   Code   RO         2533    i.nrf_memobj_get    nrf_memobj.o
+    0x0000ac3a   0x0000ac3a   0x0000000c   Code   RO         2534    i.nrf_memobj_pool_init  nrf_memobj.o
+    0x0000ac46   0x0000ac46   0x0000001e   Code   RO         2535    i.nrf_memobj_put    nrf_memobj.o
+    0x0000ac64   0x0000ac64   0x00000022   Code   RO         2536    i.nrf_memobj_read   nrf_memobj.o
+    0x0000ac86   0x0000ac86   0x00000022   Code   RO         2537    i.nrf_memobj_write  nrf_memobj.o
+    0x0000aca8   0x0000aca8   0x0000001c   Code   RO         2613    i.nrf_ringbuf_init  nrf_ringbuf.o
+    0x0000acc4   0x0000acc4   0x0000000e   Code   RO         1899    i.nrf_timer_compare_event_get  nrfx_timer.o
+    0x0000acd2   0x0000acd2   0x0000000a   Code   RO         1900    i.nrf_timer_compare_int_get  nrfx_timer.o
+    0x0000acdc   0x0000acdc   0x0000000e   Code   RO         1901    i.nrf_timer_event_clear  nrfx_timer.o
+    0x0000acea   0x0000acea   0x00000006   Code   RO         1905    i.nrf_timer_task_trigger  nrfx_timer.o
+    0x0000acf0   0x0000acf0   0x00000008   Code   RO          842    i.nrf_twim_enable   nrfx_twim.o
+    0x0000acf8   0x0000acf8   0x0000000c   Code   RO          843    i.nrf_twim_errorsrc_get_and_clear  nrfx_twim.o
+    0x0000ad04   0x0000ad04   0x0000000e   Code   RO          844    i.nrf_twim_event_check  nrfx_twim.o
+    0x0000ad12   0x0000ad12   0x0000000e   Code   RO          845    i.nrf_twim_event_clear  nrfx_twim.o
+    0x0000ad20   0x0000ad20   0x00000006   Code   RO          846    i.nrf_twim_int_disable  nrfx_twim.o
+    0x0000ad26   0x0000ad26   0x00000006   Code   RO          847    i.nrf_twim_int_enable  nrfx_twim.o
+    0x0000ad2c   0x0000ad2c   0x0000000c   Code   RO          848    i.nrf_twim_rx_buffer_set  nrfx_twim.o
+    0x0000ad38   0x0000ad38   0x0000000a   Code   RO          849    i.nrf_twim_rxd_amount_get  nrfx_twim.o
+    0x0000ad42   0x0000ad42   0x00000006   Code   RO          850    i.nrf_twim_shorts_set  nrfx_twim.o
+    0x0000ad48   0x0000ad48   0x00000006   Code   RO          851    i.nrf_twim_task_trigger  nrfx_twim.o
+    0x0000ad4e   0x0000ad4e   0x0000000c   Code   RO          852    i.nrf_twim_tx_buffer_set  nrfx_twim.o
+    0x0000ad5a   0x0000ad5a   0x0000000a   Code   RO          853    i.nrf_twim_txd_amount_get  nrfx_twim.o
+    0x0000ad64   0x0000ad64   0x0000000c   Code   RO         1067    i.nrf_uart_errorsrc_get_and_clear  nrfx_uart.o
+    0x0000ad70   0x0000ad70   0x0000000e   Code   RO         1068    i.nrf_uart_event_check  nrfx_uart.o
+    0x0000ad7e   0x0000ad7e   0x0000000e   Code   RO         1069    i.nrf_uart_event_clear  nrfx_uart.o
+    0x0000ad8c   0x0000ad8c   0x0000000a   Code   RO         1070    i.nrf_uart_hwfc_pins_set  nrfx_uart.o
+    0x0000ad96   0x0000ad96   0x00000006   Code   RO         1071    i.nrf_uart_int_disable  nrfx_uart.o
+    0x0000ad9c   0x0000ad9c   0x00000006   Code   RO         1072    i.nrf_uart_int_enable  nrfx_uart.o
+    0x0000ada2   0x0000ada2   0x00000012   Code   RO         1073    i.nrf_uart_int_enable_check  nrfx_uart.o
+    0x0000adb4   0x0000adb4   0x00000006   Code   RO         1074    i.nrf_uart_task_trigger  nrfx_uart.o
+    0x0000adba   0x0000adba   0x0000000a   Code   RO         1075    i.nrf_uart_txrx_pins_set  nrfx_uart.o
+    0x0000adc4   0x0000adc4   0x0000000c   Code   RO         1316    i.nrf_uarte_errorsrc_get_and_clear  nrfx_uarte.o
+    0x0000add0   0x0000add0   0x0000000e   Code   RO         1317    i.nrf_uarte_event_check  nrfx_uarte.o
+    0x0000adde   0x0000adde   0x0000000e   Code   RO         1318    i.nrf_uarte_event_clear  nrfx_uarte.o
+    0x0000adec   0x0000adec   0x0000000c   Code   RO         1319    i.nrf_uarte_hwfc_pins_set  nrfx_uarte.o
+    0x0000adf8   0x0000adf8   0x00000006   Code   RO         1320    i.nrf_uarte_int_disable  nrfx_uarte.o
+    0x0000adfe   0x0000adfe   0x00000006   Code   RO         1321    i.nrf_uarte_int_enable  nrfx_uarte.o
+    0x0000ae04   0x0000ae04   0x0000000a   Code   RO         1322    i.nrf_uarte_rx_amount_get  nrfx_uarte.o
+    0x0000ae0e   0x0000ae0e   0x0000000c   Code   RO         1323    i.nrf_uarte_shorts_disable  nrfx_uarte.o
+    0x0000ae1a   0x0000ae1a   0x00000006   Code   RO         1324    i.nrf_uarte_task_trigger  nrfx_uarte.o
+    0x0000ae20   0x0000ae20   0x0000000a   Code   RO         1325    i.nrf_uarte_tx_amount_get  nrfx_uarte.o
+    0x0000ae2a   0x0000ae2a   0x0000000e   Code   RO         1326    i.nrf_uarte_txrx_pins_set  nrfx_uarte.o
+    0x0000ae38   0x0000ae38   0x00000018   Code   RO          488    i.nrfx_coredep_delay_us  nrf_drv_twi.o
+    0x0000ae50   0x0000ae50   0x00000008   Code   RO          854    i.nrfx_get_irq_number  nrfx_twim.o
+    0x0000ae58   0x0000ae58   0x00000008   Code   RO         1076    i.nrfx_get_irq_number  nrfx_uart.o
+    0x0000ae60   0x0000ae60   0x00000008   Code   RO         1327    i.nrfx_get_irq_number  nrfx_uarte.o
+    0x0000ae68   0x0000ae68   0x00000008   Code   RO         1548    i.nrfx_get_irq_number  nrfx_gpiote.o
+    0x0000ae70   0x0000ae70   0x00000008   Code   RO         1906    i.nrfx_get_irq_number  nrfx_timer.o
+    0x0000ae78   0x0000ae78   0x000000ac   Code   RO         1554    i.nrfx_gpiote_in_event_enable  nrfx_gpiote.o
+    0x0000af24   0x0000af24   0x000000f4   Code   RO         1556    i.nrfx_gpiote_in_init  nrfx_gpiote.o
+    0x0000b018   0x0000b018   0x000000d8   Code   RO         1559    i.nrfx_gpiote_init  nrfx_gpiote.o
+    0x0000b0f0   0x0000b0f0   0x00000014   Code   RO          855    i.nrfx_is_in_ram    nrfx_twim.o
+    0x0000b104   0x0000b104   0x00000014   Code   RO         1328    i.nrfx_is_in_ram    nrfx_uarte.o
+    0x0000b118   0x0000b118   0x00000048   Code   RO          758    i.nrfx_prs_acquire  nrfx_prs.o
+    0x0000b160   0x0000b160   0x00000016   Code   RO          759    i.nrfx_prs_release  nrfx_prs.o
+    0x0000b176   0x0000b176   0x00000028   Code   RO         1907    i.nrfx_timer_capture  nrfx_timer.o
+    0x0000b19e   0x0000b19e   0x0000000e   Code   RO         1908    i.nrfx_timer_clear  nrfx_timer.o
+    0x0000b1ac   0x0000b1ac   0x00000024   Code   RO         1913    i.nrfx_timer_enable  nrfx_timer.o
+    0x0000b1d0   0x0000b1d0   0x000000fc   Code   RO         1916    i.nrfx_timer_init   nrfx_timer.o
+    0x0000b2cc   0x0000b2cc   0x00000028   Code   RO          857    i.nrfx_twim_enable  nrfx_twim.o
+    0x0000b2f4   0x0000b2f4   0x00000128   Code   RO          858    i.nrfx_twim_init    nrfx_twim.o
+    0x0000b41c   0x0000b41c   0x00000030   Code   RO          860    i.nrfx_twim_rx      nrfx_twim.o
+    0x0000b44c   0x0000b44c   0x0000003e   Code   RO          863    i.nrfx_twim_tx      nrfx_twim.o
     0x0000b48a   0x0000b48a   0x00000002   PAD
-    0x0000b48c   0x0000b48c   0x00000034   Code   RO          883    i.nrfx_twim_xfer    nrfx_twim.o
-    0x0000b4c0   0x0000b4c0   0x00000014   Code   RO         1095    i.nrfx_uart_0_irq_handler  nrfx_uart.o
-    0x0000b4d4   0x0000b4d4   0x00000088   Code   RO         1097    i.nrfx_uart_init    nrfx_uart.o
-    0x0000b55c   0x0000b55c   0x0000008c   Code   RO         1103    i.nrfx_uart_tx      nrfx_uart.o
-    0x0000b5e8   0x0000b5e8   0x00000024   Code   RO         1105    i.nrfx_uart_tx_in_progress  nrfx_uart.o
-    0x0000b60c   0x0000b60c   0x00000044   Code   RO         1106    i.nrfx_uart_uninit  nrfx_uart.o
-    0x0000b650   0x0000b650   0x00000014   Code   RO         1347    i.nrfx_uarte_0_irq_handler  nrfx_uarte.o
-    0x0000b664   0x0000b664   0x00000080   Code   RO         1349    i.nrfx_uarte_init   nrfx_uarte.o
-    0x0000b6e4   0x0000b6e4   0x000000c0   Code   RO         1353    i.nrfx_uarte_tx     nrfx_uarte.o
-    0x0000b7a4   0x0000b7a4   0x00000020   Code   RO         1355    i.nrfx_uarte_tx_in_progress  nrfx_uarte.o
-    0x0000b7c4   0x0000b7c4   0x00000094   Code   RO         1356    i.nrfx_uarte_uninit  nrfx_uarte.o
-    0x0000b858   0x0000b858   0x00000020   Code   RO         1596    i.pin_configured_set  nrfx_gpiote.o
-    0x0000b878   0x0000b878   0x0000001c   Code   RO         1597    i.pin_in_use_by_gpiote  nrfx_gpiote.o
-    0x0000b894   0x0000b894   0x00000018   Code   RO         1598    i.pin_in_use_by_port  nrfx_gpiote.o
-    0x0000b8ac   0x0000b8ac   0x00000020   Code   RO         1599    i.pin_in_use_by_te  nrfx_gpiote.o
-    0x0000b8cc   0x0000b8cc   0x0000000c   Code   RO         1600    i.pin_in_use_clear  nrfx_gpiote.o
-    0x0000b8d8   0x0000b8d8   0x00000078   Code   RO         1107    i.pins_to_default   nrfx_uart.o
-    0x0000b950   0x0000b950   0x0000007e   Code   RO         1357    i.pins_to_default   nrfx_uarte.o
+    0x0000b48c   0x0000b48c   0x00000034   Code   RO          865    i.nrfx_twim_xfer    nrfx_twim.o
+    0x0000b4c0   0x0000b4c0   0x00000014   Code   RO         1077    i.nrfx_uart_0_irq_handler  nrfx_uart.o
+    0x0000b4d4   0x0000b4d4   0x00000088   Code   RO         1079    i.nrfx_uart_init    nrfx_uart.o
+    0x0000b55c   0x0000b55c   0x0000008c   Code   RO         1085    i.nrfx_uart_tx      nrfx_uart.o
+    0x0000b5e8   0x0000b5e8   0x00000024   Code   RO         1087    i.nrfx_uart_tx_in_progress  nrfx_uart.o
+    0x0000b60c   0x0000b60c   0x00000044   Code   RO         1088    i.nrfx_uart_uninit  nrfx_uart.o
+    0x0000b650   0x0000b650   0x00000014   Code   RO         1329    i.nrfx_uarte_0_irq_handler  nrfx_uarte.o
+    0x0000b664   0x0000b664   0x00000080   Code   RO         1331    i.nrfx_uarte_init   nrfx_uarte.o
+    0x0000b6e4   0x0000b6e4   0x000000c0   Code   RO         1335    i.nrfx_uarte_tx     nrfx_uarte.o
+    0x0000b7a4   0x0000b7a4   0x00000020   Code   RO         1337    i.nrfx_uarte_tx_in_progress  nrfx_uarte.o
+    0x0000b7c4   0x0000b7c4   0x00000094   Code   RO         1338    i.nrfx_uarte_uninit  nrfx_uarte.o
+    0x0000b858   0x0000b858   0x00000020   Code   RO         1578    i.pin_configured_set  nrfx_gpiote.o
+    0x0000b878   0x0000b878   0x0000001c   Code   RO         1579    i.pin_in_use_by_gpiote  nrfx_gpiote.o
+    0x0000b894   0x0000b894   0x00000018   Code   RO         1580    i.pin_in_use_by_port  nrfx_gpiote.o
+    0x0000b8ac   0x0000b8ac   0x00000020   Code   RO         1581    i.pin_in_use_by_te  nrfx_gpiote.o
+    0x0000b8cc   0x0000b8cc   0x0000000c   Code   RO         1582    i.pin_in_use_clear  nrfx_gpiote.o
+    0x0000b8d8   0x0000b8d8   0x00000078   Code   RO         1089    i.pins_to_default   nrfx_uart.o
+    0x0000b950   0x0000b950   0x0000007e   Code   RO         1339    i.pins_to_default   nrfx_uarte.o
     0x0000b9ce   0x0000b9ce   0x00000002   PAD
-    0x0000b9d0   0x0000b9d0   0x000000c0   Code   RO         1601    i.port_event_handle  nrfx_gpiote.o
-    0x0000ba90   0x0000ba90   0x00000010   Code   RO         1602    i.port_handler_pin_get  nrfx_gpiote.o
-    0x0000baa0   0x0000baa0   0x00000010   Code   RO         1603    i.port_handler_polarity_get  nrfx_gpiote.o
-    0x0000bab0   0x0000bab0   0x00000048   Code   RO         3154    i.postfix_process   nrf_log_str_formatter.o
-    0x0000baf8   0x0000baf8   0x000000a4   Code   RO         3155    i.prefix_process    nrf_log_str_formatter.o
-    0x0000bb9c   0x0000bb9c   0x00000018   Code   RO          778    i.prs_box_get       nrfx_prs.o
-    0x0000bbb4   0x0000bbb4   0x0000003e   Code   RO         1108    i.rx_byte           nrfx_uart.o
-    0x0000bbf2   0x0000bbf2   0x0000001c   Code   RO         1109    i.rx_done_event     nrfx_uart.o
-    0x0000bc0e   0x0000bc0e   0x0000001c   Code   RO         1358    i.rx_done_event     nrfx_uarte.o
+    0x0000b9d0   0x0000b9d0   0x000000c0   Code   RO         1583    i.port_event_handle  nrfx_gpiote.o
+    0x0000ba90   0x0000ba90   0x00000010   Code   RO         1584    i.port_handler_pin_get  nrfx_gpiote.o
+    0x0000baa0   0x0000baa0   0x00000010   Code   RO         1585    i.port_handler_polarity_get  nrfx_gpiote.o
+    0x0000bab0   0x0000bab0   0x00000048   Code   RO         3136    i.postfix_process   nrf_log_str_formatter.o
+    0x0000baf8   0x0000baf8   0x000000a4   Code   RO         3137    i.prefix_process    nrf_log_str_formatter.o
+    0x0000bb9c   0x0000bb9c   0x00000018   Code   RO          760    i.prs_box_get       nrfx_prs.o
+    0x0000bbb4   0x0000bbb4   0x0000003e   Code   RO         1090    i.rx_byte           nrfx_uart.o
+    0x0000bbf2   0x0000bbf2   0x0000001c   Code   RO         1091    i.rx_done_event     nrfx_uart.o
+    0x0000bc0e   0x0000bc0e   0x0000001c   Code   RO         1340    i.rx_done_event     nrfx_uarte.o
     0x0000bc2a   0x0000bc2a   0x00000002   PAD
-    0x0000bc2c   0x0000bc2c   0x00000560   Code   RO           11    i.sensor_event_cb   main.o
-    0x0000c18c   0x0000c18c   0x00000044   Code   RO         5047    i.sensor_needs_bac_algo  icm20948databasecontrol.o
-    0x0000c1d0   0x0000c1d0   0x0000003e   Code   RO         5048    i.sensor_needs_compass  icm20948databasecontrol.o
-    0x0000c20e   0x0000c20e   0x00000072   Code   RO         6150    i.sensor_type_2_android_sensor  icm20948setup.o
-    0x0000c280   0x0000c280   0x00000084   Code   RO         2726    i.serial_tx         nrf_log_backend_rtt.o
-    0x0000c304   0x0000c304   0x00000080   Code   RO         2834    i.serial_tx         nrf_log_backend_uart.o
-    0x0000c384   0x0000c384   0x0000002c   Code   RO         6151    i.skip_sensor       icm20948setup.o
-    0x0000c3b0   0x0000c3b0   0x00000064   Code   RO         2975    i.std_header_set    nrf_log_frontend.o
-    0x0000c414   0x0000c414   0x00000070   Code   RO         2976    i.std_n             nrf_log_frontend.o
-    0x0000c484   0x0000c484   0x00000074   Code   RO         2506    i.string_print      nrf_fprintf_format.o
-    0x0000c4f8   0x0000c4f8   0x00000080   Code   RO         6457    i.timer_event_handler  usr_tmr.o
-    0x0000c578   0x0000c578   0x0000003c   Code   RO         6458    i.timer_init        usr_tmr.o
-    0x0000c5b4   0x0000c5b4   0x00000002   Code   RO         3156    i.timestamp_print   nrf_log_str_formatter.o
+    0x0000bc2c   0x0000bc2c   0x00000560   Code   RO         3548    i.sensor_event_cb   imu.o
+    0x0000c18c   0x0000c18c   0x00000044   Code   RO         5060    i.sensor_needs_bac_algo  icm20948databasecontrol.o
+    0x0000c1d0   0x0000c1d0   0x0000003e   Code   RO         5061    i.sensor_needs_compass  icm20948databasecontrol.o
+    0x0000c20e   0x0000c20e   0x00000072   Code   RO         6163    i.sensor_type_2_android_sensor  icm20948setup.o
+    0x0000c280   0x0000c280   0x00000084   Code   RO         2708    i.serial_tx         nrf_log_backend_rtt.o
+    0x0000c304   0x0000c304   0x00000080   Code   RO         2816    i.serial_tx         nrf_log_backend_uart.o
+    0x0000c384   0x0000c384   0x0000002c   Code   RO         6164    i.skip_sensor       icm20948setup.o
+    0x0000c3b0   0x0000c3b0   0x00000064   Code   RO         2957    i.std_header_set    nrf_log_frontend.o
+    0x0000c414   0x0000c414   0x00000070   Code   RO         2958    i.std_n             nrf_log_frontend.o
+    0x0000c484   0x0000c484   0x00000074   Code   RO         2488    i.string_print      nrf_fprintf_format.o
+    0x0000c4f8   0x0000c4f8   0x00000080   Code   RO         6470    i.timer_event_handler  usr_tmr.o
+    0x0000c578   0x0000c578   0x0000003c   Code   RO         6471    i.timer_init        usr_tmr.o
+    0x0000c5b4   0x0000c5b4   0x00000002   Code   RO         3138    i.timestamp_print   nrf_log_str_formatter.o
     0x0000c5b6   0x0000c5b6   0x00000002   PAD
-    0x0000c5b8   0x0000c5b8   0x00000098   Code   RO          507    i.twi_clear_bus     nrf_drv_twi.o
-    0x0000c650   0x0000c650   0x00000078   Code   RO         6389    i.twi_handler       usr_twi.o
-    0x0000c6c8   0x0000c6c8   0x00000044   Code   RO         6390    i.twi_init          usr_twi.o
-    0x0000c70c   0x0000c70c   0x00000024   Code   RO          884    i.twi_process_error  nrfx_twim.o
-    0x0000c730   0x0000c730   0x00000048   Code   RO          509    i.twim_evt_handler  nrf_drv_twi.o
-    0x0000c778   0x0000c778   0x000001e8   Code   RO          885    i.twim_irq_handler  nrfx_twim.o
-    0x0000c960   0x0000c960   0x00000330   Code   RO          886    i.twim_xfer         nrfx_twim.o
-    0x0000cc90   0x0000cc90   0x00000036   Code   RO         1111    i.tx_blocking       nrfx_uart.o
-    0x0000ccc6   0x0000ccc6   0x00000026   Code   RO         1112    i.tx_byte           nrfx_uart.o
-    0x0000ccec   0x0000ccec   0x00000020   Code   RO         1113    i.tx_done_event     nrfx_uart.o
-    0x0000cd0c   0x0000cd0c   0x00000020   Code   RO         1359    i.tx_done_event     nrfx_uarte.o
-    0x0000cd2c   0x0000cd2c   0x00000038   Code   RO          582    i.uart_evt_handler  nrf_drv_uart.o
-    0x0000cd64   0x0000cd64   0x0000000c   Code   RO         2835    i.uart_evt_handler  nrf_log_backend_uart.o
-    0x0000cd70   0x0000cd70   0x00000060   Code   RO         2836    i.uart_init         nrf_log_backend_uart.o
-    0x0000cdd0   0x0000cdd0   0x0000014e   Code   RO         1114    i.uart_irq_handler  nrfx_uart.o
+    0x0000c5b8   0x0000c5b8   0x00000098   Code   RO          489    i.twi_clear_bus     nrf_drv_twi.o
+    0x0000c650   0x0000c650   0x00000078   Code   RO         6402    i.twi_handler       usr_twi.o
+    0x0000c6c8   0x0000c6c8   0x00000044   Code   RO         6403    i.twi_init          usr_twi.o
+    0x0000c70c   0x0000c70c   0x00000024   Code   RO          866    i.twi_process_error  nrfx_twim.o
+    0x0000c730   0x0000c730   0x00000048   Code   RO          491    i.twim_evt_handler  nrf_drv_twi.o
+    0x0000c778   0x0000c778   0x000001e8   Code   RO          867    i.twim_irq_handler  nrfx_twim.o
+    0x0000c960   0x0000c960   0x00000330   Code   RO          868    i.twim_xfer         nrfx_twim.o
+    0x0000cc90   0x0000cc90   0x00000036   Code   RO         1093    i.tx_blocking       nrfx_uart.o
+    0x0000ccc6   0x0000ccc6   0x00000026   Code   RO         1094    i.tx_byte           nrfx_uart.o
+    0x0000ccec   0x0000ccec   0x00000020   Code   RO         1095    i.tx_done_event     nrfx_uart.o
+    0x0000cd0c   0x0000cd0c   0x00000020   Code   RO         1341    i.tx_done_event     nrfx_uarte.o
+    0x0000cd2c   0x0000cd2c   0x00000038   Code   RO          564    i.uart_evt_handler  nrf_drv_uart.o
+    0x0000cd64   0x0000cd64   0x0000000c   Code   RO         2817    i.uart_evt_handler  nrf_log_backend_uart.o
+    0x0000cd70   0x0000cd70   0x00000060   Code   RO         2818    i.uart_init         nrf_log_backend_uart.o
+    0x0000cdd0   0x0000cdd0   0x0000014e   Code   RO         1096    i.uart_irq_handler  nrfx_uart.o
     0x0000cf1e   0x0000cf1e   0x00000002   PAD
-    0x0000cf20   0x0000cf20   0x00000038   Code   RO          583    i.uarte_evt_handler  nrf_drv_uart.o
-    0x0000cf58   0x0000cf58   0x00000134   Code   RO         1360    i.uarte_irq_handler  nrfx_uarte.o
-    0x0000d08c   0x0000d08c   0x000000b8   Code   RO         2507    i.unsigned_print    nrf_fprintf_format.o
-    0x0000d144   0x0000d144   0x000000a0   Code   RO          887    i.xfer_completeness_check  nrfx_twim.o
+    0x0000cf20   0x0000cf20   0x00000038   Code   RO          565    i.uarte_evt_handler  nrf_drv_uart.o
+    0x0000cf58   0x0000cf58   0x00000134   Code   RO         1342    i.uarte_irq_handler  nrfx_uarte.o
+    0x0000d08c   0x0000d08c   0x000000b8   Code   RO         2489    i.unsigned_print    nrf_fprintf_format.o
+    0x0000d144   0x0000d144   0x000000a0   Code   RO          869    i.xfer_completeness_check  nrfx_twim.o
     0x0000d1e4   0x0000d1e4   0x0000000c   PAD
-    0x0000d1f0   0x0000d1f0   0x0000000b   Data   RO           13    .constdata          main.o
-    0x0000d1fb   0x0000d1fb   0x00000005   PAD
-    0x0000d200   0x0000d200   0x00000006   Data   RO          510    .constdata          nrf_drv_twi.o
+    0x0000d1f0   0x0000d1f0   0x00000006   Data   RO            9    .constdata          main.o
+    0x0000d1f6   0x0000d1f6   0x0000000a   PAD
+    0x0000d200   0x0000d200   0x00000006   Data   RO          492    .constdata          nrf_drv_twi.o
     0x0000d206   0x0000d206   0x00000002   PAD
-    0x0000d208   0x0000d208   0x00000044   Data   RO          889    .constdata          nrfx_twim.o
-    0x0000d24c   0x0000d24c   0x0000002e   Data   RO         1116    .constdata          nrfx_uart.o
+    0x0000d208   0x0000d208   0x00000044   Data   RO          871    .constdata          nrfx_twim.o
+    0x0000d24c   0x0000d24c   0x0000002e   Data   RO         1098    .constdata          nrfx_uart.o
     0x0000d27a   0x0000d27a   0x00000002   PAD
-    0x0000d27c   0x0000d27c   0x00000030   Data   RO         1362    .constdata          nrfx_uarte.o
-    0x0000d2ac   0x0000d2ac   0x0000003e   Data   RO         1605    .constdata          nrfx_gpiote.o
-    0x0000d2ea   0x0000d2ea   0x00000010   Data   RO         2508    .constdata          nrf_fprintf_format.o
+    0x0000d27c   0x0000d27c   0x00000030   Data   RO         1344    .constdata          nrfx_uarte.o
+    0x0000d2ac   0x0000d2ac   0x0000003e   Data   RO         1587    .constdata          nrfx_gpiote.o
+    0x0000d2ea   0x0000d2ea   0x00000010   Data   RO         2490    .constdata          nrf_fprintf_format.o
     0x0000d2fa   0x0000d2fa   0x00000006   PAD
-    0x0000d300   0x0000d300   0x00000016   Data   RO         2728    .constdata          nrf_log_backend_rtt.o
+    0x0000d300   0x0000d300   0x00000016   Data   RO         2710    .constdata          nrf_log_backend_rtt.o
     0x0000d316   0x0000d316   0x00000002   PAD
-    0x0000d318   0x0000d318   0x0000002c   Data   RO         2838    .constdata          nrf_log_backend_uart.o
-    0x0000d344   0x0000d344   0x0000000c   Data   RO         2978    .constdata          nrf_log_frontend.o
-    0x0000d350   0x0000d350   0x00000026   Data   RO         3564    .constdata          imu.o
+    0x0000d318   0x0000d318   0x0000002c   Data   RO         2820    .constdata          nrf_log_backend_uart.o
+    0x0000d344   0x0000d344   0x0000000c   Data   RO         2960    .constdata          nrf_log_frontend.o
+    0x0000d350   0x0000d350   0x00000026   Data   RO         3549    .constdata          imu.o
     0x0000d376   0x0000d376   0x00000002   PAD
-    0x0000d378   0x0000d378   0x00000070   Data   RO         4562    .constdata          deviceicm20948.o
-    0x0000d3e8   0x0000d3e8   0x0000000c   Data   RO         4875    .constdata          icm20948auxcompassakm.o
-    0x0000d3f4   0x0000d3f4   0x00000108   Data   RO         5049    .constdata          icm20948databasecontrol.o
-    0x0000d4fc   0x0000d4fc   0x00000200   Data   RO         6090    .constdata          icm20948selftest.o
-    0x0000d6fc   0x0000d6fc   0x0000000c   Data   RO         6152    .constdata          icm20948setup.o
-    0x0000d708   0x0000d708   0x00000020   Data   RO         6391    .constdata          usr_twi.o
-    0x0000d728   0x0000d728   0x00000010   Data   RO         6459    .constdata          usr_tmr.o
-    0x0000d738   0x0000d738   0x00000081   Data   RO         8446    .constdata          mc_w.l(ctype_o.o)
-    0x0000d7b9   0x0000d7b9   0x00000003   PAD
-    0x0000d7bc   0x0000d7bc   0x00000004   Data   RO         8447    .constdata          mc_w.l(ctype_o.o)
-    0x0000d7c0   0x0000d7c0   0x00000020   Data   RO         8799    .constdata          m_wm.l(rredf.o)
-    0x0000d7e0   0x0000d7e0   0x00000066   Data   RO         3157    .conststring        nrf_log_str_formatter.o
+    0x0000d378   0x0000d378   0x00000070   Data   RO         4572    .constdata          deviceicm20948.o
+    0x0000d3e8   0x0000d3e8   0x0000000c   Data   RO         4888    .constdata          icm20948auxcompassakm.o
+    0x0000d3f4   0x0000d3f4   0x00000108   Data   RO         5062    .constdata          icm20948databasecontrol.o
+    0x0000d4fc   0x0000d4fc   0x00000200   Data   RO         6103    .constdata          icm20948selftest.o
+    0x0000d6fc   0x0000d6fc   0x0000000c   Data   RO         6165    .constdata          icm20948setup.o
+    0x0000d708   0x0000d708   0x00000020   Data   RO         6404    .constdata          usr_twi.o
+    0x0000d728   0x0000d728   0x00000010   Data   RO         6472    .constdata          usr_tmr.o
+    0x0000d738   0x0000d738   0x00000003   Data   RO         6513    .constdata          usr_gpio.o
+    0x0000d73b   0x0000d73b   0x00000081   Data   RO         8493    .constdata          mc_w.l(ctype_o.o)
+    0x0000d7bc   0x0000d7bc   0x00000004   Data   RO         8494    .constdata          mc_w.l(ctype_o.o)
+    0x0000d7c0   0x0000d7c0   0x00000020   Data   RO         8846    .constdata          m_wm.l(rredf.o)
+    0x0000d7e0   0x0000d7e0   0x00000066   Data   RO         3139    .conststring        nrf_log_str_formatter.o
     0x0000d846   0x0000d846   0x00000002   PAD
-    0x0000d848   0x0000d848   0x00000af7   Data   RO         4742    .conststring        sensor.o
+    0x0000d848   0x0000d848   0x00000af7   Data   RO         4755    .conststring        sensor.o
     0x0000e33f   0x0000e33f   0x00000001   PAD
-    0x0000e340   0x0000e340   0x00000004   Data   RO          780    .conststrlit        nrfx_prs.o
-    0x0000e344   0x0000e344   0x00000005   Data   RO          890    .conststrlit        nrfx_twim.o
+    0x0000e340   0x0000e340   0x00000004   Data   RO          762    .conststrlit        nrfx_prs.o
+    0x0000e344   0x0000e344   0x00000005   Data   RO          872    .conststrlit        nrfx_twim.o
     0x0000e349   0x0000e349   0x00000003   PAD
-    0x0000e34c   0x0000e34c   0x00000005   Data   RO         1117    .conststrlit        nrfx_uart.o
+    0x0000e34c   0x0000e34c   0x00000005   Data   RO         1099    .conststrlit        nrfx_uart.o
     0x0000e351   0x0000e351   0x00000003   PAD
-    0x0000e354   0x0000e354   0x00000006   Data   RO         1363    .conststrlit        nrfx_uarte.o
+    0x0000e354   0x0000e354   0x00000006   Data   RO         1345    .conststrlit        nrfx_uarte.o
     0x0000e35a   0x0000e35a   0x00000002   PAD
-    0x0000e35c   0x0000e35c   0x00000007   Data   RO         1606    .conststrlit        nrfx_gpiote.o
+    0x0000e35c   0x0000e35c   0x00000007   Data   RO         1588    .conststrlit        nrfx_gpiote.o
     0x0000e363   0x0000e363   0x00000001   PAD
-    0x0000e364   0x0000e364   0x00000006   Data   RO         1941    .conststrlit        nrfx_timer.o
+    0x0000e364   0x0000e364   0x00000006   Data   RO         1923    .conststrlit        nrfx_timer.o
     0x0000e36a   0x0000e36a   0x00000002   PAD
-    0x0000e36c   0x0000e36c   0x00000021   Data   RO         2904    .conststrlit        nrf_log_default_backends.o
+    0x0000e36c   0x0000e36c   0x00000021   Data   RO         2886    .conststrlit        nrf_log_default_backends.o
     0x0000e38d   0x0000e38d   0x00000003   PAD
-    0x0000e390   0x0000e390   0x00000004   Data   RO         2979    .conststrlit        nrf_log_frontend.o
-    0x0000e394   0x0000e394   0x00000020   Data   RO         8847    Region$$Table       anon$$obj.o
-    0x0000e3b4   0x0000e3b4   0x00000020   Data   RO         2906    log_backends        nrf_log_default_backends.o
-    0x0000e3d4   0x0000e3d4   0x00000008   Data   RO          782    log_const_data      nrfx_prs.o
-    0x0000e3dc   0x0000e3dc   0x00000008   Data   RO          891    log_const_data      nrfx_twim.o
-    0x0000e3e4   0x0000e3e4   0x00000008   Data   RO         1118    log_const_data      nrfx_uart.o
-    0x0000e3ec   0x0000e3ec   0x00000008   Data   RO         1364    log_const_data      nrfx_uarte.o
-    0x0000e3f4   0x0000e3f4   0x00000008   Data   RO         1607    log_const_data      nrfx_gpiote.o
-    0x0000e3fc   0x0000e3fc   0x00000008   Data   RO         1942    log_const_data      nrfx_timer.o
-    0x0000e404   0x0000e404   0x00000008   Data   RO         2981    log_const_data      nrf_log_frontend.o
-    0x0000e40c   0x0000e40c   0x00000014   Data   RO         2982    nrf_balloc          nrf_log_frontend.o
+    0x0000e390   0x0000e390   0x00000004   Data   RO         2961    .conststrlit        nrf_log_frontend.o
+    0x0000e394   0x0000e394   0x00000020   Data   RO         8894    Region$$Table       anon$$obj.o
+    0x0000e3b4   0x0000e3b4   0x00000020   Data   RO         2888    log_backends        nrf_log_default_backends.o
+    0x0000e3d4   0x0000e3d4   0x00000008   Data   RO          764    log_const_data      nrfx_prs.o
+    0x0000e3dc   0x0000e3dc   0x00000008   Data   RO          873    log_const_data      nrfx_twim.o
+    0x0000e3e4   0x0000e3e4   0x00000008   Data   RO         1100    log_const_data      nrfx_uart.o
+    0x0000e3ec   0x0000e3ec   0x00000008   Data   RO         1346    log_const_data      nrfx_uarte.o
+    0x0000e3f4   0x0000e3f4   0x00000008   Data   RO         1589    log_const_data      nrfx_gpiote.o
+    0x0000e3fc   0x0000e3fc   0x00000008   Data   RO         1924    log_const_data      nrfx_timer.o
+    0x0000e404   0x0000e404   0x00000008   Data   RO         2963    log_const_data      nrf_log_frontend.o
+    0x0000e40c   0x0000e40c   0x00000014   Data   RO         2964    nrf_balloc          nrf_log_frontend.o
 
 
     Execution Region RW_IRAM1 (Exec base: 0x20000000, Load base: 0x0000e420, Size: 0x00008e00, Max: 0x00010000, ABSOLUTE, COMPRESSED[0x000029fc])
 
     Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
 
-    0x20000000   COMPRESSED   0x000037de   Data   RW           14    .data               main.o
-    0x200037de   COMPRESSED   0x00000002   PAD
-    0x200037e0   COMPRESSED   0x00000010   Data   RW          511    .data               nrf_drv_twi.o
-    0x200037f0   COMPRESSED   0x00000009   Data   RW          584    .data               nrf_drv_uart.o
-    0x200037f9   COMPRESSED   0x00000003   PAD
-    0x200037fc   COMPRESSED   0x00000008   Data   RW          781    .data               nrfx_prs.o
-    0x20003804   COMPRESSED   0x00000004   Data   RW         2194    .data               app_util_platform.o
-    0x20003808   COMPRESSED   0x00000001   Data   RW         2729    .data               nrf_log_backend_rtt.o
-    0x20003809   COMPRESSED   0x00000003   PAD
-    0x2000380c   COMPRESSED   0x00000016   Data   RW         2839    .data               nrf_log_backend_uart.o
-    0x20003822   COMPRESSED   0x00000002   PAD
-    0x20003824   COMPRESSED   0x00000010   Data   RW         2905    .data               nrf_log_default_backends.o
-    0x20003834   COMPRESSED   0x00000014   Data   RW         2980    .data               nrf_log_frontend.o
-    0x20003848   COMPRESSED   0x00000040   Data   RW         3158    .data               nrf_log_str_formatter.o
-    0x20003888   COMPRESSED   0x00000008   Data   RW         4232    .data               message.o
-    0x20003890   COMPRESSED   0x00000208   Data   RW         4743    .data               sensor.o
-    0x20003a98   COMPRESSED   0x00000008   Data   RW         5259    .data               icm20948databasedriver.o
-    0x20003aa0   COMPRESSED   0x00000014   Data   RW         5475    .data               icm20948dataconverter.o
-    0x20003ab4   COMPRESSED   0x00000002   Data   RW         5681    .data               icm20948dmp3driver.o
-    0x20003ab6   COMPRESSED   0x00000002   PAD
-    0x20003ab8   COMPRESSED   0x00000004   Data   RW         6301    .data               icm20948transport.o
-    0x20003abc   COMPRESSED   0x00000001   Data   RW         6392    .data               usr_twi.o
-    0x20003abd   COMPRESSED   0x00000003   PAD
-    0x20003ac0   COMPRESSED   0x00000004   Data   RW         6878    .data               system_nrf52.o
-    0x20003ac4   COMPRESSED   0x00000004   Data   RW         8822    .data               mc_w.l(mvars.o)
-    0x20003ac8   COMPRESSED   0x00000004   Data   RW         8823    .data               mc_w.l(mvars.o)
-    0x20003acc   COMPRESSED   0x00000004   Data   RW         8827    .data               mc_w.l(errno.o)
-    0x20003ad0        -       0x00000530   Zero   RW           12    .bss                main.o
-    0x20004000        -       0x00000034   Zero   RW          888    .bss                nrfx_twim.o
-    0x20004034        -       0x0000002c   Zero   RW         1115    .bss                nrfx_uart.o
-    0x20004060        -       0x00000024   Zero   RW         1361    .bss                nrfx_uarte.o
-    0x20004084        -       0x0000004c   Zero   RW         1604    .bss                nrfx_gpiote.o
-    0x200040d0        -       0x0000000c   Zero   RW         1939    .bss                nrfx_timer.o
-    0x200040dc        -       0x00000040   Zero   RW         2727    .bss                nrf_log_backend_rtt.o
-    0x2000411c        -       0x00000040   Zero   RW         2837    .bss                nrf_log_backend_uart.o
-    0x2000415c        -       0x00000578   Zero   RW         2977    .bss                nrf_log_frontend.o
-    0x200046d4        -       0x00000288   Zero   RW         3238    .bss                segger_rtt.o
-    0x2000495c        -       0x000004a4   Zero   RW         5920    .bss                icm20948mpufifocontrol.o
-    0x20004e00        -       0x00002000   Zero   RW         6500    HEAP                arm_startup_nrf52.o
-    0x20006e00        -       0x00002000   Zero   RW         6499    STACK               arm_startup_nrf52.o
+    0x20000000   COMPRESSED   0x000037d3   Data   RW           10    .data               main.o
+    0x200037d3   COMPRESSED   0x00000001   PAD
+    0x200037d4   COMPRESSED   0x00000010   Data   RW          493    .data               nrf_drv_twi.o
+    0x200037e4   COMPRESSED   0x00000009   Data   RW          566    .data               nrf_drv_uart.o
+    0x200037ed   COMPRESSED   0x00000003   PAD
+    0x200037f0   COMPRESSED   0x00000008   Data   RW          763    .data               nrfx_prs.o
+    0x200037f8   COMPRESSED   0x00000004   Data   RW         2176    .data               app_util_platform.o
+    0x200037fc   COMPRESSED   0x00000001   Data   RW         2711    .data               nrf_log_backend_rtt.o
+    0x200037fd   COMPRESSED   0x00000003   PAD
+    0x20003800   COMPRESSED   0x00000016   Data   RW         2821    .data               nrf_log_backend_uart.o
+    0x20003816   COMPRESSED   0x00000002   PAD
+    0x20003818   COMPRESSED   0x00000010   Data   RW         2887    .data               nrf_log_default_backends.o
+    0x20003828   COMPRESSED   0x00000014   Data   RW         2962    .data               nrf_log_frontend.o
+    0x2000383c   COMPRESSED   0x00000040   Data   RW         3140    .data               nrf_log_str_formatter.o
+    0x2000387c   COMPRESSED   0x00000008   Data   RW         3550    .data               imu.o
+    0x20003884   COMPRESSED   0x00000008   Data   RW         4242    .data               message.o
+    0x2000388c   COMPRESSED   0x00000208   Data   RW         4756    .data               sensor.o
+    0x20003a94   COMPRESSED   0x00000008   Data   RW         5272    .data               icm20948databasedriver.o
+    0x20003a9c   COMPRESSED   0x00000014   Data   RW         5488    .data               icm20948dataconverter.o
+    0x20003ab0   COMPRESSED   0x00000002   Data   RW         5694    .data               icm20948dmp3driver.o
+    0x20003ab2   COMPRESSED   0x00000002   PAD
+    0x20003ab4   COMPRESSED   0x00000004   Data   RW         6314    .data               icm20948transport.o
+    0x20003ab8   COMPRESSED   0x00000001   Data   RW         6405    .data               usr_twi.o
+    0x20003ab9   COMPRESSED   0x00000003   PAD
+    0x20003abc   COMPRESSED   0x00000004   Data   RW         6925    .data               system_nrf52.o
+    0x20003ac0   COMPRESSED   0x00000004   Data   RW         8869    .data               mc_w.l(mvars.o)
+    0x20003ac4   COMPRESSED   0x00000004   Data   RW         8870    .data               mc_w.l(mvars.o)
+    0x20003ac8   COMPRESSED   0x00000004   Data   RW         8874    .data               mc_w.l(errno.o)
+    0x20003acc   COMPRESSED   0x00000004   PAD
+    0x20003ad0        -       0x00000530   Zero   RW            8    .bss                main.o
+    0x20004000        -       0x00000034   Zero   RW          870    .bss                nrfx_twim.o
+    0x20004034        -       0x0000002c   Zero   RW         1097    .bss                nrfx_uart.o
+    0x20004060        -       0x00000024   Zero   RW         1343    .bss                nrfx_uarte.o
+    0x20004084        -       0x0000004c   Zero   RW         1586    .bss                nrfx_gpiote.o
+    0x200040d0        -       0x0000000c   Zero   RW         1921    .bss                nrfx_timer.o
+    0x200040dc        -       0x00000040   Zero   RW         2709    .bss                nrf_log_backend_rtt.o
+    0x2000411c        -       0x00000040   Zero   RW         2819    .bss                nrf_log_backend_uart.o
+    0x2000415c        -       0x00000578   Zero   RW         2959    .bss                nrf_log_frontend.o
+    0x200046d4        -       0x00000288   Zero   RW         3220    .bss                segger_rtt.o
+    0x2000495c        -       0x000004a4   Zero   RW         5933    .bss                icm20948mpufifocontrol.o
+    0x20004e00        -       0x00002000   Zero   RW         6547    HEAP                arm_startup_nrf52.o
+    0x20006e00        -       0x00002000   Zero   RW         6546    STACK               arm_startup_nrf52.o
 
 
 ==============================================================================
@@ -5046,8 +5056,8 @@ Image component sizes
       1508         10        512          0          0       8468   icm20948selftest.o
       5684         94         12          0          0      34772   icm20948setup.o
       1424          0          0          4          0      17935   icm20948transport.o
-       156         22         38          0          0      10679   imu.o
-      2768        846         11      14302       1328     105628   main.o
+      1844        624         38          8          0      13096   imu.o
+       992        234          6      14291       1328     102633   main.o
        100         18          0          8          0       2982   message.o
        364          0          0          0          0       7858   nrf_atomic.o
        206          0          0          0          0       3803   nrf_balloc.o
@@ -5072,14 +5082,15 @@ Image component sizes
        470         44          0          0        648       8593   segger_rtt.o
         40          8       2807        520          0        749   sensor.o
       1552        158          0          4          0      10695   system_nrf52.o
+        88         10          3          0          0      10024   usr_gpio.o
        188         74         16          0          0       5734   usr_tmr.o
        528         72         32          1          0      18628   usr_twi.o
          0          0          0          0          0        372   vsensor.o
 
     ----------------------------------------------------------------------
-     51280       2986       5000      15044      21296     907157   Object Totals
+     51280       2986       5003      15040      21296     916603   Object Totals
          0          0         32          0          0          0   (incl. Generated)
-        76          0         36         15          0          0   (incl. Padding)
+        76          0         41         14          0          0   (incl. Padding)
 
     ----------------------------------------------------------------------
 
@@ -5119,8 +5130,8 @@ Image component sizes
         98          0          0          0          0         92   uldiv.o
 
     ----------------------------------------------------------------------
-      1952        194        168         12          0       2168   Library Totals
-         4          0          3          0          0          0   (incl. Padding)
+      1952        194        165         12          4       2168   Library Totals
+         4          0          0          0          4          0   (incl. Padding)
 
     ----------------------------------------------------------------------
 
@@ -5130,7 +5141,7 @@ Image component sizes
        738         46        133         12          0       1060   mc_w.l
 
     ----------------------------------------------------------------------
-      1952        194        168         12          0       2168   Library Totals
+      1952        194        165         12          4       2168   Library Totals
 
     ----------------------------------------------------------------------
 
@@ -5139,8 +5150,8 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   
 
-     53232       3180       5168      15056      21296     859493   Grand Totals
-     53232       3180       5168      10748      21296     859493   ELF Image Totals (compressed)
+     53232       3180       5168      15052      21300     868939   Grand Totals
+     53232       3180       5168      10748      21300     868939   ELF Image Totals (compressed)
      53232       3180       5168      10748          0          0   ROM Totals
 
 ==============================================================================

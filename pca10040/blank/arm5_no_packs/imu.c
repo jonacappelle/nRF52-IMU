@@ -131,3 +131,175 @@ void inv_icm20948_sleep_us(int us)
 
 
 
+
+/////////// SENSOR EVENTS \\\\\\\\\\\\\\\\\\\\\\
+
+#include "Invn/Devices/SerifHal.h"
+#include "Invn/Devices/DeviceIcm20948.h"
+#include "Invn/DynamicProtocol/DynProtocol.h"
+#include "Invn/DynamicProtocol/DynProtocolTransportUart.h"
+// INV_MSG functionality
+#include "Invn/EmbUtils/Message.h"
+
+#include "nrf_log.h"
+#include "nrf_log_ctrl.h"
+#include "nrf_log_default_backends.h"
+
+
+/*
+ * Function to return activity name in printable char
+ */
+const char * activityName(int act)
+{
+	switch(act) {
+	case INV_SENSOR_BAC_EVENT_ACT_IN_VEHICLE_BEGIN:          return "BEGIN IN_VEHICLE";
+	case INV_SENSOR_BAC_EVENT_ACT_WALKING_BEGIN:             return "BEGIN WALKING";
+	case INV_SENSOR_BAC_EVENT_ACT_RUNNING_BEGIN:             return "BEGIN RUNNING";
+	case INV_SENSOR_BAC_EVENT_ACT_ON_BICYCLE_BEGIN:          return "BEGIN ON_BICYCLE";
+	case INV_SENSOR_BAC_EVENT_ACT_TILT_BEGIN:                return "BEGIN TILT";
+	case INV_SENSOR_BAC_EVENT_ACT_STILL_BEGIN:               return "BEGIN STILL";
+	case INV_SENSOR_BAC_EVENT_ACT_IN_VEHICLE_END:            return "END IN_VEHICLE";
+	case INV_SENSOR_BAC_EVENT_ACT_WALKING_END:               return "END WALKING";
+	case INV_SENSOR_BAC_EVENT_ACT_RUNNING_END:               return "END RUNNING";
+	case INV_SENSOR_BAC_EVENT_ACT_ON_BICYCLE_END:            return "END ON_BICYCLE";
+	case INV_SENSOR_BAC_EVENT_ACT_TILT_END:                  return "END TILT";
+	case INV_SENSOR_BAC_EVENT_ACT_STILL_END:                 return "END STILL";
+	default:                                                 return "unknown activity!";
+	}
+}
+
+/*
+ * Callback called upon sensor event reception
+ * This function is called in the same function than inv_device_poll()
+ */
+static void sensor_event_cb(const inv_sensor_event_t * event, void * arg)
+{
+        /* arg will contained the value provided at init time */
+        (void)arg;
+        
+        (void)event;
+        /* ... do something with event */
+	
+				//NRF_LOG_INFO("Sensor event!");
+				//NRF_LOG_FLUSH();
+	
+	
+	if(event->status == INV_SENSOR_STATUS_DATA_UPDATED) {
+
+		switch(INV_SENSOR_ID_TO_TYPE(event->sensor)) {
+		case INV_SENSOR_TYPE_RAW_ACCELEROMETER:
+		case INV_SENSOR_TYPE_RAW_GYROSCOPE:
+			NRF_LOG_INFO("data event %s (lsb): %llu %d %d %d", inv_sensor_str(event->sensor),
+					(int)event->timestamp,
+					(int)event->data.raw3d.vect[0],
+					(int)event->data.raw3d.vect[1],
+					(int)event->data.raw3d.vect[2]);
+//					NRF_LOG_INFO("%d	%d	%d", event->data.raw3d.vect[0], event->data.raw3d.vect[1], event->data.raw3d.vect[2]);
+			break;
+		case INV_SENSOR_TYPE_ACCELEROMETER:
+		case INV_SENSOR_TYPE_LINEAR_ACCELERATION:
+		case INV_SENSOR_TYPE_GRAVITY:
+			NRF_LOG_INFO("data event %s (mg): %d %d %d %d", inv_sensor_str(event->sensor),
+					(int)(event->data.acc.vect[0]*1000),
+					(int)(event->data.acc.vect[1]*1000),
+					(int)(event->data.acc.vect[2]*1000),
+					(int)(event->data.acc.accuracy_flag));
+			break;
+		case INV_SENSOR_TYPE_GYROSCOPE:
+			NRF_LOG_INFO("data event %s (mdps): %d %d %d %d", inv_sensor_str(event->sensor),
+					(int)(event->data.gyr.vect[0]*1000),
+					(int)(event->data.gyr.vect[1]*1000),
+					(int)(event->data.gyr.vect[2]*1000),
+					(int)(event->data.gyr.accuracy_flag));
+			break;
+		case INV_SENSOR_TYPE_MAGNETOMETER:
+			NRF_LOG_INFO("data event %s (nT): %d %d %d %d", inv_sensor_str(event->sensor),
+					(int)(event->data.mag.vect[0]*1000),
+					(int)(event->data.mag.vect[1]*1000),
+					(int)(event->data.mag.vect[2]*1000),
+					(int)(event->data.mag.accuracy_flag));
+			break;
+		case INV_SENSOR_TYPE_UNCAL_GYROSCOPE:
+			INV_MSG(INV_MSG_LEVEL_INFO, "data event %s (mdps): %d %d %d %d %d %d", inv_sensor_str(event->sensor),
+					(int)(event->data.gyr.vect[0]*1000),
+					(int)(event->data.gyr.vect[1]*1000),
+					(int)(event->data.gyr.vect[2]*1000),
+					(int)(event->data.gyr.bias[0]*1000),
+					(int)(event->data.gyr.bias[1]*1000),
+					(int)(event->data.gyr.bias[2]*1000));
+			break;
+		case INV_SENSOR_TYPE_UNCAL_MAGNETOMETER:
+			INV_MSG(INV_MSG_LEVEL_INFO, "data event %s (nT): %d %d %d %d %d %d", inv_sensor_str(event->sensor),
+					(int)(event->data.mag.vect[0]*1000),
+					(int)(event->data.mag.vect[1]*1000),
+					(int)(event->data.mag.vect[2]*1000),
+					(int)(event->data.mag.bias[0]*1000),
+					(int)(event->data.mag.bias[1]*1000),
+					(int)(event->data.mag.bias[2]*1000));
+			break;
+		case INV_SENSOR_TYPE_GAME_ROTATION_VECTOR:
+		case INV_SENSOR_TYPE_ROTATION_VECTOR:
+		case INV_SENSOR_TYPE_GEOMAG_ROTATION_VECTOR:
+			NRF_LOG_INFO("RV: %d %d %d %d Accuracy: %d %d", //inv_sensor_str(event->sensor),
+					(int)(event->data.quaternion.quat[0]*1000),
+					(int)(event->data.quaternion.quat[1]*1000),
+					(int)(event->data.quaternion.quat[2]*1000),
+					(int)(event->data.quaternion.quat[3]*1000),
+					(int)(event->data.quaternion.accuracy*1000),
+						(int)(event->timestamp));
+					//(int)(event->data.quaternion.accuracy_flag));
+			break;
+		case INV_SENSOR_TYPE_ORIENTATION:
+//			NRF_LOG_INFO("data event %s (e-3):, %d, %d, %d, Accuracy: %d ", inv_sensor_str(event->sensor),
+//					(int)(event->data.orientation.x*1000),
+//					(int)(event->data.orientation.y*1000),
+//					(int)(event->data.orientation.z*1000),
+//					(int)(event->data.orientation.accuracy_flag*1000)); // 0 - 3: not calibrated - fully calibrated
+		NRF_LOG_INFO("%d, %d, %d, %d, %d, %d", // rewritten write funtion to allow easier plotting
+					(int)(event->data.orientation.x),
+					(int)(event->data.orientation.y),
+					(int)(event->data.orientation.z),
+//					(int)(event->data.orientation.accuracy_flag),
+					(int)(event->data.gyr.accuracy_flag),
+					(int)(event->data.acc.accuracy_flag),	
+					(int)(event->data.mag.accuracy_flag)); // 0 - 3: not calibrated - fully calibrated
+			break;
+		case INV_SENSOR_TYPE_BAC:
+			INV_MSG(INV_MSG_LEVEL_INFO, "data event %s : %d %s", inv_sensor_str(event->sensor),
+					event->data.bac.event, activityName(event->data.bac.event));
+			break;
+		case INV_SENSOR_TYPE_STEP_COUNTER:
+			NRF_LOG_INFO("data event %s : %lu", inv_sensor_str(event->sensor),
+					(unsigned long)event->data.step.count);
+			break;
+		case INV_SENSOR_TYPE_PICK_UP_GESTURE:
+		case INV_SENSOR_TYPE_STEP_DETECTOR:
+		case INV_SENSOR_TYPE_SMD:
+		case INV_SENSOR_TYPE_B2S:
+		case INV_SENSOR_TYPE_TILT_DETECTOR:
+		default:
+			INV_MSG(INV_MSG_LEVEL_INFO, "data event %s : ...", inv_sensor_str(event->sensor));
+			break;
+	}
+}
+}
+
+/*
+ * A listener onject will handle sensor events
+ */
+inv_sensor_listener_t sensor_listener = {
+        sensor_event_cb, /* callback that will receive sensor events */
+        (void *)0xDEAD   /* some pointer passed to the callback */
+};
+
+
+/*
+ * Printer function for IDD message facility
+ */
+void msg_printer(int level, const char * str, va_list ap)
+{
+	NRF_LOG_INFO(str);
+}
+
+
+
