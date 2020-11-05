@@ -48,3 +48,11 @@
 .\_build\imu.o: ..\..\..\..\..\..\modules\nrfx\hal/nrf_twim.h
 .\_build\imu.o: ..\..\..\..\..\..\modules\nrfx\drivers\include\nrfx_twi.h
 .\_build\imu.o: ..\..\..\..\..\..\modules\nrfx\hal/nrf_twi.h
+.\_build\imu.o: ..\..\..\..\..\..\integration\nrfx\legacy\nrf_drv_timer.h
+.\_build\imu.o: ..\..\..\..\..\..\modules\nrfx\drivers\include\nrfx_timer.h
+.\_build\imu.o: ..\..\..\..\..\..\modules\nrfx\hal/nrf_timer.h
+.\_build\imu.o: ..\..\..\..\..\..\components\libraries\bsp\bsp.h
+.\_build\imu.o: ..\..\..\..\..\..\components\boards\boards.h
+.\_build\imu.o: ..\..\..\..\..\..\modules\nrfx\hal\nrf_gpio.h
+.\_build\imu.o: ..\..\..\..\..\..\components\boards\pca10040.h
+.\_build\imu.o: ..\..\..\..\..\..\components\libraries\delay\nrf_delay.h

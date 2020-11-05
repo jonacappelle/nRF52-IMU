@@ -87,3 +87,47 @@ int my_serif_open_write_reg(void * context, uint8_t reg, const uint8_t * wbuffer
 				}
 //        return 0; // shall return a negative value on error
 }
+
+
+// Timer
+#include <stdbool.h>
+#include <stdint.h>
+#include "nrf.h"
+#include "nrf_drv_timer.h"
+#include "bsp.h"
+#include "app_error.h"
+
+#include "nrf_delay.h"
+
+extern const nrf_drv_timer_t TIMER_MICROS;
+
+/*
+ * Time implementation for Icm20948.
+ */
+uint64_t inv_icm20948_get_time_us(void)
+{	
+				uint32_t time_us = nrf_drv_timer_capture(&TIMER_MICROS, NRF_TIMER_CC_CHANNEL0);
+//				NRF_LOG_INFO("Timer value requested: %d", time_us);
+				return time_us;
+}
+
+/* 
+ * High resolution sleep implementation for Icm20948.
+ * Used at initilization stage. ~100us is sufficient.
+ */
+void inv_icm20948_sleep_us(int us)
+{
+        /*
+         * You may provide a sleep function that blocks the current programm
+         * execution for the specified amount of us
+         */
+//				NRF_LOG_INFO("us value requested");
+	
+        (void)us;
+
+	
+				nrf_delay_us(us);
+}
+
+
+

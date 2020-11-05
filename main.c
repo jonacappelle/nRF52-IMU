@@ -19,14 +19,6 @@
 #include "Invn/DynamicProtocol/DynProtocol.h"
 #include "Invn/DynamicProtocol/DynProtocolTransportUart.h"
 
-// Timer
-#include <stdbool.h>
-#include <stdint.h>
-#include "nrf.h"
-#include "nrf_drv_timer.h"
-#include "bsp.h"
-#include "app_error.h"
-
 // GPIO Interrupt
 #include <stdbool.h>
 #include "nrf.h"
@@ -41,6 +33,7 @@
 #include "imu.h"
 #include "string.h"
 #include "usr_twi.h"
+#include "usr_tmr.h"
 
 
 ////////////////
@@ -49,8 +42,6 @@
 
 /* Define msg level */
 #define MSG_LEVEL INV_MSG_LEVEL_DEBUG
-
-
 
 /* I2C address of IMU */
 #define ICM_20948_I2C_ADDRESS		0x69U
@@ -64,17 +55,13 @@
 /* Static variable to keep track if an interrupt has occurred in main loop */
 static bool interrupt = false;
 
-/* Timer instance for us timer (TIMER 0)*/
-const nrf_drv_timer_t TIMER_MICROS = NRF_DRV_TIMER_INSTANCE(0);
-
+/* Activity classification */
 const char * activityName(int act);
 
 
 /* Interrupt pin handeler callback function */
 void in_pin_handler(nrf_drv_gpiote_pin_t pin, nrf_gpiote_polarity_t action);
 
-
-static void msg_printer(int level, const char * str, va_list ap);
 
 /*
  * Printer function for IDD message facility
@@ -86,39 +73,6 @@ static void msg_printer(int level, const char * str, va_list ap)
 
 
 
-/* 
- * High resolution sleep implementation for Icm20948.
- * Used at initilization stage. ~100us is sufficient.
- */
-void inv_icm20948_sleep_us(int us)
-{
-        /*
-         * You may provide a sleep function that blocks the current programm
-         * execution for the specified amount of us
-         */
-//				NRF_LOG_INFO("us value requested");
-	
-        (void)us;
-
-	
-				nrf_delay_us(us);
-}
-/*
- * Time implementation for Icm20948.
- */
-uint64_t inv_icm20948_get_time_us(void)
-{
-        /*
-         * You may provide a time function that return a monotonic timestamp in us
-         */
-	
-	
-				uint32_t time_us = nrf_drv_timer_capture(&TIMER_MICROS, NRF_TIMER_CC_CHANNEL0);
-//				NRF_LOG_INFO("Timer value requested: %d", time_us);
-				return time_us;
-	
-//        return 0;
-}
 /*
  * Callback called upon sensor event reception
  * This function is called in the same function than inv_device_poll()
@@ -197,7 +151,8 @@ static void sensor_event_cb(const inv_sensor_event_t * event, void * arg)
 					(int)(event->data.quaternion.quat[2]*1000),
 					(int)(event->data.quaternion.quat[3]*1000),
 					(int)(event->data.quaternion.accuracy*1000),
-					(int)(event->data.quaternion.accuracy_flag));
+						(int)(event->timestamp));
+					//(int)(event->data.quaternion.accuracy_flag));
 			break;
 		case INV_SENSOR_TYPE_ORIENTATION:
 //			NRF_LOG_INFO("data event %s (e-3):, %d, %d, %d, Accuracy: %d ", inv_sensor_str(event->sensor),
@@ -248,19 +203,9 @@ static uint8_t dmp3_image[] = {
 	#include "Invn/Images/icm20948_img.dmp3a.h"
 // #include "path/to/Icm30630Dmp3Image.h"
 };
-/*
- * serif_hal object that abstract low level serial interface between host and device
- */
-extern int my_serif_open_read_reg(void * context, uint8_t reg, uint8_t * data, uint32_t len);
-extern int my_serif_open_write_reg(void * context, uint8_t reg, const uint8_t * data, uint32_t len);
-const inv_serif_hal_t serif_instance = {
-    my_serif_open_read_reg,      /* user read_register() function that reads a register over the serial interface */
-    my_serif_open_write_reg,     /* user write_register() function that writes a register over the serial interface */
-    256,                    /* maximum number of bytes allowed per read transaction */
-    256,                    /* maximum number of bytes allowed per write transaction */
-    INV_SERIF_HAL_TYPE_I2C, /* type of the serial interface used between SPI or I2C */
-    (void *)0xDEADBEEF      /* some context pointer passed to read/write callbacks */
-};
+
+
+extern const inv_serif_hal_t my_serif_instance;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -322,52 +267,6 @@ static void gpio_init(void)
 
 
 
-/**
- * @brief Handler for timer events.
- */
-void timer_led_event_handler(nrf_timer_event_t event_type, void* p_context)
-{
-	// TODO: make timer 64 bits and run forever or reset timer when device goes to sleep if measurements are not longer than 1.19 hours
-    switch (event_type)
-    {
-        case NRF_TIMER_EVENT_COMPARE0:
-            NRF_LOG_INFO("Timer finished");
-            break;
-
-        default:
-            //Do nothing.
-						NRF_LOG_INFO("Timer callback, timer cleared");
-						nrf_drv_timer_clear(&TIMER_MICROS); // clear timer when it overflows
-            break;
-    }
-}
-
-void timer_init (void)
-{
-	// TODO: Timer will overflow in 1.19 hours
-    ret_code_t err_code;
-
-    const nrfx_timer_config_t timer_config = {
-				.frequency = (nrf_timer_frequency_t)NRF_TIMER_FREQ_1MHz,      ///< Frequency 1 MHz
-				.mode = (nrf_timer_mode_t)NRF_TIMER_MODE_TIMER,     ///< Mode of operation.
-				.bit_width = (nrf_timer_bit_width_t)NRF_TIMER_BIT_WIDTH_32,   ///< Bit width 32 bits
-				.interrupt_priority = NRFX_TIMER_DEFAULT_CONFIG_IRQ_PRIORITY, ///< Interrupt priority.
-				.p_context = NULL          																	///< Context passed to interrupt handler.
-    };
-
-		err_code = nrf_drv_timer_init(&TIMER_MICROS, &timer_config, timer_led_event_handler);
-    APP_ERROR_CHECK(err_code);
-
-//		uint32_t time_ticks;
-//		time_ticks = nrf_drv_timer_ms_to_ticks(&TIMER_MICROS, time_ms);
-		
-//		nrf_drv_timer_extended_compare(&TIMER_LED, NRF_TIMER_CC_CHANNEL0, time_ticks, NRF_TIMER_SHORT_COMPARE0_CLEAR_MASK, true);
-		
-		nrf_drv_timer_enable(&TIMER_MICROS);
-}
-
-
-
 
 /**
  * @brief Function for main application entry.
@@ -419,7 +318,7 @@ int main(void)
 		 * - reference to listener that will catch sensor events,
 		 */
 //		inv_device_icm20948_init(&device_icm20948, idd_io_hal_get_serif_instance_i2c(),&sensor_listener, dmp3_image, sizeof(dmp3_image));
-		inv_device_icm20948_init2(&device_icm20948, &serif_instance, &sensor_listener, dmp3_image, sizeof(dmp3_image));
+		inv_device_icm20948_init2(&device_icm20948, &my_serif_instance, &sensor_listener, dmp3_image, sizeof(dmp3_image));
 		NRF_LOG_FLUSH();
 		
 		/*

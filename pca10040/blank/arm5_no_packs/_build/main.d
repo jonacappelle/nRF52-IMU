@@ -92,10 +92,6 @@
 .\_build\main.o: ..\..\blank\Invn/VSensor/VSensorData.h
 .\_build\main.o: ..\..\blank\Invn/DynamicProtocol/DynProtocolTransportUart.h
 .\_build\main.o: ..\..\blank\Invn/DynamicProtocol/DynProtocolTransport.h
-.\_build\main.o: ..\..\..\..\..\..\integration\nrfx\legacy\nrf_drv_timer.h
-.\_build\main.o: ..\..\..\..\..\..\modules\nrfx\drivers\include\nrfx_timer.h
-.\_build\main.o: ..\..\..\..\..\..\modules\nrfx\hal/nrf_timer.h
-.\_build\main.o: ..\..\..\..\..\..\components\libraries\bsp\bsp.h
 .\_build\main.o: ..\..\..\..\..\..\integration\nrfx\legacy\nrf_drv_gpiote.h
 .\_build\main.o: ..\..\..\..\..\..\modules\nrfx\drivers\include\nrfx_gpiote.h
 .\_build\main.o: ..\..\..\..\..\..\modules\nrfx\hal/nrf_gpiote.h
@@ -103,4 +99,9 @@
 .\_build\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdarg.h
 .\_build\main.o: ..\arm5_no_packs\imu.h
 .\_build\main.o: ..\arm5_no_packs\usr_twi.h
+.\_build\main.o: ..\arm5_no_packs\usr_tmr.h
+.\_build\main.o: ..\..\..\..\..\..\integration\nrfx\legacy\nrf_drv_timer.h
+.\_build\main.o: ..\..\..\..\..\..\modules\nrfx\drivers\include\nrfx_timer.h
+.\_build\main.o: ..\..\..\..\..\..\modules\nrfx\hal/nrf_timer.h
+.\_build\main.o: ..\..\..\..\..\..\components\libraries\bsp\bsp.h
 .\_build\main.o: ..\..\blank\Invn/Images/icm20948_img.dmp3a.h
