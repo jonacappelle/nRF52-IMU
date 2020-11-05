@@ -3,7 +3,7 @@
 <title>Static Call Graph - [.\_build\nrf52832_xxaa.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\_build\nrf52832_xxaa.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060960: Last Updated: Wed Nov 04 18:03:43 2020
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060960: Last Updated: Thu Nov 05 11:32:15 2020
 <BR><P>
 <H3>Maximum Stack Usage =        792 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -2497,8 +2497,8 @@ Global Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sensor_event_cb
 </UL>
 
-<P><STRONG><a name="[31]"></a>main</STRONG> (Thumb, 522 bytes, Stack size 24 bytes, main.o(i.main))
-<BR><BR>[Stack]<UL><LI>Max Depth = 320<LI>Call Chain = main &rArr; nrf_log_default_backends_init &rArr; nrf_log_backend_uart_init &rArr; uart_init &rArr; app_error_handler_bare &rArr; app_error_fault_handler &rArr; nrf_log_frontend_dequeue &rArr; nrf_memobj_write &rArr; memobj_op &rArr; __aeabi_memcpy
+<P><STRONG><a name="[31]"></a>main</STRONG> (Thumb, 658 bytes, Stack size 16 bytes, main.o(i.main))
+<BR><BR>[Stack]<UL><LI>Max Depth = 312<LI>Call Chain = main &rArr; nrf_log_default_backends_init &rArr; nrf_log_backend_uart_init &rArr; uart_init &rArr; app_error_handler_bare &rArr; app_error_fault_handler &rArr; nrf_log_frontend_dequeue &rArr; nrf_memobj_write &rArr; memobj_op &rArr; __aeabi_memcpy
 </UL>
 <BR>[Calls]<UL><LI><a href="#[1ac]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_log_init
 <LI><a href="#[ab]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_log_frontend_std_1
@@ -3173,7 +3173,7 @@ Global Symbols
 <H3>
 Local Symbols
 </H3>
-<P><STRONG><a name="[aa]"></a>check_rc</STRONG> (Thumb, 46 bytes, Stack size 8 bytes, main.o(i.check_rc))
+<P><STRONG><a name="[aa]"></a>check_rc</STRONG> (Thumb, 50 bytes, Stack size 8 bytes, main.o(i.check_rc))
 <BR><BR>[Stack]<UL><LI>Max Depth = 272<LI>Call Chain = check_rc &rArr; nrf_log_frontend_std_1 &rArr; std_n &rArr; nrf_log_frontend_dequeue &rArr; nrf_memobj_write &rArr; memobj_op &rArr; __aeabi_memcpy
 </UL>
 <BR>[Calls]<UL><LI><a href="#[ab]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_log_frontend_std_1
@@ -3224,7 +3224,7 @@ Local Symbols
 <LI><a href="#[1b1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_delay_ms
 </UL>
 
-<P><STRONG><a name="[1]"></a>sensor_event_cb</STRONG> (Thumb, 1020 bytes, Stack size 40 bytes, main.o(i.sensor_event_cb))
+<P><STRONG><a name="[1]"></a>sensor_event_cb</STRONG> (Thumb, 1030 bytes, Stack size 40 bytes, main.o(i.sensor_event_cb))
 <BR><BR>[Stack]<UL><LI>Max Depth = 344<LI>Call Chain = sensor_event_cb &rArr; nrf_log_frontend_std_6 &rArr; std_n &rArr; nrf_log_frontend_dequeue &rArr; nrf_memobj_write &rArr; memobj_op &rArr; __aeabi_memcpy
 </UL>
 <BR>[Calls]<UL><LI><a href="#[1e4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_log_frontend_std_6

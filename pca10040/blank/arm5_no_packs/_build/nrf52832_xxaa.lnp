@@ -66,6 +66,7 @@
 ".\_build\icm20948selftest.o"
 ".\_build\icm20948setup.o"
 ".\_build\icm20948transport.o"
+".\_build\usr_twi.o"
 ".\_build\arm_startup_nrf52.o"
 ".\_build\system_nrf52.o"
 --library_type=microlib --strict --scatter ".\_build\nrf52832_xxaa.sct"

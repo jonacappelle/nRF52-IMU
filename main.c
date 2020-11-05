@@ -1,5 +1,8 @@
 // nRF52 communication with ICM20948 IMU using DMP for signal processing
 
+////////////////
+//  INCLUDES  //
+////////////////
 #include <stdio.h>
 #include "boards.h"
 #include "app_util_platform.h"
@@ -16,10 +19,6 @@
 #include "Invn/DynamicProtocol/DynProtocol.h"
 #include "Invn/DynamicProtocol/DynProtocolTransportUart.h"
 
-#include "imu.h"
-
-#include "string.h"
-
 // Timer
 #include <stdbool.h>
 #include <stdint.h>
@@ -35,13 +34,21 @@
 #include "app_error.h"
 #include "boards.h"
 
-
+// INV_MSG functionality
 #include "Invn/EmbUtils/Message.h"
 
+// Own includes
+#include "imu.h"
+#include "string.h"
+#include "usr_twi.h"
+
+
+////////////////
+//  DEFINES   //
+////////////////
 
 /* Define msg level */
 #define MSG_LEVEL INV_MSG_LEVEL_DEBUG
-
 
 /* TWI instance ID. */
 #define TWI_INSTANCE_ID     0
@@ -50,6 +57,15 @@
 #define ICM_20948_I2C_ADDRESS		0x69U
 #define ICM_20948_WHOAMI				0x00U
 
+/* Interrupt pin number */
+#define INT_PIN	2
+
+
+
+/* Static variable to keep track if an interrupt has occurred in main loop */
+static bool interrupt = false;
+
+/* Timer instance for us timer (TIMER 0)*/
 const nrf_drv_timer_t TIMER_MICROS = NRF_DRV_TIMER_INSTANCE(0);
 
 const char * activityName(int act);
@@ -62,6 +78,9 @@ const nrf_drv_twi_t m_twi = NRF_DRV_TWI_INSTANCE(TWI_INSTANCE_ID);
 
 /* Buffer for samples read from IMU */
 static uint8_t data[1];
+
+/* Interrupt pin handeler callback function */
+void in_pin_handler(nrf_drv_gpiote_pin_t pin, nrf_gpiote_polarity_t action);
 
 
 static void msg_printer(int level, const char * str, va_list ap);
@@ -131,7 +150,7 @@ void twi_init (void)
     nrf_drv_twi_enable(&m_twi);
 }
 
-//write byte to register
+/* Low level write I2C functionality */
 ret_code_t i2c_write_byte(const nrf_drv_twi_t *twi_handle, uint8_t address, uint8_t sub_address, const uint8_t* data, uint32_t len, bool stop)
 {   
 		ret_code_t err_code;
@@ -153,7 +172,7 @@ ret_code_t i2c_write_byte(const nrf_drv_twi_t *twi_handle, uint8_t address, uint
 		return err_code;
 }
 
-//reading byte or bytes from register            
+/* reading byte or bytes from register before writing: special function*/        
 ret_code_t i2c_write_forread_byte(const nrf_drv_twi_t *twi_handle, uint8_t address, uint8_t sub_address)
 {   
 		ret_code_t err_code;
@@ -168,7 +187,7 @@ ret_code_t i2c_write_forread_byte(const nrf_drv_twi_t *twi_handle, uint8_t addre
 		return err_code;
 }
 
-        
+/* Low level read I2C functionality */
 ret_code_t i2c_read_bytes(const nrf_drv_twi_t *twi_handle, uint8_t address, uint8_t sub_address, uint8_t * dest, uint8_t dest_count)
 {   
 		ret_code_t err_code;  
@@ -190,12 +209,6 @@ ret_code_t i2c_read_bytes(const nrf_drv_twi_t *twi_handle, uint8_t address, uint
 	
 		return err_code;
 }
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
-
 
 
 
@@ -308,11 +321,12 @@ static void sensor_event_cb(const inv_sensor_event_t * event, void * arg)
 		case INV_SENSOR_TYPE_GAME_ROTATION_VECTOR:
 		case INV_SENSOR_TYPE_ROTATION_VECTOR:
 		case INV_SENSOR_TYPE_GEOMAG_ROTATION_VECTOR:
-			NRF_LOG_INFO("data event %s (e-3): %d %d %d %d %d", inv_sensor_str(event->sensor),
+			NRF_LOG_INFO("RV: %d %d %d %d Accuracy: %d %d", //inv_sensor_str(event->sensor),
 					(int)(event->data.quaternion.quat[0]*1000),
 					(int)(event->data.quaternion.quat[1]*1000),
 					(int)(event->data.quaternion.quat[2]*1000),
 					(int)(event->data.quaternion.quat[3]*1000),
+					(int)(event->data.quaternion.accuracy*1000),
 					(int)(event->data.quaternion.accuracy_flag));
 			break;
 		case INV_SENSOR_TYPE_ORIENTATION:
@@ -386,7 +400,7 @@ static void check_rc(int rc)
 	if(rc == -1) {
 		NRF_LOG_INFO("BAD RC=%d", rc);
 		NRF_LOG_FLUSH();
-		//while(1);
+		while(1);
 	}
 }
 
@@ -414,9 +428,8 @@ const char * activityName(int act)
 	}
 }
 
-#define INT_PIN	2
 
-void in_pin_handler(nrf_drv_gpiote_pin_t pin, nrf_gpiote_polarity_t action);
+
 /**
  * @brief Function for configuring: PIN_IN pin for input, PIN_OUT pin for output,
  * and configures GPIOTE to give an interrupt on pin change.
@@ -427,11 +440,6 @@ static void gpio_init(void)
 
     err_code = nrf_drv_gpiote_init();
     APP_ERROR_CHECK(err_code);
-
-//    nrf_drv_gpiote_out_config_t out_config = GPIOTE_CONFIG_OUT_SIMPLE(false);
-
-//    err_code = nrf_drv_gpiote_out_init(PIN_OUT, &out_config);
-//    APP_ERROR_CHECK(err_code);
 
     nrf_drv_gpiote_in_config_t in_config = GPIOTE_CONFIG_IN_SENSE_TOGGLE(true);
     in_config.pull = NRF_GPIO_PIN_PULLUP;
@@ -449,6 +457,7 @@ static void gpio_init(void)
  */
 void timer_led_event_handler(nrf_timer_event_t event_type, void* p_context)
 {
+	// TODO: make timer 64 bits and run forever or reset timer when device goes to sleep if measurements are not longer than 1.19 hours
     switch (event_type)
     {
         case NRF_TIMER_EVENT_COMPARE0:
@@ -487,7 +496,8 @@ void timer_init (void)
 		nrf_drv_timer_enable(&TIMER_MICROS);
 }
 
-		bool interrupt = false;
+
+
 
 /**
  * @brief Function for main application entry.
@@ -500,36 +510,26 @@ int main(void)
     NRF_LOG_INFO("\r\nSTART");
 		NRF_LOG_FLUSH();
 	
-    	/*
-	 * Setup message facility to see internal traces from IDD
-	 */
-	INV_MSG_SETUP(MSG_LEVEL, msg_printer);
+		/*
+		 * Setup message facility to see internal traces from IDD
+		 */
+		INV_MSG_SETUP(MSG_LEVEL, msg_printer);
 
-	
 		INV_MSG(INV_MSG_LEVEL_INFO, "###################################");
-	INV_MSG(INV_MSG_LEVEL_INFO, "#          20948 example          #");
-	INV_MSG(INV_MSG_LEVEL_INFO, "###################################");
-	NRF_LOG_FLUSH();
-	
-		uint8_t data1[4] = { 0x01, 0x02, 0x03, 0x04 };
-		
+		INV_MSG(INV_MSG_LEVEL_INFO, "#          20948 example          #");
+		INV_MSG(INV_MSG_LEVEL_INFO, "###################################");
+		NRF_LOG_FLUSH();
+
+		/*
+		 * Initialize GPIO pins
+		 */
 		gpio_init();
 		
+		/*
+		 * Initialize us timer
+		 */
 		timer_init();
-		
-		uint32_t time_us;
-		uint32_t time_ticks;
-		
-//		while(1)
-//		{
-//			time_ticks = nrf_drv_timer_capture(&TIMER_MICROS, NRF_TIMER_CC_CHANNEL0);
-////			nrf_drv_timer_us_to_ticks(&TIMER_MICROS, time_us);
-//			nrf_delay_ms(1000);
-//			NRF_LOG_INFO("%d", time_ticks);
-//			NRF_LOG_FLUSH();
-//		}
-		
-/////////////////////////////////////////////////////////////////
+
 		int rc = 0;
 		
 		inv_device_t * device; /* just a handy variable to keep the handle to device object */
@@ -538,14 +538,9 @@ int main(void)
 		/*
 		 * Open serial interface (SPI or I2C) before playing with the device
 		 */
-		/* call low level drive initialization here... */
 		twi_init();
 		NRF_LOG_INFO("i2c init");
 		NRF_LOG_FLUSH();
-		
-		
-//		i2c_write_byte(&m_twi, ICM_20948_I2C_ADDRESS, ICM_20948_WHOAMI, data1, 4, false);
-		
 		
 		/*
 		 * Create ICM20948 Device 
@@ -553,33 +548,44 @@ int main(void)
 		 * - reference to serial interface object,
 		 * - reference to listener that will catch sensor events,
 		 */
+//		inv_device_icm20948_init(&device_icm20948, idd_io_hal_get_serif_instance_i2c(),&sensor_listener, dmp3_image, sizeof(dmp3_image));
 		inv_device_icm20948_init2(&device_icm20948, &serif_instance, &sensor_listener, dmp3_image, sizeof(dmp3_image));
 		NRF_LOG_FLUSH();
+		
 		/*
 		 * Simply get generic device handle from Icm20948 Device
 		 */
 		device = inv_device_icm20948_get_base(&device_icm20948);
 		NRF_LOG_FLUSH();
+		
 		/*
 		 * Just get the whoami
 		 */
 		rc += inv_device_whoami(device, &whoami);
 		check_rc(rc);
-		/* ... do something with whoami */ 
 		NRF_LOG_INFO("Data: 0x%x", whoami);
 		NRF_LOG_FLUSH();
 		
+		nrf_delay_ms(500);
 		
 		/*
 		 * Configure and initialize the Icm20948 device
 		 */
+		NRF_LOG_INFO("Setting up ICM20948");
 		rc += inv_device_setup(device);
 		check_rc(rc);
 		NRF_LOG_FLUSH();
 		
+		// Load DMP
+		NRF_LOG_INFO("Load DMP Image");
 		rc += inv_device_load(device, NULL, dmp3_image, sizeof(dmp3_image), true /* verify */, NULL);
 		check_rc(rc);
 		NRF_LOG_FLUSH();
+		
+		// Test if sensor is available
+		NRF_LOG_INFO("Ping sensor");
+		rc += inv_device_ping_sensor(device, INV_SENSOR_TYPE_ROTATION_VECTOR);
+		check_rc(rc);
 		
 		nrf_delay_ms(2000);
 		
@@ -587,12 +593,25 @@ int main(void)
 //		check_rc(rc);
 //		NRF_LOG_FLUSH();
 		
+//		rc += inv_device_set_sensor_period_us(device, INV_SENSOR_TYPE_GYROSCOPE, 50000); // 20 Hz
+//		rc += inv_device_start_sensor(device, INV_SENSOR_TYPE_GYROSCOPE);
+//		rc += inv_device_set_sensor_period_us(device, INV_SENSOR_TYPE_ACCELEROMETER, 50000); // 20 Hz
+//		rc += inv_device_start_sensor(device, INV_SENSOR_TYPE_ACCELEROMETER);
+//		rc += inv_device_set_sensor_period_us(device, INV_SENSOR_TYPE_MAGNETOMETER, 50000); // 20 Hz
+//		rc += inv_device_start_sensor(device, INV_SENSOR_TYPE_MAGNETOMETER);
 
+
+		// Start 9DoF quaternion output
+		NRF_LOG_INFO("Start sensors");
 		rc += inv_device_set_sensor_period_us(device, INV_SENSOR_TYPE_ROTATION_VECTOR, 50000); // 20 Hz
+		check_rc(rc);
 		rc += inv_device_start_sensor(device, INV_SENSOR_TYPE_ROTATION_VECTOR);
-
+		check_rc(rc);
 		
+		nrf_delay_ms(1000);
 		
+		// Loop: IMU gives interrupt -> bool interrupt = true -> poll device for data
+		////////////////////////////////////////////////////////////////		
 		while(1)
 		{
 			NRF_LOG_FLUSH();
@@ -601,26 +620,13 @@ int main(void)
 				inv_device_poll(device);
 				interrupt = false;
 			}
-
 		}
 		////////////////////////////////////////////////////////////////
-		
-	
-//		i2c_write_byte(&m_twi, ICM_20948_I2C_ADDRESS, 0x06, data1, true);
-	
-    while (true)
-    {
-        nrf_delay_ms(100);
-				NRF_LOG_FLUSH();
-
-				i2c_read_bytes(&m_twi, ICM_20948_I2C_ADDRESS, 0x33, data, 1); // GYRO X H register	
-    }
 }
 
 void in_pin_handler(nrf_drv_gpiote_pin_t pin, nrf_gpiote_polarity_t action)
 {
     //NRF_LOG_INFO("Interrupt Occured!");
-	
 		interrupt = true;
 }
 
