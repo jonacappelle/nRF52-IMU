@@ -246,8 +246,7 @@ static void sensor_event_cb(const inv_sensor_event_t * event, void * arg)
 					(int)(event->data.quaternion.quat[2]*1000),
 					(int)(event->data.quaternion.quat[3]*1000),
 					(int)(event->data.quaternion.accuracy*1000),
-						(int)(event->timestamp));
-					//(int)(event->data.quaternion.accuracy_flag));
+					(int)(event->data.quaternion.accuracy_flag));
 			break;
 		case INV_SENSOR_TYPE_ORIENTATION:
 //			NRF_LOG_INFO("data event %s (e-3):, %d, %d, %d, Accuracy: %d ", inv_sensor_str(event->sensor),
@@ -265,7 +264,9 @@ static void sensor_event_cb(const inv_sensor_event_t * event, void * arg)
 					(int)(event->data.mag.accuracy_flag)); // 0 - 3: not calibrated - fully calibrated
 			break;
 		case INV_SENSOR_TYPE_BAC:
-			INV_MSG(INV_MSG_LEVEL_INFO, "data event %s : %d %s", inv_sensor_str(event->sensor),
+//			INV_MSG(INV_MSG_LEVEL_INFO, "data event %s : %d %s", inv_sensor_str(event->sensor),
+//					event->data.bac.event, activityName(event->data.bac.event));
+				NRF_LOG_INFO("data event %s : %d %s", inv_sensor_str(event->sensor),
 					event->data.bac.event, activityName(event->data.bac.event));
 			break;
 		case INV_SENSOR_TYPE_STEP_COUNTER:
