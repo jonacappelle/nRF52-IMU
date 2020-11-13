@@ -148,12 +148,7 @@ int main(void)
 		check_rc(rc);
 		NRF_LOG_FLUSH();
 		
-		// Test if sensor is available
-		NRF_LOG_INFO("Ping sensor");
-		rc += inv_device_ping_sensor(device, INV_SENSOR_TYPE_ROTATION_VECTOR);
-		check_rc(rc);
 		
-		nrf_delay_ms(2000);
 		
 //		rc += inv_device_set_sensor_period_us(device, INV_SENSOR_TYPE_RAW_GYROSCOPE, 50000);
 //		check_rc(rc);
@@ -168,21 +163,36 @@ int main(void)
 
 
 		// Start 9DoF quaternion output
-		NRF_LOG_INFO("Start sensors");
-//		rc += inv_device_set_sensor_period_us(device, INV_SENSOR_TYPE_ROTATION_VECTOR, 50000); // 20 Hz
+//		NRF_LOG_INFO("Start sensors");
+//		NRF_LOG_INFO("Ping sensor");
+//		rc += inv_device_ping_sensor(device, INV_SENSOR_TYPE_ROTATION_VECTOR);
+//		check_rc(rc);
+//		rc += inv_device_set_sensor_period_us(device, INV_SENSOR_TYPE_ROTATION_VECTOR, 50000); // 200 Hz
 //		check_rc(rc);
 //		rc += inv_device_start_sensor(device, INV_SENSOR_TYPE_ROTATION_VECTOR);
 //		check_rc(rc);
-
-		/* Activity classification */
-		rc += inv_device_start_sensor(device, INV_SENSOR_TYPE_BAC);
+		
+		// Start 9DoF euler angles output
+		NRF_LOG_INFO("Start sensors");
+		NRF_LOG_INFO("Ping sensor");
+		rc += inv_device_ping_sensor(device, INV_SENSOR_TYPE_ORIENTATION);
+		check_rc(rc);
+		rc += inv_device_set_sensor_period_us(device, INV_SENSOR_TYPE_ORIENTATION, 50000); // 200 Hz
+		check_rc(rc);
+		rc += inv_device_start_sensor(device, INV_SENSOR_TYPE_ORIENTATION);
 		check_rc(rc);
 		
+		nrf_delay_ms(2000);
+		
+		/* Activity classification */
+//		rc += inv_device_start_sensor(device, INV_SENSOR_TYPE_BAC);
+//		check_rc(rc);
+		
 		/* Step Counter */
-		rc += inv_device_ping_sensor(device, INV_SENSOR_TYPE_STEP_COUNTER);
-		check_rc(rc);
-		rc += inv_device_start_sensor(device, INV_SENSOR_TYPE_STEP_COUNTER);
-		check_rc(rc);
+//		rc += inv_device_ping_sensor(device, INV_SENSOR_TYPE_STEP_COUNTER);
+//		check_rc(rc);
+//		rc += inv_device_start_sensor(device, INV_SENSOR_TYPE_STEP_COUNTER);
+//		check_rc(rc);
 		
 		
 		nrf_delay_ms(1000);
