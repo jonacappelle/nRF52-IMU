@@ -1,0 +1,10 @@
+.\_build\logger.o: ..\Invn\EmbUtils\Logger.c
+.\_build\logger.o: ..\Invn\EmbUtils\Logger.h
+.\_build\logger.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdarg.h
+.\_build\logger.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
+.\_build\logger.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\_build\logger.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
+.\_build\logger.o: ..\Invn\EmbUtils\InvFormat.h
+.\_build\logger.o: ..\Invn\EmbUtils\InvAssert.h
+.\_build\logger.o: ..\Invn\EmbUtils\RingByteBuffer.h
+.\_build\logger.o: ..\..\blank\Invn/InvBool.h

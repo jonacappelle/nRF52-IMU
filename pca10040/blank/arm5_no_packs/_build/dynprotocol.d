@@ -1,0 +1,11 @@
+.\_build\dynprotocol.o: ..\Invn\DynamicProtocol\DynProtocol.c
+.\_build\dynprotocol.o: ..\Invn\DynamicProtocol\DynProtocol.h
+.\_build\dynprotocol.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\_build\dynprotocol.o: ..\..\blank\Invn/VSensor/VSensorConfig.h
+.\_build\dynprotocol.o: ..\..\blank\Invn/VSensor/VSensorData.h
+.\_build\dynprotocol.o: ..\..\blank\Invn/EmbUtils/Message.h
+.\_build\dynprotocol.o: ..\..\blank\Invn/InvExport.h
+.\_build\dynprotocol.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdarg.h
+.\_build\dynprotocol.o: ..\..\blank\Invn/EmbUtils/DataConverter.h
+.\_build\dynprotocol.o: ..\..\blank\Invn/InvError.h
+.\_build\dynprotocol.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h

@@ -240,13 +240,13 @@ static void sensor_event_cb(const inv_sensor_event_t * event, void * arg)
 		case INV_SENSOR_TYPE_GAME_ROTATION_VECTOR:
 		case INV_SENSOR_TYPE_ROTATION_VECTOR:
 		case INV_SENSOR_TYPE_GEOMAG_ROTATION_VECTOR:
-			NRF_LOG_INFO("RV: %d %d %d %d Accuracy: %d %d", //inv_sensor_str(event->sensor),
+			NRF_LOG_INFO("RV: %d %d %d %d", //inv_sensor_str(event->sensor),
 					(int)(event->data.quaternion.quat[0]*1000),
 					(int)(event->data.quaternion.quat[1]*1000),
 					(int)(event->data.quaternion.quat[2]*1000),
-					(int)(event->data.quaternion.quat[3]*1000),
-					(int)(event->data.quaternion.accuracy*1000),
-					(int)(event->data.quaternion.accuracy_flag));
+					(int)(event->data.quaternion.quat[3]*1000));
+//					(int)(event->data.quaternion.accuracy*1000),
+//					(int)(event->data.quaternion.accuracy_flag));
 			break;
 		case INV_SENSOR_TYPE_ORIENTATION:
 //			NRF_LOG_INFO("data event %s (e-3):, %d, %d, %d, Accuracy: %d ", inv_sensor_str(event->sensor),
@@ -254,14 +254,14 @@ static void sensor_event_cb(const inv_sensor_event_t * event, void * arg)
 //					(int)(event->data.orientation.y*1000),
 //					(int)(event->data.orientation.z*1000),
 //					(int)(event->data.orientation.accuracy_flag*1000)); // 0 - 3: not calibrated - fully calibrated
-		NRF_LOG_INFO("%d, %d, %d, %d, %d, %d", // rewritten write funtion to allow easier plotting
+		NRF_LOG_INFO("%d, %d, %d", // rewritten write funtion to allow easier plotting
 					(int)(event->data.orientation.x),
 					(int)(event->data.orientation.y),
-					(int)(event->data.orientation.z),
+					(int)(event->data.orientation.z));
 //					(int)(event->data.orientation.accuracy_flag),
-					(int)(event->data.gyr.accuracy_flag),
-					(int)(event->data.acc.accuracy_flag),	
-					(int)(event->data.mag.accuracy_flag)); // 0 - 3: not calibrated - fully calibrated
+//					(int)(event->data.gyr.accuracy_flag),
+//					(int)(event->data.acc.accuracy_flag),	
+//					(int)(event->data.mag.accuracy_flag)); // 0 - 3: not calibrated - fully calibrated
 			break;
 		case INV_SENSOR_TYPE_BAC:
 //			INV_MSG(INV_MSG_LEVEL_INFO, "data event %s : %d %s", inv_sensor_str(event->sensor),

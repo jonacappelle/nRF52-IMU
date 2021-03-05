@@ -11,20 +11,20 @@
 .\_build\imu.o: ..\..\..\..\..\..\modules\nrfx\drivers/nrfx_common.h
 .\_build\imu.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
 .\_build\imu.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdbool.h
-.\_build\imu.o: C:\Users\u0139004\AppData\Local\Arm\Packs\NordicSemiconductor\nRF_DeviceFamilyPack\8.35.0\Device\Include\nrf.h
-.\_build\imu.o: C:\Users\u0139004\AppData\Local\Arm\Packs\NordicSemiconductor\nRF_DeviceFamilyPack\8.35.0\Device\Include\nrf52.h
-.\_build\imu.o: C:\Users\u0139004\AppData\Local\Arm\Packs\ARM\CMSIS\5.6.0\CMSIS\Core\Include\core_cm4.h
-.\_build\imu.o: C:\Users\u0139004\AppData\Local\Arm\Packs\ARM\CMSIS\5.6.0\CMSIS\Core\Include\cmsis_version.h
-.\_build\imu.o: C:\Users\u0139004\AppData\Local\Arm\Packs\ARM\CMSIS\5.6.0\CMSIS\Core\Include\cmsis_compiler.h
-.\_build\imu.o: C:\Users\u0139004\AppData\Local\Arm\Packs\ARM\CMSIS\5.6.0\CMSIS\Core\Include\cmsis_armcc.h
-.\_build\imu.o: C:\Users\u0139004\AppData\Local\Arm\Packs\ARM\CMSIS\5.6.0\CMSIS\Core\Include\mpu_armv7.h
-.\_build\imu.o: C:\Users\u0139004\AppData\Local\Arm\Packs\NordicSemiconductor\nRF_DeviceFamilyPack\8.35.0\Device\Include\system_nrf52.h
-.\_build\imu.o: C:\Users\u0139004\AppData\Local\Arm\Packs\NordicSemiconductor\nRF_DeviceFamilyPack\8.35.0\Device\Include\nrf52_bitfields.h
-.\_build\imu.o: C:\Users\u0139004\AppData\Local\Arm\Packs\NordicSemiconductor\nRF_DeviceFamilyPack\8.35.0\Device\Include\nrf51_to_nrf52.h
-.\_build\imu.o: C:\Users\u0139004\AppData\Local\Arm\Packs\NordicSemiconductor\nRF_DeviceFamilyPack\8.35.0\Device\Include\nrf52_name_change.h
-.\_build\imu.o: C:\Users\u0139004\AppData\Local\Arm\Packs\NordicSemiconductor\nRF_DeviceFamilyPack\8.35.0\Device\Include\compiler_abstraction.h
-.\_build\imu.o: C:\Users\u0139004\AppData\Local\Arm\Packs\NordicSemiconductor\nRF_DeviceFamilyPack\8.35.0\Device\Include\nrf_peripherals.h
-.\_build\imu.o: C:\Users\u0139004\AppData\Local\Arm\Packs\NordicSemiconductor\nRF_DeviceFamilyPack\8.35.0\Device\Include\nrf52832_peripherals.h
+.\_build\imu.o: C:\Users\Jona Cappelle\AppData\Local\Arm\Packs\NordicSemiconductor\nRF_DeviceFamilyPack\8.35.0\Device\Include\nrf.h
+.\_build\imu.o: C:\Users\Jona Cappelle\AppData\Local\Arm\Packs\NordicSemiconductor\nRF_DeviceFamilyPack\8.35.0\Device\Include\nrf52.h
+.\_build\imu.o: C:\Users\Jona Cappelle\AppData\Local\Arm\Packs\ARM\CMSIS\5.6.0\CMSIS\Core\Include\core_cm4.h
+.\_build\imu.o: C:\Users\Jona Cappelle\AppData\Local\Arm\Packs\ARM\CMSIS\5.6.0\CMSIS\Core\Include\cmsis_version.h
+.\_build\imu.o: C:\Users\Jona Cappelle\AppData\Local\Arm\Packs\ARM\CMSIS\5.6.0\CMSIS\Core\Include\cmsis_compiler.h
+.\_build\imu.o: C:\Users\Jona Cappelle\AppData\Local\Arm\Packs\ARM\CMSIS\5.6.0\CMSIS\Core\Include\cmsis_armcc.h
+.\_build\imu.o: C:\Users\Jona Cappelle\AppData\Local\Arm\Packs\ARM\CMSIS\5.6.0\CMSIS\Core\Include\mpu_armv7.h
+.\_build\imu.o: C:\Users\Jona Cappelle\AppData\Local\Arm\Packs\NordicSemiconductor\nRF_DeviceFamilyPack\8.35.0\Device\Include\system_nrf52.h
+.\_build\imu.o: C:\Users\Jona Cappelle\AppData\Local\Arm\Packs\NordicSemiconductor\nRF_DeviceFamilyPack\8.35.0\Device\Include\nrf52_bitfields.h
+.\_build\imu.o: C:\Users\Jona Cappelle\AppData\Local\Arm\Packs\NordicSemiconductor\nRF_DeviceFamilyPack\8.35.0\Device\Include\nrf51_to_nrf52.h
+.\_build\imu.o: C:\Users\Jona Cappelle\AppData\Local\Arm\Packs\NordicSemiconductor\nRF_DeviceFamilyPack\8.35.0\Device\Include\nrf52_name_change.h
+.\_build\imu.o: C:\Users\Jona Cappelle\AppData\Local\Arm\Packs\NordicSemiconductor\nRF_DeviceFamilyPack\8.35.0\Device\Include\compiler_abstraction.h
+.\_build\imu.o: C:\Users\Jona Cappelle\AppData\Local\Arm\Packs\NordicSemiconductor\nRF_DeviceFamilyPack\8.35.0\Device\Include\nrf_peripherals.h
+.\_build\imu.o: C:\Users\Jona Cappelle\AppData\Local\Arm\Packs\NordicSemiconductor\nRF_DeviceFamilyPack\8.35.0\Device\Include\nrf52832_peripherals.h
 .\_build\imu.o: ..\..\..\..\..\..\integration\nrfx\nrfx_glue.h
 .\_build\imu.o: ..\..\..\..\..\..\integration\nrfx\legacy/apply_old_config.h
 .\_build\imu.o: ..\..\..\..\..\..\modules\nrfx\soc/nrfx_irqs.h
